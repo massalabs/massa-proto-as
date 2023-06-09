@@ -8,7 +8,7 @@ import { Writer, Reader, Protobuf } from "as-proto/assembly";
 export class CallResponse {
   static encode(message: CallResponse, writer: Writer): void {
     writer.uint32(10);
-    writer.bytes(message.returnData);
+    writer.bytes(message.data);
   }
 
   static decode(reader: Reader, length: i32): CallResponse {
@@ -19,7 +19,7 @@ export class CallResponse {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.returnData = reader.bytes();
+          message.data = reader.bytes();
           break;
 
         default:
@@ -31,10 +31,10 @@ export class CallResponse {
     return message;
   }
 
-  returnData: Uint8Array;
+  data: Uint8Array;
 
-  constructor(returnData: Uint8Array = new Uint8Array(0)) {
-    this.returnData = returnData;
+  constructor(data: Uint8Array = new Uint8Array(0)) {
+    this.data = data;
   }
 }
 

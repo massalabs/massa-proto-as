@@ -5,12 +5,12 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class Empty {
-  static encode(message: Empty, writer: Writer): void {}
+export class LeftLower {
+  static encode(message: LeftLower, writer: Writer): void {}
 
-  static decode(reader: Reader, length: i32): Empty {
+  static decode(reader: Reader, length: i32): LeftLower {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new Empty();
+    const message = new LeftLower();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -27,10 +27,10 @@ export class Empty {
   constructor() {}
 }
 
-export function encodeEmpty(message: Empty): Uint8Array {
-  return Protobuf.encode(message, Empty.encode);
+export function encodeLeftLower(message: LeftLower): Uint8Array {
+  return Protobuf.encode(message, LeftLower.encode);
 }
 
-export function decodeEmpty(buffer: Uint8Array): Empty {
-  return Protobuf.decode<Empty>(buffer, Empty.decode);
+export function decodeLeftLower(buffer: Uint8Array): LeftLower {
+  return Protobuf.decode<LeftLower>(buffer, LeftLower.decode);
 }

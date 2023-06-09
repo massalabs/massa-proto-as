@@ -4,23 +4,23 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { Address } from "./Address";
+import { NativeAddress } from "../../model/v1/NativeAddress";
 
 export class LocalCallRequest {
   static encode(message: LocalCallRequest, writer: Writer): void {
-    const address = message.address;
-    if (address !== null) {
+    const targetScAddress = message.targetScAddress;
+    if (targetScAddress !== null) {
       writer.uint32(10);
       writer.fork();
-      Address.encode(address, writer);
+      NativeAddress.encode(targetScAddress, writer);
       writer.ldelim();
     }
 
     writer.uint32(18);
-    writer.string(message.function);
+    writer.string(message.targetFunctionName);
 
     writer.uint32(26);
-    writer.bytes(message.arg);
+    writer.bytes(message.functionArg);
   }
 
   static decode(reader: Reader, length: i32): LocalCallRequest {
@@ -31,15 +31,18 @@ export class LocalCallRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address = Address.decode(reader, reader.uint32());
+          message.targetScAddress = NativeAddress.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         case 2:
-          message.function = reader.string();
+          message.targetFunctionName = reader.string();
           break;
 
         case 3:
-          message.arg = reader.bytes();
+          message.functionArg = reader.bytes();
           break;
 
         default:
@@ -51,18 +54,18 @@ export class LocalCallRequest {
     return message;
   }
 
-  address: Address | null;
-  function: string;
-  arg: Uint8Array;
+  targetScAddress: NativeAddress | null;
+  targetFunctionName: string;
+  functionArg: Uint8Array;
 
   constructor(
-    address: Address | null = null,
-    function_: string = "",
-    arg: Uint8Array = new Uint8Array(0)
+    targetScAddress: NativeAddress | null = null,
+    targetFunctionName: string = "",
+    functionArg: Uint8Array = new Uint8Array(0)
   ) {
-    this.address = address;
-    this.function = function_;
-    this.arg = arg;
+    this.targetScAddress = targetScAddress;
+    this.targetFunctionName = targetFunctionName;
+    this.functionArg = functionArg;
   }
 }
 

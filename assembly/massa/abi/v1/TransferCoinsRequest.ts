@@ -4,24 +4,24 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { Address } from "./Address";
-import { Amount } from "./Amount";
+import { NativeAddress } from "../../model/v1/NativeAddress";
+import { NativeAmount } from "../../model/v1/NativeAmount";
 
 export class TransferCoinsRequest {
   static encode(message: TransferCoinsRequest, writer: Writer): void {
-    const toAddress = message.toAddress;
-    if (toAddress !== null) {
+    const targetAddress = message.targetAddress;
+    if (targetAddress !== null) {
       writer.uint32(10);
       writer.fork();
-      Address.encode(toAddress, writer);
+      NativeAddress.encode(targetAddress, writer);
       writer.ldelim();
     }
 
-    const rawAmount = message.rawAmount;
-    if (rawAmount !== null) {
+    const amountToTransfer = message.amountToTransfer;
+    if (amountToTransfer !== null) {
       writer.uint32(18);
       writer.fork();
-      Amount.encode(rawAmount, writer);
+      NativeAmount.encode(amountToTransfer, writer);
       writer.ldelim();
     }
   }
@@ -34,11 +34,14 @@ export class TransferCoinsRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.toAddress = Address.decode(reader, reader.uint32());
+          message.targetAddress = NativeAddress.decode(reader, reader.uint32());
           break;
 
         case 2:
-          message.rawAmount = Amount.decode(reader, reader.uint32());
+          message.amountToTransfer = NativeAmount.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         default:
@@ -50,15 +53,15 @@ export class TransferCoinsRequest {
     return message;
   }
 
-  toAddress: Address | null;
-  rawAmount: Amount | null;
+  targetAddress: NativeAddress | null;
+  amountToTransfer: NativeAmount | null;
 
   constructor(
-    toAddress: Address | null = null,
-    rawAmount: Amount | null = null
+    targetAddress: NativeAddress | null = null,
+    amountToTransfer: NativeAmount | null = null
   ) {
-    this.toAddress = toAddress;
-    this.rawAmount = rawAmount;
+    this.targetAddress = targetAddress;
+    this.amountToTransfer = amountToTransfer;
   }
 }
 
