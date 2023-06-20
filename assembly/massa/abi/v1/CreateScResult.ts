@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAddress } from "../../model/v1/NativeAddress";
 
-export class CreateSCResponse {
-  static encode(message: CreateSCResponse, writer: Writer): void {
+export class CreateScResult {
+  static encode(message: CreateScResult, writer: Writer): void {
     const scAddress = message.scAddress;
     if (scAddress !== null) {
       writer.uint32(10);
@@ -17,9 +17,9 @@ export class CreateSCResponse {
     }
   }
 
-  static decode(reader: Reader, length: i32): CreateSCResponse {
+  static decode(reader: Reader, length: i32): CreateScResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new CreateSCResponse();
+    const message = new CreateScResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -44,10 +44,10 @@ export class CreateSCResponse {
   }
 }
 
-export function encodeCreateSCResponse(message: CreateSCResponse): Uint8Array {
-  return Protobuf.encode(message, CreateSCResponse.encode);
+export function encodeCreateScResult(message: CreateScResult): Uint8Array {
+  return Protobuf.encode(message, CreateScResult.encode);
 }
 
-export function decodeCreateSCResponse(buffer: Uint8Array): CreateSCResponse {
-  return Protobuf.decode<CreateSCResponse>(buffer, CreateSCResponse.decode);
+export function decodeCreateScResult(buffer: Uint8Array): CreateScResult {
+  return Protobuf.decode<CreateScResult>(buffer, CreateScResult.decode);
 }

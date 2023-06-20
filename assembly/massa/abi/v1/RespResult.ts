@@ -41,6 +41,8 @@ import { VerifyBlsSingleSigResult } from "./VerifyBlsSingleSigResult";
 import { VerifyBlsMultiSigResult } from "./VerifyBlsMultiSigResult";
 import { TransferCoinsResult } from "./TransferCoinsResult";
 import { GenerateEventResult } from "./GenerateEventResult";
+import { CreateScResult } from "./CreateScResult";
+import { FunctionExistsResult } from "./FunctionExistsResult";
 
 export class RespResult {
   static encode(message: RespResult, writer: Writer): void {
@@ -353,6 +355,22 @@ export class RespResult {
       GenerateEventResult.encode(generateEventResult, writer);
       writer.ldelim();
     }
+
+    const createScResult = message.createScResult;
+    if (createScResult !== null) {
+      writer.uint32(306);
+      writer.fork();
+      CreateScResult.encode(createScResult, writer);
+      writer.ldelim();
+    }
+
+    const functionExistsResult = message.functionExistsResult;
+    if (functionExistsResult !== null) {
+      writer.uint32(314);
+      writer.fork();
+      FunctionExistsResult.encode(functionExistsResult, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): RespResult {
@@ -593,6 +611,20 @@ export class RespResult {
           );
           break;
 
+        case 38:
+          message.createScResult = CreateScResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 39:
+          message.functionExistsResult = FunctionExistsResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -639,6 +671,8 @@ export class RespResult {
   verifyBlsMultiSigResult: VerifyBlsMultiSigResult | null;
   transferCoinsResult: TransferCoinsResult | null;
   generateEventResult: GenerateEventResult | null;
+  createScResult: CreateScResult | null;
+  functionExistsResult: FunctionExistsResult | null;
 
   constructor(
     nativeAddressToStringResult: NativeAddressToStringResult | null = null,
@@ -677,7 +711,9 @@ export class RespResult {
     verifyBlsSingleSigResult: VerifyBlsSingleSigResult | null = null,
     verifyBlsMultiSigResult: VerifyBlsMultiSigResult | null = null,
     transferCoinsResult: TransferCoinsResult | null = null,
-    generateEventResult: GenerateEventResult | null = null
+    generateEventResult: GenerateEventResult | null = null,
+    createScResult: CreateScResult | null = null,
+    functionExistsResult: FunctionExistsResult | null = null
   ) {
     this.nativeAddressToStringResult = nativeAddressToStringResult;
     this.nativePubKeyToStringResult = nativePubKeyToStringResult;
@@ -717,6 +753,8 @@ export class RespResult {
     this.verifyBlsMultiSigResult = verifyBlsMultiSigResult;
     this.transferCoinsResult = transferCoinsResult;
     this.generateEventResult = generateEventResult;
+    this.createScResult = createScResult;
+    this.functionExistsResult = functionExistsResult;
   }
 }
 
