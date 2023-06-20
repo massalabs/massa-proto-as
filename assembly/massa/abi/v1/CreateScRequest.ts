@@ -5,15 +5,15 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class CreateSCRequest {
-  static encode(message: CreateSCRequest, writer: Writer): void {
+export class CreateScRequest {
+  static encode(message: CreateScRequest, writer: Writer): void {
     writer.uint32(10);
     writer.bytes(message.bytecode);
   }
 
-  static decode(reader: Reader, length: i32): CreateSCRequest {
+  static decode(reader: Reader, length: i32): CreateScRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new CreateSCRequest();
+    const message = new CreateScRequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -38,10 +38,10 @@ export class CreateSCRequest {
   }
 }
 
-export function encodeCreateSCRequest(message: CreateSCRequest): Uint8Array {
-  return Protobuf.encode(message, CreateSCRequest.encode);
+export function encodeCreateScRequest(message: CreateScRequest): Uint8Array {
+  return Protobuf.encode(message, CreateScRequest.encode);
 }
 
-export function decodeCreateSCRequest(buffer: Uint8Array): CreateSCRequest {
-  return Protobuf.decode<CreateSCRequest>(buffer, CreateSCRequest.decode);
+export function decodeCreateScRequest(buffer: Uint8Array): CreateScRequest {
+  return Protobuf.decode<CreateScRequest>(buffer, CreateScRequest.decode);
 }

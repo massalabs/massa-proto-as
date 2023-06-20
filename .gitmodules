@@ -1,4 +1,4 @@
 [submodule "massa-proto"]
 	path = massa-proto
 	url = https://github.com/massalabs/massa-proto.git
-	branch = bilboquet/Improve_ABI_types_in_wasmv1_WIP
+	branch = feature/Improve_ABI_types_in_wasmv1

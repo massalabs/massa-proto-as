@@ -3,3 +3,4 @@ package-lock.json
 
 !node_modules/.bin/protoc-gen-as
 !node_modules/.bin/protoc-gen-as.cmd
+massa-proto_lnk
