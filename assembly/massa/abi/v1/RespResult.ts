@@ -43,6 +43,46 @@ import { TransferCoinsResult } from "./TransferCoinsResult";
 import { GenerateEventResult } from "./GenerateEventResult";
 import { CreateScResult } from "./CreateScResult";
 import { FunctionExistsResult } from "./FunctionExistsResult";
+import { TransferCoinsForResult } from "./TransferCoinsForResult";
+import { NativeHashResult } from "./NativeHashResult";
+import { GetKeysResult } from "./GetKeysResult";
+import { GetKeysForResult } from "./GetKeysForResult";
+import { SetDataResult } from "./SetDataResult";
+import { AppendDataResult } from "./AppendDataResult";
+import { GetDataResult } from "./GetDataResult";
+import { HasDataResult } from "./HasDataResult";
+import { DeleteDataResult } from "./DeleteDataResult";
+import { SetDataForResult } from "./SetDataForResult";
+import { AppendDataForResult } from "./AppendDataForResult";
+import { GetDataForResult } from "./GetDataForResult";
+import { DeleteDataForResult } from "./DeleteDataForResult";
+import { HasDataForResult } from "./HasDataForResult";
+import { GetOwnedAddressesResult } from "./GetOwnedAddressesResult";
+import { GetCallStackResult } from "./GetCallStackResult";
+import { NativeAddressFromNativePubKeyResult } from "./NativeAddressFromNativePubKeyResult";
+import { UnsafeRandomResult } from "./UnsafeRandomResult";
+import { GetNativeTimeResult } from "./GetNativeTimeResult";
+import { GetCurrentPeriodResult } from "./GetCurrentPeriodResult";
+import { GetCurrentThreadResult } from "./GetCurrentThreadResult";
+import { SetBytecodeRequest } from "./SetBytecodeRequest";
+import { SetBytecodeForRequest } from "./SetBytecodeForRequest";
+import { GetBytecodeResult } from "./GetBytecodeResult";
+import { GetBytecodeForResult } from "./GetBytecodeForResult";
+import { CallerHasWriteAccessResult } from "./CallerHasWriteAccessResult";
+import { SeedResult } from "./SeedResult";
+import { DateNowResult } from "./DateNowResult";
+import { ConsolePutResult } from "./ConsolePutResult";
+import { TraceResult } from "./TraceResult";
+import { ProcessExitResult } from "./ProcessExitResult";
+import { HashSha256Result } from "./HashSha256Result";
+import { GetOpDataResult } from "./GetOpDataResult";
+import { HasOpKeyResult } from "./HasOpKeyResult";
+import { GetOpKeysResult } from "./GetOpKeysResult";
+import { PrintResult } from "./PrintResult";
+import { GetRemainingGasResult } from "./GetRemainingGasResult";
+import { GetBalanceResult } from "./GetBalanceResult";
+import { GetBalanceForResult } from "./GetBalanceForResult";
+import { GetCallCoinsResult } from "./GetCallCoinsResult";
 
 export class RespResult {
   static encode(message: RespResult, writer: Writer): void {
@@ -371,6 +411,330 @@ export class RespResult {
       FunctionExistsResult.encode(functionExistsResult, writer);
       writer.ldelim();
     }
+
+    const transferCoinsForResult = message.transferCoinsForResult;
+    if (transferCoinsForResult !== null) {
+      writer.uint32(322);
+      writer.fork();
+      TransferCoinsForResult.encode(transferCoinsForResult, writer);
+      writer.ldelim();
+    }
+
+    const nativeHashResult = message.nativeHashResult;
+    if (nativeHashResult !== null) {
+      writer.uint32(330);
+      writer.fork();
+      NativeHashResult.encode(nativeHashResult, writer);
+      writer.ldelim();
+    }
+
+    const getKeysResult = message.getKeysResult;
+    if (getKeysResult !== null) {
+      writer.uint32(338);
+      writer.fork();
+      GetKeysResult.encode(getKeysResult, writer);
+      writer.ldelim();
+    }
+
+    const getKeysForResult = message.getKeysForResult;
+    if (getKeysForResult !== null) {
+      writer.uint32(346);
+      writer.fork();
+      GetKeysForResult.encode(getKeysForResult, writer);
+      writer.ldelim();
+    }
+
+    const setDataResult = message.setDataResult;
+    if (setDataResult !== null) {
+      writer.uint32(354);
+      writer.fork();
+      SetDataResult.encode(setDataResult, writer);
+      writer.ldelim();
+    }
+
+    const appendDataResult = message.appendDataResult;
+    if (appendDataResult !== null) {
+      writer.uint32(362);
+      writer.fork();
+      AppendDataResult.encode(appendDataResult, writer);
+      writer.ldelim();
+    }
+
+    const getDataResult = message.getDataResult;
+    if (getDataResult !== null) {
+      writer.uint32(370);
+      writer.fork();
+      GetDataResult.encode(getDataResult, writer);
+      writer.ldelim();
+    }
+
+    const hasDataResult = message.hasDataResult;
+    if (hasDataResult !== null) {
+      writer.uint32(378);
+      writer.fork();
+      HasDataResult.encode(hasDataResult, writer);
+      writer.ldelim();
+    }
+
+    const deleteDataResult = message.deleteDataResult;
+    if (deleteDataResult !== null) {
+      writer.uint32(386);
+      writer.fork();
+      DeleteDataResult.encode(deleteDataResult, writer);
+      writer.ldelim();
+    }
+
+    const setDataForResult = message.setDataForResult;
+    if (setDataForResult !== null) {
+      writer.uint32(394);
+      writer.fork();
+      SetDataForResult.encode(setDataForResult, writer);
+      writer.ldelim();
+    }
+
+    const appendDataForResult = message.appendDataForResult;
+    if (appendDataForResult !== null) {
+      writer.uint32(402);
+      writer.fork();
+      AppendDataForResult.encode(appendDataForResult, writer);
+      writer.ldelim();
+    }
+
+    const getDataForResult = message.getDataForResult;
+    if (getDataForResult !== null) {
+      writer.uint32(410);
+      writer.fork();
+      GetDataForResult.encode(getDataForResult, writer);
+      writer.ldelim();
+    }
+
+    const deleteDataForResult = message.deleteDataForResult;
+    if (deleteDataForResult !== null) {
+      writer.uint32(418);
+      writer.fork();
+      DeleteDataForResult.encode(deleteDataForResult, writer);
+      writer.ldelim();
+    }
+
+    const hasDataForResult = message.hasDataForResult;
+    if (hasDataForResult !== null) {
+      writer.uint32(426);
+      writer.fork();
+      HasDataForResult.encode(hasDataForResult, writer);
+      writer.ldelim();
+    }
+
+    const getOwnedAddressesResult = message.getOwnedAddressesResult;
+    if (getOwnedAddressesResult !== null) {
+      writer.uint32(434);
+      writer.fork();
+      GetOwnedAddressesResult.encode(getOwnedAddressesResult, writer);
+      writer.ldelim();
+    }
+
+    const getCallStackResult = message.getCallStackResult;
+    if (getCallStackResult !== null) {
+      writer.uint32(442);
+      writer.fork();
+      GetCallStackResult.encode(getCallStackResult, writer);
+      writer.ldelim();
+    }
+
+    const nativeAddressFromNativePubKeyResult =
+      message.nativeAddressFromNativePubKeyResult;
+    if (nativeAddressFromNativePubKeyResult !== null) {
+      writer.uint32(450);
+      writer.fork();
+      NativeAddressFromNativePubKeyResult.encode(
+        nativeAddressFromNativePubKeyResult,
+        writer
+      );
+      writer.ldelim();
+    }
+
+    const unsafeRandomRequestResult = message.unsafeRandomRequestResult;
+    if (unsafeRandomRequestResult !== null) {
+      writer.uint32(458);
+      writer.fork();
+      UnsafeRandomResult.encode(unsafeRandomRequestResult, writer);
+      writer.ldelim();
+    }
+
+    const getNativeTimeResult = message.getNativeTimeResult;
+    if (getNativeTimeResult !== null) {
+      writer.uint32(466);
+      writer.fork();
+      GetNativeTimeResult.encode(getNativeTimeResult, writer);
+      writer.ldelim();
+    }
+
+    const getCurrentPeriodResult = message.getCurrentPeriodResult;
+    if (getCurrentPeriodResult !== null) {
+      writer.uint32(474);
+      writer.fork();
+      GetCurrentPeriodResult.encode(getCurrentPeriodResult, writer);
+      writer.ldelim();
+    }
+
+    const getCurrentThreadResult = message.getCurrentThreadResult;
+    if (getCurrentThreadResult !== null) {
+      writer.uint32(482);
+      writer.fork();
+      GetCurrentThreadResult.encode(getCurrentThreadResult, writer);
+      writer.ldelim();
+    }
+
+    const setBytecodeRequestResult = message.setBytecodeRequestResult;
+    if (setBytecodeRequestResult !== null) {
+      writer.uint32(490);
+      writer.fork();
+      SetBytecodeRequest.encode(setBytecodeRequestResult, writer);
+      writer.ldelim();
+    }
+
+    const setBytecodeForRequestResult = message.setBytecodeForRequestResult;
+    if (setBytecodeForRequestResult !== null) {
+      writer.uint32(498);
+      writer.fork();
+      SetBytecodeForRequest.encode(setBytecodeForRequestResult, writer);
+      writer.ldelim();
+    }
+
+    const getBytecodeResult = message.getBytecodeResult;
+    if (getBytecodeResult !== null) {
+      writer.uint32(506);
+      writer.fork();
+      GetBytecodeResult.encode(getBytecodeResult, writer);
+      writer.ldelim();
+    }
+
+    const getBytecodeForResult = message.getBytecodeForResult;
+    if (getBytecodeForResult !== null) {
+      writer.uint32(514);
+      writer.fork();
+      GetBytecodeForResult.encode(getBytecodeForResult, writer);
+      writer.ldelim();
+    }
+
+    const callerHasWriteAccessResult = message.callerHasWriteAccessResult;
+    if (callerHasWriteAccessResult !== null) {
+      writer.uint32(522);
+      writer.fork();
+      CallerHasWriteAccessResult.encode(callerHasWriteAccessResult, writer);
+      writer.ldelim();
+    }
+
+    const seedResult = message.seedResult;
+    if (seedResult !== null) {
+      writer.uint32(530);
+      writer.fork();
+      SeedResult.encode(seedResult, writer);
+      writer.ldelim();
+    }
+
+    const dateNowResult = message.dateNowResult;
+    if (dateNowResult !== null) {
+      writer.uint32(538);
+      writer.fork();
+      DateNowResult.encode(dateNowResult, writer);
+      writer.ldelim();
+    }
+
+    const consolePutResult = message.consolePutResult;
+    if (consolePutResult !== null) {
+      writer.uint32(546);
+      writer.fork();
+      ConsolePutResult.encode(consolePutResult, writer);
+      writer.ldelim();
+    }
+
+    const traceResult = message.traceResult;
+    if (traceResult !== null) {
+      writer.uint32(554);
+      writer.fork();
+      TraceResult.encode(traceResult, writer);
+      writer.ldelim();
+    }
+
+    const processExitResult = message.processExitResult;
+    if (processExitResult !== null) {
+      writer.uint32(562);
+      writer.fork();
+      ProcessExitResult.encode(processExitResult, writer);
+      writer.ldelim();
+    }
+
+    const hashSha256Result = message.hashSha256Result;
+    if (hashSha256Result !== null) {
+      writer.uint32(570);
+      writer.fork();
+      HashSha256Result.encode(hashSha256Result, writer);
+      writer.ldelim();
+    }
+
+    const getOpDataResult = message.getOpDataResult;
+    if (getOpDataResult !== null) {
+      writer.uint32(578);
+      writer.fork();
+      GetOpDataResult.encode(getOpDataResult, writer);
+      writer.ldelim();
+    }
+
+    const hasOpKeyResult = message.hasOpKeyResult;
+    if (hasOpKeyResult !== null) {
+      writer.uint32(586);
+      writer.fork();
+      HasOpKeyResult.encode(hasOpKeyResult, writer);
+      writer.ldelim();
+    }
+
+    const getOpKeysResult = message.getOpKeysResult;
+    if (getOpKeysResult !== null) {
+      writer.uint32(594);
+      writer.fork();
+      GetOpKeysResult.encode(getOpKeysResult, writer);
+      writer.ldelim();
+    }
+
+    const printResult = message.printResult;
+    if (printResult !== null) {
+      writer.uint32(602);
+      writer.fork();
+      PrintResult.encode(printResult, writer);
+      writer.ldelim();
+    }
+
+    const getRemainingGasResult = message.getRemainingGasResult;
+    if (getRemainingGasResult !== null) {
+      writer.uint32(610);
+      writer.fork();
+      GetRemainingGasResult.encode(getRemainingGasResult, writer);
+      writer.ldelim();
+    }
+
+    const getBalanceResult = message.getBalanceResult;
+    if (getBalanceResult !== null) {
+      writer.uint32(618);
+      writer.fork();
+      GetBalanceResult.encode(getBalanceResult, writer);
+      writer.ldelim();
+    }
+
+    const getBalanceForResult = message.getBalanceForResult;
+    if (getBalanceForResult !== null) {
+      writer.uint32(626);
+      writer.fork();
+      GetBalanceForResult.encode(getBalanceForResult, writer);
+      writer.ldelim();
+    }
+
+    const getCallCoinsResult = message.getCallCoinsResult;
+    if (getCallCoinsResult !== null) {
+      writer.uint32(634);
+      writer.fork();
+      GetCallCoinsResult.encode(getCallCoinsResult, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): RespResult {
@@ -625,6 +989,258 @@ export class RespResult {
           );
           break;
 
+        case 40:
+          message.transferCoinsForResult = TransferCoinsForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 41:
+          message.nativeHashResult = NativeHashResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 42:
+          message.getKeysResult = GetKeysResult.decode(reader, reader.uint32());
+          break;
+
+        case 43:
+          message.getKeysForResult = GetKeysForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 44:
+          message.setDataResult = SetDataResult.decode(reader, reader.uint32());
+          break;
+
+        case 45:
+          message.appendDataResult = AppendDataResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 46:
+          message.getDataResult = GetDataResult.decode(reader, reader.uint32());
+          break;
+
+        case 47:
+          message.hasDataResult = HasDataResult.decode(reader, reader.uint32());
+          break;
+
+        case 48:
+          message.deleteDataResult = DeleteDataResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 49:
+          message.setDataForResult = SetDataForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 50:
+          message.appendDataForResult = AppendDataForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 51:
+          message.getDataForResult = GetDataForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 52:
+          message.deleteDataForResult = DeleteDataForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 53:
+          message.hasDataForResult = HasDataForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 54:
+          message.getOwnedAddressesResult = GetOwnedAddressesResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 55:
+          message.getCallStackResult = GetCallStackResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 56:
+          message.nativeAddressFromNativePubKeyResult =
+            NativeAddressFromNativePubKeyResult.decode(reader, reader.uint32());
+          break;
+
+        case 57:
+          message.unsafeRandomRequestResult = UnsafeRandomResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 58:
+          message.getNativeTimeResult = GetNativeTimeResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 59:
+          message.getCurrentPeriodResult = GetCurrentPeriodResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 60:
+          message.getCurrentThreadResult = GetCurrentThreadResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 61:
+          message.setBytecodeRequestResult = SetBytecodeRequest.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 62:
+          message.setBytecodeForRequestResult = SetBytecodeForRequest.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 63:
+          message.getBytecodeResult = GetBytecodeResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 64:
+          message.getBytecodeForResult = GetBytecodeForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 65:
+          message.callerHasWriteAccessResult =
+            CallerHasWriteAccessResult.decode(reader, reader.uint32());
+          break;
+
+        case 66:
+          message.seedResult = SeedResult.decode(reader, reader.uint32());
+          break;
+
+        case 67:
+          message.dateNowResult = DateNowResult.decode(reader, reader.uint32());
+          break;
+
+        case 68:
+          message.consolePutResult = ConsolePutResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 69:
+          message.traceResult = TraceResult.decode(reader, reader.uint32());
+          break;
+
+        case 70:
+          message.processExitResult = ProcessExitResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 71:
+          message.hashSha256Result = HashSha256Result.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 72:
+          message.getOpDataResult = GetOpDataResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 73:
+          message.hasOpKeyResult = HasOpKeyResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 74:
+          message.getOpKeysResult = GetOpKeysResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 75:
+          message.printResult = PrintResult.decode(reader, reader.uint32());
+          break;
+
+        case 76:
+          message.getRemainingGasResult = GetRemainingGasResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 77:
+          message.getBalanceResult = GetBalanceResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 78:
+          message.getBalanceForResult = GetBalanceForResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 79:
+          message.getCallCoinsResult = GetCallCoinsResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -673,6 +1289,46 @@ export class RespResult {
   generateEventResult: GenerateEventResult | null;
   createScResult: CreateScResult | null;
   functionExistsResult: FunctionExistsResult | null;
+  transferCoinsForResult: TransferCoinsForResult | null;
+  nativeHashResult: NativeHashResult | null;
+  getKeysResult: GetKeysResult | null;
+  getKeysForResult: GetKeysForResult | null;
+  setDataResult: SetDataResult | null;
+  appendDataResult: AppendDataResult | null;
+  getDataResult: GetDataResult | null;
+  hasDataResult: HasDataResult | null;
+  deleteDataResult: DeleteDataResult | null;
+  setDataForResult: SetDataForResult | null;
+  appendDataForResult: AppendDataForResult | null;
+  getDataForResult: GetDataForResult | null;
+  deleteDataForResult: DeleteDataForResult | null;
+  hasDataForResult: HasDataForResult | null;
+  getOwnedAddressesResult: GetOwnedAddressesResult | null;
+  getCallStackResult: GetCallStackResult | null;
+  nativeAddressFromNativePubKeyResult: NativeAddressFromNativePubKeyResult | null;
+  unsafeRandomRequestResult: UnsafeRandomResult | null;
+  getNativeTimeResult: GetNativeTimeResult | null;
+  getCurrentPeriodResult: GetCurrentPeriodResult | null;
+  getCurrentThreadResult: GetCurrentThreadResult | null;
+  setBytecodeRequestResult: SetBytecodeRequest | null;
+  setBytecodeForRequestResult: SetBytecodeForRequest | null;
+  getBytecodeResult: GetBytecodeResult | null;
+  getBytecodeForResult: GetBytecodeForResult | null;
+  callerHasWriteAccessResult: CallerHasWriteAccessResult | null;
+  seedResult: SeedResult | null;
+  dateNowResult: DateNowResult | null;
+  consolePutResult: ConsolePutResult | null;
+  traceResult: TraceResult | null;
+  processExitResult: ProcessExitResult | null;
+  hashSha256Result: HashSha256Result | null;
+  getOpDataResult: GetOpDataResult | null;
+  hasOpKeyResult: HasOpKeyResult | null;
+  getOpKeysResult: GetOpKeysResult | null;
+  printResult: PrintResult | null;
+  getRemainingGasResult: GetRemainingGasResult | null;
+  getBalanceResult: GetBalanceResult | null;
+  getBalanceForResult: GetBalanceForResult | null;
+  getCallCoinsResult: GetCallCoinsResult | null;
 
   constructor(
     nativeAddressToStringResult: NativeAddressToStringResult | null = null,
@@ -713,7 +1369,47 @@ export class RespResult {
     transferCoinsResult: TransferCoinsResult | null = null,
     generateEventResult: GenerateEventResult | null = null,
     createScResult: CreateScResult | null = null,
-    functionExistsResult: FunctionExistsResult | null = null
+    functionExistsResult: FunctionExistsResult | null = null,
+    transferCoinsForResult: TransferCoinsForResult | null = null,
+    nativeHashResult: NativeHashResult | null = null,
+    getKeysResult: GetKeysResult | null = null,
+    getKeysForResult: GetKeysForResult | null = null,
+    setDataResult: SetDataResult | null = null,
+    appendDataResult: AppendDataResult | null = null,
+    getDataResult: GetDataResult | null = null,
+    hasDataResult: HasDataResult | null = null,
+    deleteDataResult: DeleteDataResult | null = null,
+    setDataForResult: SetDataForResult | null = null,
+    appendDataForResult: AppendDataForResult | null = null,
+    getDataForResult: GetDataForResult | null = null,
+    deleteDataForResult: DeleteDataForResult | null = null,
+    hasDataForResult: HasDataForResult | null = null,
+    getOwnedAddressesResult: GetOwnedAddressesResult | null = null,
+    getCallStackResult: GetCallStackResult | null = null,
+    nativeAddressFromNativePubKeyResult: NativeAddressFromNativePubKeyResult | null = null,
+    unsafeRandomRequestResult: UnsafeRandomResult | null = null,
+    getNativeTimeResult: GetNativeTimeResult | null = null,
+    getCurrentPeriodResult: GetCurrentPeriodResult | null = null,
+    getCurrentThreadResult: GetCurrentThreadResult | null = null,
+    setBytecodeRequestResult: SetBytecodeRequest | null = null,
+    setBytecodeForRequestResult: SetBytecodeForRequest | null = null,
+    getBytecodeResult: GetBytecodeResult | null = null,
+    getBytecodeForResult: GetBytecodeForResult | null = null,
+    callerHasWriteAccessResult: CallerHasWriteAccessResult | null = null,
+    seedResult: SeedResult | null = null,
+    dateNowResult: DateNowResult | null = null,
+    consolePutResult: ConsolePutResult | null = null,
+    traceResult: TraceResult | null = null,
+    processExitResult: ProcessExitResult | null = null,
+    hashSha256Result: HashSha256Result | null = null,
+    getOpDataResult: GetOpDataResult | null = null,
+    hasOpKeyResult: HasOpKeyResult | null = null,
+    getOpKeysResult: GetOpKeysResult | null = null,
+    printResult: PrintResult | null = null,
+    getRemainingGasResult: GetRemainingGasResult | null = null,
+    getBalanceResult: GetBalanceResult | null = null,
+    getBalanceForResult: GetBalanceForResult | null = null,
+    getCallCoinsResult: GetCallCoinsResult | null = null
   ) {
     this.nativeAddressToStringResult = nativeAddressToStringResult;
     this.nativePubKeyToStringResult = nativePubKeyToStringResult;
@@ -755,6 +1451,47 @@ export class RespResult {
     this.generateEventResult = generateEventResult;
     this.createScResult = createScResult;
     this.functionExistsResult = functionExistsResult;
+    this.transferCoinsForResult = transferCoinsForResult;
+    this.nativeHashResult = nativeHashResult;
+    this.getKeysResult = getKeysResult;
+    this.getKeysForResult = getKeysForResult;
+    this.setDataResult = setDataResult;
+    this.appendDataResult = appendDataResult;
+    this.getDataResult = getDataResult;
+    this.hasDataResult = hasDataResult;
+    this.deleteDataResult = deleteDataResult;
+    this.setDataForResult = setDataForResult;
+    this.appendDataForResult = appendDataForResult;
+    this.getDataForResult = getDataForResult;
+    this.deleteDataForResult = deleteDataForResult;
+    this.hasDataForResult = hasDataForResult;
+    this.getOwnedAddressesResult = getOwnedAddressesResult;
+    this.getCallStackResult = getCallStackResult;
+    this.nativeAddressFromNativePubKeyResult =
+      nativeAddressFromNativePubKeyResult;
+    this.unsafeRandomRequestResult = unsafeRandomRequestResult;
+    this.getNativeTimeResult = getNativeTimeResult;
+    this.getCurrentPeriodResult = getCurrentPeriodResult;
+    this.getCurrentThreadResult = getCurrentThreadResult;
+    this.setBytecodeRequestResult = setBytecodeRequestResult;
+    this.setBytecodeForRequestResult = setBytecodeForRequestResult;
+    this.getBytecodeResult = getBytecodeResult;
+    this.getBytecodeForResult = getBytecodeForResult;
+    this.callerHasWriteAccessResult = callerHasWriteAccessResult;
+    this.seedResult = seedResult;
+    this.dateNowResult = dateNowResult;
+    this.consolePutResult = consolePutResult;
+    this.traceResult = traceResult;
+    this.processExitResult = processExitResult;
+    this.hashSha256Result = hashSha256Result;
+    this.getOpDataResult = getOpDataResult;
+    this.hasOpKeyResult = hasOpKeyResult;
+    this.getOpKeysResult = getOpKeysResult;
+    this.printResult = printResult;
+    this.getRemainingGasResult = getRemainingGasResult;
+    this.getBalanceResult = getBalanceResult;
+    this.getBalanceForResult = getBalanceForResult;
+    this.getCallCoinsResult = getCallCoinsResult;
   }
 }
 
