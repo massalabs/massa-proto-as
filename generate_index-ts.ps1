@@ -1,0 +1,1 @@
+fd -e ts . ./assembly/massa/ | ForEach-Object { $_ -replace "^./assembly/","./" } | ForEach-Object { $_ -replace "\.ts$" }  | ForEach-Object { $_ -replace "\\","/" } | Where-Object { $_ -match '.*' } | ForEach-Object { "export * from '$($_)';" }
