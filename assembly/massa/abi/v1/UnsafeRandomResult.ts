@@ -6,10 +6,7 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
 export class UnsafeRandomResult {
-  static encode(message: UnsafeRandomResult, writer: Writer): void {
-    writer.uint32(8);
-    writer.int64(message.random);
-  }
+  static encode(message: UnsafeRandomResult, writer: Writer): void {}
 
   static decode(reader: Reader, length: i32): UnsafeRandomResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
@@ -18,10 +15,6 @@ export class UnsafeRandomResult {
     while (reader.ptr < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          message.random = reader.int64();
-          break;
-
         default:
           reader.skipType(tag & 7);
           break;
@@ -31,11 +24,7 @@ export class UnsafeRandomResult {
     return message;
   }
 
-  random: i64;
-
-  constructor(random: i64 = 0) {
-    this.random = random;
-  }
+  constructor() {}
 }
 
 export function encodeUnsafeRandomResult(

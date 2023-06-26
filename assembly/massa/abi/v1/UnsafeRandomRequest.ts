@@ -6,7 +6,13 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
 export class UnsafeRandomRequest {
-  static encode(message: UnsafeRandomRequest, writer: Writer): void {}
+  static encode(message: UnsafeRandomRequest, writer: Writer): void {
+    writer.uint32(8);
+    writer.int32(message.memoryAddr);
+
+    writer.uint32(16);
+    writer.int32(message.numBytes);
+  }
 
   static decode(reader: Reader, length: i32): UnsafeRandomRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
@@ -15,6 +21,14 @@ export class UnsafeRandomRequest {
     while (reader.ptr < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.memoryAddr = reader.int32();
+          break;
+
+        case 2:
+          message.numBytes = reader.int32();
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -24,7 +38,13 @@ export class UnsafeRandomRequest {
     return message;
   }
 
-  constructor() {}
+  memoryAddr: i32;
+  numBytes: i32;
+
+  constructor(memoryAddr: i32 = 0, numBytes: i32 = 0) {
+    this.memoryAddr = memoryAddr;
+    this.numBytes = numBytes;
+  }
 }
 
 export function encodeUnsafeRandomRequest(

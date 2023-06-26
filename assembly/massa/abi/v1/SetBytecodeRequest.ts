@@ -4,9 +4,18 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { NativeAddress } from "../../model/v1/NativeAddress";
 
 export class SetBytecodeRequest {
   static encode(message: SetBytecodeRequest, writer: Writer): void {
+    const address = message.address;
+    if (address !== null) {
+      writer.uint32(10);
+      writer.fork();
+      NativeAddress.encode(address, writer);
+      writer.ldelim();
+    }
+
     writer.uint32(18);
     writer.bytes(message.bytecode);
   }
@@ -18,6 +27,10 @@ export class SetBytecodeRequest {
     while (reader.ptr < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.address = NativeAddress.decode(reader, reader.uint32());
+          break;
+
         case 2:
           message.bytecode = reader.bytes();
           break;
@@ -31,9 +44,14 @@ export class SetBytecodeRequest {
     return message;
   }
 
+  address: NativeAddress | null;
   bytecode: Uint8Array;
 
-  constructor(bytecode: Uint8Array = new Uint8Array(0)) {
+  constructor(
+    address: NativeAddress | null = null,
+    bytecode: Uint8Array = new Uint8Array(0)
+  ) {
+    this.address = address;
     this.bytecode = bytecode;
   }
 }

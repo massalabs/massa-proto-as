@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAddress } from "../../model/v1/NativeAddress";
 
-export class GetBytecodeForRequest {
-  static encode(message: GetBytecodeForRequest, writer: Writer): void {
+export class GetBytecodeequest {
+  static encode(message: GetBytecodeequest, writer: Writer): void {
     const address = message.address;
     if (address !== null) {
       writer.uint32(10);
@@ -17,9 +17,9 @@ export class GetBytecodeForRequest {
     }
   }
 
-  static decode(reader: Reader, length: i32): GetBytecodeForRequest {
+  static decode(reader: Reader, length: i32): GetBytecodeequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new GetBytecodeForRequest();
+    const message = new GetBytecodeequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -44,17 +44,12 @@ export class GetBytecodeForRequest {
   }
 }
 
-export function encodeGetBytecodeForRequest(
-  message: GetBytecodeForRequest
+export function encodeGetBytecodeequest(
+  message: GetBytecodeequest
 ): Uint8Array {
-  return Protobuf.encode(message, GetBytecodeForRequest.encode);
+  return Protobuf.encode(message, GetBytecodeequest.encode);
 }
 
-export function decodeGetBytecodeForRequest(
-  buffer: Uint8Array
-): GetBytecodeForRequest {
-  return Protobuf.decode<GetBytecodeForRequest>(
-    buffer,
-    GetBytecodeForRequest.decode
-  );
+export function decodeGetBytecodeequest(buffer: Uint8Array): GetBytecodeequest {
+  return Protobuf.decode<GetBytecodeequest>(buffer, GetBytecodeequest.decode);
 }
