@@ -4,7 +4,7 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "../../model/v1/NativeAddress";
+import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
 
 export class GetBalanceRequest {
   static encode(message: GetBalanceRequest, writer: Writer): void {

@@ -4,7 +4,7 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAmount } from "../../model/v1/NativeAmount";
+import { NativeAmount } from "..\\..\\model\\v1\\NativeAmount";
 
 export class NativeAmountToStringRequest {
   static encode(message: NativeAmountToStringRequest, writer: Writer): void {

@@ -4,8 +4,8 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeSig } from "../../model/v1/NativeSig";
-import { NativePubKey } from "../../model/v1/NativePubKey";
+import { NativeSig } from "..\\..\\model\\v1\\NativeSig";
+import { NativePubKey } from "..\\..\\model\\v1\\NativePubKey";
 
 export class VerifyNativeSigRequest {
   static encode(message: VerifyNativeSigRequest, writer: Writer): void {

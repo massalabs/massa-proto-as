@@ -4,8 +4,8 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "../../model/v1/NativeAddress";
-import { NativeAmount } from "../../model/v1/NativeAmount";
+import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
+import { NativeAmount } from "..\\..\\model\\v1\\NativeAmount";
 
 export class TransferCoinsRequest {
   static encode(message: TransferCoinsRequest, writer: Writer): void {

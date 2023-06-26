@@ -4,7 +4,7 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { Slot } from "../../model/v1/Slot";
+import { Slot } from "..\\..\\model\\v1\\Slot";
 
 export class GetCurrentSlotResult {
   static encode(message: GetCurrentSlotResult, writer: Writer): void {
