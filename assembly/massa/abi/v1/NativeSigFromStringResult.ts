@@ -4,7 +4,7 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeSig } from "../../model/v1/NativeSig";
+import { NativeSig } from "..\\..\\model\\v1\\NativeSig";
 
 export class NativeSigFromStringResult {
   static encode(message: NativeSigFromStringResult, writer: Writer): void {

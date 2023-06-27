@@ -4,10 +4,19 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
 
 export class DeleteDataRequest {
   static encode(message: DeleteDataRequest, writer: Writer): void {
-    writer.uint32(10);
+    const address = message.address;
+    if (address !== null) {
+      writer.uint32(10);
+      writer.fork();
+      NativeAddress.encode(address, writer);
+      writer.ldelim();
+    }
+
+    writer.uint32(18);
     writer.bytes(message.key);
   }
 
@@ -19,6 +28,10 @@ export class DeleteDataRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          message.address = NativeAddress.decode(reader, reader.uint32());
+          break;
+
+        case 2:
           message.key = reader.bytes();
           break;
 
@@ -31,9 +44,14 @@ export class DeleteDataRequest {
     return message;
   }
 
+  address: NativeAddress | null;
   key: Uint8Array;
 
-  constructor(key: Uint8Array = new Uint8Array(0)) {
+  constructor(
+    address: NativeAddress | null = null,
+    key: Uint8Array = new Uint8Array(0)
+  ) {
+    this.address = address;
     this.key = key;
   }
 }

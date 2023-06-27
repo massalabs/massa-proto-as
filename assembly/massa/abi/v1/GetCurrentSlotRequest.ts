@@ -5,12 +5,12 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class DeleteDataForResult {
-  static encode(message: DeleteDataForResult, writer: Writer): void {}
+export class GetCurrentSlotRequest {
+  static encode(message: GetCurrentSlotRequest, writer: Writer): void {}
 
-  static decode(reader: Reader, length: i32): DeleteDataForResult {
+  static decode(reader: Reader, length: i32): GetCurrentSlotRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new DeleteDataForResult();
+    const message = new GetCurrentSlotRequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -27,17 +27,17 @@ export class DeleteDataForResult {
   constructor() {}
 }
 
-export function encodeDeleteDataForResult(
-  message: DeleteDataForResult
+export function encodeGetCurrentSlotRequest(
+  message: GetCurrentSlotRequest
 ): Uint8Array {
-  return Protobuf.encode(message, DeleteDataForResult.encode);
+  return Protobuf.encode(message, GetCurrentSlotRequest.encode);
 }
 
-export function decodeDeleteDataForResult(
+export function decodeGetCurrentSlotRequest(
   buffer: Uint8Array
-): DeleteDataForResult {
-  return Protobuf.decode<DeleteDataForResult>(
+): GetCurrentSlotRequest {
+  return Protobuf.decode<GetCurrentSlotRequest>(
     buffer,
-    DeleteDataForResult.decode
+    GetCurrentSlotRequest.decode
   );
 }

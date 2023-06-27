@@ -4,9 +4,9 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { LeftLower } from "./ComparisonResult/LeftLower";
-import { Equal } from "./ComparisonResult/Equal";
-import { LeftGreater } from "./ComparisonResult/LeftGreater";
+import { LeftLower } from "./ComparisonResult\\LeftLower";
+import { Equal } from "./ComparisonResult\\Equal";
+import { LeftGreater } from "./ComparisonResult\\LeftGreater";
 
 export class ComparisonResult {
   static encode(message: ComparisonResult, writer: Writer): void {

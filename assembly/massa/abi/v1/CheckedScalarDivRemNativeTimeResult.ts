@@ -4,7 +4,7 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeTime } from "../../model/v1/NativeTime";
+import { NativeTime } from "..\\..\\model\\v1\\NativeTime";
 
 export class CheckedScalarDivRemNativeTimeResult {
   static encode(

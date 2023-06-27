@@ -4,13 +4,22 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
 
 export class SetDataRequest {
   static encode(message: SetDataRequest, writer: Writer): void {
-    writer.uint32(10);
-    writer.bytes(message.key);
+    const address = message.address;
+    if (address !== null) {
+      writer.uint32(10);
+      writer.fork();
+      NativeAddress.encode(address, writer);
+      writer.ldelim();
+    }
 
     writer.uint32(18);
+    writer.bytes(message.key);
+
+    writer.uint32(26);
     writer.bytes(message.value);
   }
 
@@ -22,10 +31,14 @@ export class SetDataRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.key = reader.bytes();
+          message.address = NativeAddress.decode(reader, reader.uint32());
           break;
 
         case 2:
+          message.key = reader.bytes();
+          break;
+
+        case 3:
           message.value = reader.bytes();
           break;
 
@@ -38,13 +51,16 @@ export class SetDataRequest {
     return message;
   }
 
+  address: NativeAddress | null;
   key: Uint8Array;
   value: Uint8Array;
 
   constructor(
+    address: NativeAddress | null = null,
     key: Uint8Array = new Uint8Array(0),
     value: Uint8Array = new Uint8Array(0)
   ) {
+    this.address = address;
     this.key = key;
     this.value = value;
   }

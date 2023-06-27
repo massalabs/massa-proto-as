@@ -4,7 +4,7 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativePubKey } from "../../model/v1/NativePubKey";
+import { NativePubKey } from "..\\..\\model\\v1\\NativePubKey";
 
 export class CompareNativePubKeyRequest {
   static encode(message: CompareNativePubKeyRequest, writer: Writer): void {

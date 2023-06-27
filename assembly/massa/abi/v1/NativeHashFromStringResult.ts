@@ -4,7 +4,7 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeHash } from "../../model/v1/NativeHash";
+import { NativeHash } from "..\\..\\model\\v1\\NativeHash";
 
 export class NativeHashFromStringResult {
   static encode(message: NativeHashFromStringResult, writer: Writer): void {
