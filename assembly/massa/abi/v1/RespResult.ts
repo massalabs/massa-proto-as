@@ -4,280 +4,179 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddressToStringResult } from "./NativeAddressToStringResult";
-import { NativePubKeyToStringResult } from "./NativePubKeyToStringResult";
-import { NativeSigToStringResult } from "./NativeSigToStringResult";
-import { NativeHashToStringResult } from "./NativeHashToStringResult";
-import { NativeAmountToStringResult } from "./NativeAmountToStringResult";
-import { NativeAddressFromStringResult } from "./NativeAddressFromStringResult";
-import { NativePubKeyFromStringResult } from "./NativePubKeyFromStringResult";
-import { NativeSigFromStringResult } from "./NativeSigFromStringResult";
-import { NativeHashFromStringResult } from "./NativeHashFromStringResult";
-import { NativeAmountFromStringResult } from "./NativeAmountFromStringResult";
-import { CheckNativeAddressResult } from "./CheckNativeAddressResult";
-import { CheckNativePubKeyResult } from "./CheckNativePubKeyResult";
-import { CheckNativeSigResult } from "./CheckNativeSigResult";
-import { CheckNativeHashResult } from "./CheckNativeHashResult";
-import { CheckNativeAmountResult } from "./CheckNativeAmountResult";
 import { AddNativeAmountsResult } from "./AddNativeAmountsResult";
-import { SubNativeAmountsResult } from "./SubNativeAmountsResult";
-import { MulNativeAmountResult } from "./MulNativeAmountResult";
-import { ScalarDivRemNativeAmountResult } from "./ScalarDivRemNativeAmountResult";
-import { DivRemNativeAmountResult } from "./DivRemNativeAmountResult";
+import { AddressFromPubKeyResult } from "./AddressFromPubKeyResult";
+import { AppendDataResult } from "./AppendDataResult";
+import { Base58CheckToBytesResult } from "./Base58CheckToBytesResult";
+import { Blake3HashResult } from "./Blake3HashResult";
+import { BytesToBase58CheckResult } from "./BytesToBase58CheckResult";
+import { CallerHasWriteAccessResult } from "./CallerHasWriteAccessResult";
+import { CheckAddressResult } from "./CheckAddressResult";
+import { CheckBlake3HashResult } from "./CheckBlake3HashResult";
+import { CheckNativeAmountResult } from "./CheckNativeAmountResult";
+import { CheckPubKeyResult } from "./CheckPubKeyResult";
+import { CheckSigResult } from "./CheckSigResult";
 import { CheckedAddNativeTimeResult } from "./CheckedAddNativeTimeResult";
-import { CheckedSubNativeTimeResult } from "./CheckedSubNativeTimeResult";
+import { CheckedDivRemNativeTimeResult } from "./CheckedDivRemNativeTimeResult";
 import { CheckedMulNativeTimeResult } from "./CheckedMulNativeTimeResult";
 import { CheckedScalarDivRemNativeTimeResult } from "./CheckedScalarDivRemNativeTimeResult";
-import { CheckedDivRemNativeTimeResult } from "./CheckedDivRemNativeTimeResult";
-import { CompareNativeTimeResult } from "./CompareNativeTimeResult";
-import { CompareNativeAddressResult } from "./CompareNativeAddressResult";
-import { CompareNativePubKeyResult } from "./CompareNativePubKeyResult";
-import { CompareNativeSigResult } from "./CompareNativeSigResult";
-import { VerifyNativeSigResult } from "./VerifyNativeSigResult";
+import { CheckedSubNativeTimeResult } from "./CheckedSubNativeTimeResult";
+import { CompareAddressResult } from "./CompareAddressResult";
 import { CompareNativeAmountResult } from "./CompareNativeAmountResult";
-import { Keccak256Result } from "./Keccak256Result";
-import { VerifyEvmSigResult } from "./VerifyEvmSigResult";
-import { VerifyBlsSingleSigResult } from "./VerifyBlsSingleSigResult";
-import { VerifyBlsMultiSigResult } from "./VerifyBlsMultiSigResult";
-import { TransferCoinsResult } from "./TransferCoinsResult";
-import { GenerateEventResult } from "./GenerateEventResult";
+import { CompareNativeTimeResult } from "./CompareNativeTimeResult";
+import { ComparePubKeyResult } from "./ComparePubKeyResult";
+import { CompareSigResult } from "./CompareSigResult";
 import { CreateScResult } from "./CreateScResult";
-import { FunctionExistsResult } from "./FunctionExistsResult";
-import { NativeHashResult } from "./NativeHashResult";
-import { GetKeysResult } from "./GetKeysResult";
-import { SetDataResult } from "./SetDataResult";
-import { AppendDataResult } from "./AppendDataResult";
-import { GetDataResult } from "./GetDataResult";
-import { HasDataResult } from "./HasDataResult";
-import { DeleteDataResult } from "./DeleteDataResult";
-import { GetOwnedAddressesResult } from "./GetOwnedAddressesResult";
-import { GetCallStackResult } from "./GetCallStackResult";
-import { NativeAddressFromNativePubKeyResult } from "./NativeAddressFromNativePubKeyResult";
-import { UnsafeRandomResult } from "./UnsafeRandomResult";
-import { GetNativeTimeResult } from "./GetNativeTimeResult";
-import { GetCurrentSlotResult } from "./GetCurrentSlotResult";
-import { SetBytecodeRequest } from "./SetBytecodeRequest";
-import { GetBytecodeResult } from "./GetBytecodeResult";
-import { CallerHasWriteAccessResult } from "./CallerHasWriteAccessResult";
-import { SeedResult } from "./SeedResult";
 import { DateNowResult } from "./DateNowResult";
-import { ProcessExitResult } from "./ProcessExitResult";
-import { HashSha256Result } from "./HashSha256Result";
-import { GetOpDataResult } from "./GetOpDataResult";
-import { HasOpKeyResult } from "./HasOpKeyResult";
-import { GetOpKeysResult } from "./GetOpKeysResult";
-import { GetRemainingGasResult } from "./GetRemainingGasResult";
+import { DeleteDataResult } from "./DeleteDataResult";
+import { DivRemNativeAmountResult } from "./DivRemNativeAmountResult";
+import { FunctionExistsResult } from "./FunctionExistsResult";
+import { GenerateEventResult } from "./GenerateEventResult";
+import { GetAddressCategoryResult } from "./GetAddressCategoryResult";
+import { GetAddressVersionResult } from "./GetAddressVersionResult";
 import { GetBalanceResult } from "./GetBalanceResult";
+import { GetBytecodeResult } from "./GetBytecodeResult";
 import { GetCallCoinsResult } from "./GetCallCoinsResult";
+import { GetCallStackResult } from "./GetCallStackResult";
+import { GetCurrentSlotResult } from "./GetCurrentSlotResult";
+import { GetDataResult } from "./GetDataResult";
+import { GetKeysResult } from "./GetKeysResult";
+import { GetNativeTimeResult } from "./GetNativeTimeResult";
+import { GetOpDataResult } from "./GetOpDataResult";
+import { GetOpKeysResult } from "./GetOpKeysResult";
+import { GetOwnedAddressesResult } from "./GetOwnedAddressesResult";
+import { GetPubKeyVersionResult } from "./GetPubKeyVersionResult";
+import { GetRemainingGasResult } from "./GetRemainingGasResult";
+import { GetSignatureVersionResult } from "./GetSignatureVersionResult";
+import { HashSha256Result } from "./HashSha256Result";
+import { HasDataResult } from "./HasDataResult";
+import { HasOpKeyResult } from "./HasOpKeyResult";
+import { Keccak256Result } from "./Keccak256Result";
+import { MulNativeAmountResult } from "./MulNativeAmountResult";
+import { NativeAmountFromStringResult } from "./NativeAmountFromStringResult";
+import { NativeAmountToStringResult } from "./NativeAmountToStringResult";
+import { ProcessExitResult } from "./ProcessExitResult";
+import { ScalarDivRemNativeAmountResult } from "./ScalarDivRemNativeAmountResult";
+import { SeedResult } from "./SeedResult";
+import { SetBytecodeResult } from "./SetBytecodeResult";
+import { SetDataResult } from "./SetDataResult";
+import { SubNativeAmountsResult } from "./SubNativeAmountsResult";
+import { TransferCoinsResult } from "./TransferCoinsResult";
+import { UnsafeRandomResult } from "./UnsafeRandomResult";
+import { VerifyBlsMultiSigResult } from "./VerifyBlsMultiSigResult";
+import { VerifyBlsSingleSigResult } from "./VerifyBlsSingleSigResult";
+import { VerifyEvmSigResult } from "./VerifyEvmSigResult";
+import { VerifySigResult } from "./VerifySigResult";
 
 export class RespResult {
   static encode(message: RespResult, writer: Writer): void {
-    const nativeAddressToStringResult = message.nativeAddressToStringResult;
-    if (nativeAddressToStringResult !== null) {
-      writer.uint32(10);
-      writer.fork();
-      NativeAddressToStringResult.encode(nativeAddressToStringResult, writer);
-      writer.ldelim();
-    }
-
-    const nativePubKeyToStringResult = message.nativePubKeyToStringResult;
-    if (nativePubKeyToStringResult !== null) {
-      writer.uint32(18);
-      writer.fork();
-      NativePubKeyToStringResult.encode(nativePubKeyToStringResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeSigToStringResult = message.nativeSigToStringResult;
-    if (nativeSigToStringResult !== null) {
-      writer.uint32(26);
-      writer.fork();
-      NativeSigToStringResult.encode(nativeSigToStringResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeHashToStringResult = message.nativeHashToStringResult;
-    if (nativeHashToStringResult !== null) {
-      writer.uint32(34);
-      writer.fork();
-      NativeHashToStringResult.encode(nativeHashToStringResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeAmountToStringResult = message.nativeAmountToStringResult;
-    if (nativeAmountToStringResult !== null) {
-      writer.uint32(42);
-      writer.fork();
-      NativeAmountToStringResult.encode(nativeAmountToStringResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeAddressFromStringResult = message.nativeAddressFromStringResult;
-    if (nativeAddressFromStringResult !== null) {
-      writer.uint32(50);
-      writer.fork();
-      NativeAddressFromStringResult.encode(
-        nativeAddressFromStringResult,
-        writer
-      );
-      writer.ldelim();
-    }
-
-    const nativePubKeyFromStringResult = message.nativePubKeyFromStringResult;
-    if (nativePubKeyFromStringResult !== null) {
-      writer.uint32(58);
-      writer.fork();
-      NativePubKeyFromStringResult.encode(nativePubKeyFromStringResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeSigFromStringResult = message.nativeSigFromStringResult;
-    if (nativeSigFromStringResult !== null) {
-      writer.uint32(66);
-      writer.fork();
-      NativeSigFromStringResult.encode(nativeSigFromStringResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeHashFromStringResult = message.nativeHashFromStringResult;
-    if (nativeHashFromStringResult !== null) {
-      writer.uint32(74);
-      writer.fork();
-      NativeHashFromStringResult.encode(nativeHashFromStringResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeAmountFromStringResult = message.nativeAmountFromStringResult;
-    if (nativeAmountFromStringResult !== null) {
-      writer.uint32(82);
-      writer.fork();
-      NativeAmountFromStringResult.encode(nativeAmountFromStringResult, writer);
-      writer.ldelim();
-    }
-
-    const checkNativeAddressResult = message.checkNativeAddressResult;
-    if (checkNativeAddressResult !== null) {
-      writer.uint32(90);
-      writer.fork();
-      CheckNativeAddressResult.encode(checkNativeAddressResult, writer);
-      writer.ldelim();
-    }
-
-    const checkNativePubKeyResult = message.checkNativePubKeyResult;
-    if (checkNativePubKeyResult !== null) {
-      writer.uint32(98);
-      writer.fork();
-      CheckNativePubKeyResult.encode(checkNativePubKeyResult, writer);
-      writer.ldelim();
-    }
-
-    const checkNativeSigResult = message.checkNativeSigResult;
-    if (checkNativeSigResult !== null) {
-      writer.uint32(106);
-      writer.fork();
-      CheckNativeSigResult.encode(checkNativeSigResult, writer);
-      writer.ldelim();
-    }
-
-    const checkNativeHashResult = message.checkNativeHashResult;
-    if (checkNativeHashResult !== null) {
-      writer.uint32(114);
-      writer.fork();
-      CheckNativeHashResult.encode(checkNativeHashResult, writer);
-      writer.ldelim();
-    }
-
-    const checkNativeAmountResult = message.checkNativeAmountResult;
-    if (checkNativeAmountResult !== null) {
-      writer.uint32(122);
-      writer.fork();
-      CheckNativeAmountResult.encode(checkNativeAmountResult, writer);
-      writer.ldelim();
-    }
-
     const addNativeAmountsResult = message.addNativeAmountsResult;
     if (addNativeAmountsResult !== null) {
-      writer.uint32(130);
+      writer.uint32(10);
       writer.fork();
       AddNativeAmountsResult.encode(addNativeAmountsResult, writer);
       writer.ldelim();
     }
 
-    const subNativeAmountsResult = message.subNativeAmountsResult;
-    if (subNativeAmountsResult !== null) {
-      writer.uint32(138);
+    const addressFromPubKeyResult = message.addressFromPubKeyResult;
+    if (addressFromPubKeyResult !== null) {
+      writer.uint32(18);
       writer.fork();
-      SubNativeAmountsResult.encode(subNativeAmountsResult, writer);
+      AddressFromPubKeyResult.encode(addressFromPubKeyResult, writer);
       writer.ldelim();
     }
 
-    const mulNativeAmountResult = message.mulNativeAmountResult;
-    if (mulNativeAmountResult !== null) {
-      writer.uint32(146);
+    const appendDataResult = message.appendDataResult;
+    if (appendDataResult !== null) {
+      writer.uint32(26);
       writer.fork();
-      MulNativeAmountResult.encode(mulNativeAmountResult, writer);
+      AppendDataResult.encode(appendDataResult, writer);
       writer.ldelim();
     }
 
-    const scalarDivRemNativeAmountResult =
-      message.scalarDivRemNativeAmountResult;
-    if (scalarDivRemNativeAmountResult !== null) {
-      writer.uint32(154);
+    const base58CheckToBytesResult = message.base58CheckToBytesResult;
+    if (base58CheckToBytesResult !== null) {
+      writer.uint32(34);
       writer.fork();
-      ScalarDivRemNativeAmountResult.encode(
-        scalarDivRemNativeAmountResult,
-        writer
-      );
+      Base58CheckToBytesResult.encode(base58CheckToBytesResult, writer);
       writer.ldelim();
     }
 
-    const divRemNativeAmountResult = message.divRemNativeAmountResult;
-    if (divRemNativeAmountResult !== null) {
-      writer.uint32(162);
+    const blake3HashResult = message.blake3HashResult;
+    if (blake3HashResult !== null) {
+      writer.uint32(42);
       writer.fork();
-      DivRemNativeAmountResult.encode(divRemNativeAmountResult, writer);
+      Blake3HashResult.encode(blake3HashResult, writer);
+      writer.ldelim();
+    }
+
+    const bytesToBase58CheckResult = message.bytesToBase58CheckResult;
+    if (bytesToBase58CheckResult !== null) {
+      writer.uint32(50);
+      writer.fork();
+      BytesToBase58CheckResult.encode(bytesToBase58CheckResult, writer);
+      writer.ldelim();
+    }
+
+    const callerHasWriteAccessResult = message.callerHasWriteAccessResult;
+    if (callerHasWriteAccessResult !== null) {
+      writer.uint32(58);
+      writer.fork();
+      CallerHasWriteAccessResult.encode(callerHasWriteAccessResult, writer);
+      writer.ldelim();
+    }
+
+    const checkAddressResult = message.checkAddressResult;
+    if (checkAddressResult !== null) {
+      writer.uint32(66);
+      writer.fork();
+      CheckAddressResult.encode(checkAddressResult, writer);
+      writer.ldelim();
+    }
+
+    const checkBlake3HashResult = message.checkBlake3HashResult;
+    if (checkBlake3HashResult !== null) {
+      writer.uint32(74);
+      writer.fork();
+      CheckBlake3HashResult.encode(checkBlake3HashResult, writer);
+      writer.ldelim();
+    }
+
+    const checkNativeAmountResult = message.checkNativeAmountResult;
+    if (checkNativeAmountResult !== null) {
+      writer.uint32(82);
+      writer.fork();
+      CheckNativeAmountResult.encode(checkNativeAmountResult, writer);
+      writer.ldelim();
+    }
+
+    const checkPubKeyResult = message.checkPubKeyResult;
+    if (checkPubKeyResult !== null) {
+      writer.uint32(90);
+      writer.fork();
+      CheckPubKeyResult.encode(checkPubKeyResult, writer);
+      writer.ldelim();
+    }
+
+    const checkSigResult = message.checkSigResult;
+    if (checkSigResult !== null) {
+      writer.uint32(98);
+      writer.fork();
+      CheckSigResult.encode(checkSigResult, writer);
       writer.ldelim();
     }
 
     const checkedAddNativeTimeResult = message.checkedAddNativeTimeResult;
     if (checkedAddNativeTimeResult !== null) {
-      writer.uint32(170);
+      writer.uint32(106);
       writer.fork();
       CheckedAddNativeTimeResult.encode(checkedAddNativeTimeResult, writer);
       writer.ldelim();
     }
 
-    const checkedSubNativeTimeResult = message.checkedSubNativeTimeResult;
-    if (checkedSubNativeTimeResult !== null) {
-      writer.uint32(178);
-      writer.fork();
-      CheckedSubNativeTimeResult.encode(checkedSubNativeTimeResult, writer);
-      writer.ldelim();
-    }
-
-    const checkedMulNativeTimeResult = message.checkedMulNativeTimeResult;
-    if (checkedMulNativeTimeResult !== null) {
-      writer.uint32(186);
-      writer.fork();
-      CheckedMulNativeTimeResult.encode(checkedMulNativeTimeResult, writer);
-      writer.ldelim();
-    }
-
-    const checkedScalarDivRemNativeTimeResult =
-      message.checkedScalarDivRemNativeTimeResult;
-    if (checkedScalarDivRemNativeTimeResult !== null) {
-      writer.uint32(194);
-      writer.fork();
-      CheckedScalarDivRemNativeTimeResult.encode(
-        checkedScalarDivRemNativeTimeResult,
-        writer
-      );
-      writer.ldelim();
-    }
-
     const checkedDivRemNativeTimeResult = message.checkedDivRemNativeTimeResult;
     if (checkedDivRemNativeTimeResult !== null) {
-      writer.uint32(202);
+      writer.uint32(114);
       writer.fork();
       CheckedDivRemNativeTimeResult.encode(
         checkedDivRemNativeTimeResult,
@@ -286,327 +185,403 @@ export class RespResult {
       writer.ldelim();
     }
 
-    const compareNativeTimeResult = message.compareNativeTimeResult;
-    if (compareNativeTimeResult !== null) {
-      writer.uint32(210);
+    const checkedMulNativeTimeResult = message.checkedMulNativeTimeResult;
+    if (checkedMulNativeTimeResult !== null) {
+      writer.uint32(122);
       writer.fork();
-      CompareNativeTimeResult.encode(compareNativeTimeResult, writer);
+      CheckedMulNativeTimeResult.encode(checkedMulNativeTimeResult, writer);
       writer.ldelim();
     }
 
-    const compareNativeAddressResult = message.compareNativeAddressResult;
-    if (compareNativeAddressResult !== null) {
-      writer.uint32(218);
+    const checkedScalarDivRemNativeTimeResult =
+      message.checkedScalarDivRemNativeTimeResult;
+    if (checkedScalarDivRemNativeTimeResult !== null) {
+      writer.uint32(130);
       writer.fork();
-      CompareNativeAddressResult.encode(compareNativeAddressResult, writer);
-      writer.ldelim();
-    }
-
-    const compareNativePubKeyResult = message.compareNativePubKeyResult;
-    if (compareNativePubKeyResult !== null) {
-      writer.uint32(226);
-      writer.fork();
-      CompareNativePubKeyResult.encode(compareNativePubKeyResult, writer);
-      writer.ldelim();
-    }
-
-    const compareNativeSigResult = message.compareNativeSigResult;
-    if (compareNativeSigResult !== null) {
-      writer.uint32(234);
-      writer.fork();
-      CompareNativeSigResult.encode(compareNativeSigResult, writer);
-      writer.ldelim();
-    }
-
-    const verifyNativeSigResult = message.verifyNativeSigResult;
-    if (verifyNativeSigResult !== null) {
-      writer.uint32(242);
-      writer.fork();
-      VerifyNativeSigResult.encode(verifyNativeSigResult, writer);
-      writer.ldelim();
-    }
-
-    const compareNativeAmountResult = message.compareNativeAmountResult;
-    if (compareNativeAmountResult !== null) {
-      writer.uint32(250);
-      writer.fork();
-      CompareNativeAmountResult.encode(compareNativeAmountResult, writer);
-      writer.ldelim();
-    }
-
-    const keccak256Result = message.keccak256Result;
-    if (keccak256Result !== null) {
-      writer.uint32(258);
-      writer.fork();
-      Keccak256Result.encode(keccak256Result, writer);
-      writer.ldelim();
-    }
-
-    const verifyEvmSigResult = message.verifyEvmSigResult;
-    if (verifyEvmSigResult !== null) {
-      writer.uint32(266);
-      writer.fork();
-      VerifyEvmSigResult.encode(verifyEvmSigResult, writer);
-      writer.ldelim();
-    }
-
-    const verifyBlsSingleSigResult = message.verifyBlsSingleSigResult;
-    if (verifyBlsSingleSigResult !== null) {
-      writer.uint32(274);
-      writer.fork();
-      VerifyBlsSingleSigResult.encode(verifyBlsSingleSigResult, writer);
-      writer.ldelim();
-    }
-
-    const verifyBlsMultiSigResult = message.verifyBlsMultiSigResult;
-    if (verifyBlsMultiSigResult !== null) {
-      writer.uint32(282);
-      writer.fork();
-      VerifyBlsMultiSigResult.encode(verifyBlsMultiSigResult, writer);
-      writer.ldelim();
-    }
-
-    const transferCoinsResult = message.transferCoinsResult;
-    if (transferCoinsResult !== null) {
-      writer.uint32(290);
-      writer.fork();
-      TransferCoinsResult.encode(transferCoinsResult, writer);
-      writer.ldelim();
-    }
-
-    const generateEventResult = message.generateEventResult;
-    if (generateEventResult !== null) {
-      writer.uint32(298);
-      writer.fork();
-      GenerateEventResult.encode(generateEventResult, writer);
-      writer.ldelim();
-    }
-
-    const createScResult = message.createScResult;
-    if (createScResult !== null) {
-      writer.uint32(306);
-      writer.fork();
-      CreateScResult.encode(createScResult, writer);
-      writer.ldelim();
-    }
-
-    const functionExistsResult = message.functionExistsResult;
-    if (functionExistsResult !== null) {
-      writer.uint32(314);
-      writer.fork();
-      FunctionExistsResult.encode(functionExistsResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeHashResult = message.nativeHashResult;
-    if (nativeHashResult !== null) {
-      writer.uint32(322);
-      writer.fork();
-      NativeHashResult.encode(nativeHashResult, writer);
-      writer.ldelim();
-    }
-
-    const getKeysResult = message.getKeysResult;
-    if (getKeysResult !== null) {
-      writer.uint32(330);
-      writer.fork();
-      GetKeysResult.encode(getKeysResult, writer);
-      writer.ldelim();
-    }
-
-    const setDataResult = message.setDataResult;
-    if (setDataResult !== null) {
-      writer.uint32(338);
-      writer.fork();
-      SetDataResult.encode(setDataResult, writer);
-      writer.ldelim();
-    }
-
-    const appendDataResult = message.appendDataResult;
-    if (appendDataResult !== null) {
-      writer.uint32(346);
-      writer.fork();
-      AppendDataResult.encode(appendDataResult, writer);
-      writer.ldelim();
-    }
-
-    const getDataResult = message.getDataResult;
-    if (getDataResult !== null) {
-      writer.uint32(354);
-      writer.fork();
-      GetDataResult.encode(getDataResult, writer);
-      writer.ldelim();
-    }
-
-    const hasDataResult = message.hasDataResult;
-    if (hasDataResult !== null) {
-      writer.uint32(362);
-      writer.fork();
-      HasDataResult.encode(hasDataResult, writer);
-      writer.ldelim();
-    }
-
-    const deleteDataResult = message.deleteDataResult;
-    if (deleteDataResult !== null) {
-      writer.uint32(370);
-      writer.fork();
-      DeleteDataResult.encode(deleteDataResult, writer);
-      writer.ldelim();
-    }
-
-    const getOwnedAddressesResult = message.getOwnedAddressesResult;
-    if (getOwnedAddressesResult !== null) {
-      writer.uint32(378);
-      writer.fork();
-      GetOwnedAddressesResult.encode(getOwnedAddressesResult, writer);
-      writer.ldelim();
-    }
-
-    const getCallStackResult = message.getCallStackResult;
-    if (getCallStackResult !== null) {
-      writer.uint32(386);
-      writer.fork();
-      GetCallStackResult.encode(getCallStackResult, writer);
-      writer.ldelim();
-    }
-
-    const nativeAddressFromNativePubKeyResult =
-      message.nativeAddressFromNativePubKeyResult;
-    if (nativeAddressFromNativePubKeyResult !== null) {
-      writer.uint32(394);
-      writer.fork();
-      NativeAddressFromNativePubKeyResult.encode(
-        nativeAddressFromNativePubKeyResult,
+      CheckedScalarDivRemNativeTimeResult.encode(
+        checkedScalarDivRemNativeTimeResult,
         writer
       );
       writer.ldelim();
     }
 
-    const unsafeRandomRequestResult = message.unsafeRandomRequestResult;
-    if (unsafeRandomRequestResult !== null) {
-      writer.uint32(402);
+    const checkedSubNativeTimeResult = message.checkedSubNativeTimeResult;
+    if (checkedSubNativeTimeResult !== null) {
+      writer.uint32(138);
       writer.fork();
-      UnsafeRandomResult.encode(unsafeRandomRequestResult, writer);
+      CheckedSubNativeTimeResult.encode(checkedSubNativeTimeResult, writer);
       writer.ldelim();
     }
 
-    const getNativeTimeResult = message.getNativeTimeResult;
-    if (getNativeTimeResult !== null) {
-      writer.uint32(410);
+    const compareAddressResult = message.compareAddressResult;
+    if (compareAddressResult !== null) {
+      writer.uint32(146);
       writer.fork();
-      GetNativeTimeResult.encode(getNativeTimeResult, writer);
+      CompareAddressResult.encode(compareAddressResult, writer);
       writer.ldelim();
     }
 
-    const getCurrentSlotResult = message.getCurrentSlotResult;
-    if (getCurrentSlotResult !== null) {
-      writer.uint32(418);
+    const compareNativeAmountResult = message.compareNativeAmountResult;
+    if (compareNativeAmountResult !== null) {
+      writer.uint32(154);
       writer.fork();
-      GetCurrentSlotResult.encode(getCurrentSlotResult, writer);
+      CompareNativeAmountResult.encode(compareNativeAmountResult, writer);
       writer.ldelim();
     }
 
-    const setBytecodeRequestResult = message.setBytecodeRequestResult;
-    if (setBytecodeRequestResult !== null) {
-      writer.uint32(426);
+    const compareNativeTimeResult = message.compareNativeTimeResult;
+    if (compareNativeTimeResult !== null) {
+      writer.uint32(162);
       writer.fork();
-      SetBytecodeRequest.encode(setBytecodeRequestResult, writer);
+      CompareNativeTimeResult.encode(compareNativeTimeResult, writer);
       writer.ldelim();
     }
 
-    const getBytecodeResult = message.getBytecodeResult;
-    if (getBytecodeResult !== null) {
-      writer.uint32(434);
+    const comparePubKeyResult = message.comparePubKeyResult;
+    if (comparePubKeyResult !== null) {
+      writer.uint32(170);
       writer.fork();
-      GetBytecodeResult.encode(getBytecodeResult, writer);
+      ComparePubKeyResult.encode(comparePubKeyResult, writer);
       writer.ldelim();
     }
 
-    const callerHasWriteAccessResult = message.callerHasWriteAccessResult;
-    if (callerHasWriteAccessResult !== null) {
-      writer.uint32(442);
+    const compareSigResult = message.compareSigResult;
+    if (compareSigResult !== null) {
+      writer.uint32(178);
       writer.fork();
-      CallerHasWriteAccessResult.encode(callerHasWriteAccessResult, writer);
+      CompareSigResult.encode(compareSigResult, writer);
       writer.ldelim();
     }
 
-    const seedResult = message.seedResult;
-    if (seedResult !== null) {
-      writer.uint32(450);
+    const createScResult = message.createScResult;
+    if (createScResult !== null) {
+      writer.uint32(186);
       writer.fork();
-      SeedResult.encode(seedResult, writer);
+      CreateScResult.encode(createScResult, writer);
       writer.ldelim();
     }
 
     const dateNowResult = message.dateNowResult;
     if (dateNowResult !== null) {
-      writer.uint32(458);
+      writer.uint32(194);
       writer.fork();
       DateNowResult.encode(dateNowResult, writer);
       writer.ldelim();
     }
 
-    const processExitResult = message.processExitResult;
-    if (processExitResult !== null) {
-      writer.uint32(466);
+    const deleteDataResult = message.deleteDataResult;
+    if (deleteDataResult !== null) {
+      writer.uint32(202);
       writer.fork();
-      ProcessExitResult.encode(processExitResult, writer);
+      DeleteDataResult.encode(deleteDataResult, writer);
       writer.ldelim();
     }
 
-    const hashSha256Result = message.hashSha256Result;
-    if (hashSha256Result !== null) {
-      writer.uint32(474);
+    const divRemNativeAmountResult = message.divRemNativeAmountResult;
+    if (divRemNativeAmountResult !== null) {
+      writer.uint32(210);
       writer.fork();
-      HashSha256Result.encode(hashSha256Result, writer);
+      DivRemNativeAmountResult.encode(divRemNativeAmountResult, writer);
       writer.ldelim();
     }
 
-    const getOpDataResult = message.getOpDataResult;
-    if (getOpDataResult !== null) {
-      writer.uint32(482);
+    const functionExistsResult = message.functionExistsResult;
+    if (functionExistsResult !== null) {
+      writer.uint32(218);
       writer.fork();
-      GetOpDataResult.encode(getOpDataResult, writer);
+      FunctionExistsResult.encode(functionExistsResult, writer);
       writer.ldelim();
     }
 
-    const hasOpKeyResult = message.hasOpKeyResult;
-    if (hasOpKeyResult !== null) {
-      writer.uint32(490);
+    const generateEventResult = message.generateEventResult;
+    if (generateEventResult !== null) {
+      writer.uint32(226);
       writer.fork();
-      HasOpKeyResult.encode(hasOpKeyResult, writer);
+      GenerateEventResult.encode(generateEventResult, writer);
       writer.ldelim();
     }
 
-    const getOpKeysResult = message.getOpKeysResult;
-    if (getOpKeysResult !== null) {
-      writer.uint32(498);
+    const getAddressCategoryResult = message.getAddressCategoryResult;
+    if (getAddressCategoryResult !== null) {
+      writer.uint32(234);
       writer.fork();
-      GetOpKeysResult.encode(getOpKeysResult, writer);
+      GetAddressCategoryResult.encode(getAddressCategoryResult, writer);
       writer.ldelim();
     }
 
-    const getRemainingGasResult = message.getRemainingGasResult;
-    if (getRemainingGasResult !== null) {
-      writer.uint32(506);
+    const getAddressVersionResult = message.getAddressVersionResult;
+    if (getAddressVersionResult !== null) {
+      writer.uint32(242);
       writer.fork();
-      GetRemainingGasResult.encode(getRemainingGasResult, writer);
+      GetAddressVersionResult.encode(getAddressVersionResult, writer);
       writer.ldelim();
     }
 
     const getBalanceResult = message.getBalanceResult;
     if (getBalanceResult !== null) {
-      writer.uint32(514);
+      writer.uint32(250);
       writer.fork();
       GetBalanceResult.encode(getBalanceResult, writer);
       writer.ldelim();
     }
 
+    const getBytecodeResult = message.getBytecodeResult;
+    if (getBytecodeResult !== null) {
+      writer.uint32(258);
+      writer.fork();
+      GetBytecodeResult.encode(getBytecodeResult, writer);
+      writer.ldelim();
+    }
+
     const getCallCoinsResult = message.getCallCoinsResult;
     if (getCallCoinsResult !== null) {
-      writer.uint32(522);
+      writer.uint32(266);
       writer.fork();
       GetCallCoinsResult.encode(getCallCoinsResult, writer);
+      writer.ldelim();
+    }
+
+    const getCallStackResult = message.getCallStackResult;
+    if (getCallStackResult !== null) {
+      writer.uint32(274);
+      writer.fork();
+      GetCallStackResult.encode(getCallStackResult, writer);
+      writer.ldelim();
+    }
+
+    const getCurrentSlotResult = message.getCurrentSlotResult;
+    if (getCurrentSlotResult !== null) {
+      writer.uint32(282);
+      writer.fork();
+      GetCurrentSlotResult.encode(getCurrentSlotResult, writer);
+      writer.ldelim();
+    }
+
+    const getDataResult = message.getDataResult;
+    if (getDataResult !== null) {
+      writer.uint32(290);
+      writer.fork();
+      GetDataResult.encode(getDataResult, writer);
+      writer.ldelim();
+    }
+
+    const getKeysResult = message.getKeysResult;
+    if (getKeysResult !== null) {
+      writer.uint32(298);
+      writer.fork();
+      GetKeysResult.encode(getKeysResult, writer);
+      writer.ldelim();
+    }
+
+    const getNativeTimeResult = message.getNativeTimeResult;
+    if (getNativeTimeResult !== null) {
+      writer.uint32(306);
+      writer.fork();
+      GetNativeTimeResult.encode(getNativeTimeResult, writer);
+      writer.ldelim();
+    }
+
+    const getOpDataResult = message.getOpDataResult;
+    if (getOpDataResult !== null) {
+      writer.uint32(314);
+      writer.fork();
+      GetOpDataResult.encode(getOpDataResult, writer);
+      writer.ldelim();
+    }
+
+    const getOpKeysResult = message.getOpKeysResult;
+    if (getOpKeysResult !== null) {
+      writer.uint32(322);
+      writer.fork();
+      GetOpKeysResult.encode(getOpKeysResult, writer);
+      writer.ldelim();
+    }
+
+    const getOwnedAddressesResult = message.getOwnedAddressesResult;
+    if (getOwnedAddressesResult !== null) {
+      writer.uint32(330);
+      writer.fork();
+      GetOwnedAddressesResult.encode(getOwnedAddressesResult, writer);
+      writer.ldelim();
+    }
+
+    const getPubKeyVersionResult = message.getPubKeyVersionResult;
+    if (getPubKeyVersionResult !== null) {
+      writer.uint32(338);
+      writer.fork();
+      GetPubKeyVersionResult.encode(getPubKeyVersionResult, writer);
+      writer.ldelim();
+    }
+
+    const getRemainingGasResult = message.getRemainingGasResult;
+    if (getRemainingGasResult !== null) {
+      writer.uint32(346);
+      writer.fork();
+      GetRemainingGasResult.encode(getRemainingGasResult, writer);
+      writer.ldelim();
+    }
+
+    const getSignatureVersionResult = message.getSignatureVersionResult;
+    if (getSignatureVersionResult !== null) {
+      writer.uint32(354);
+      writer.fork();
+      GetSignatureVersionResult.encode(getSignatureVersionResult, writer);
+      writer.ldelim();
+    }
+
+    const hashSha256Result = message.hashSha256Result;
+    if (hashSha256Result !== null) {
+      writer.uint32(362);
+      writer.fork();
+      HashSha256Result.encode(hashSha256Result, writer);
+      writer.ldelim();
+    }
+
+    const hasDataResult = message.hasDataResult;
+    if (hasDataResult !== null) {
+      writer.uint32(370);
+      writer.fork();
+      HasDataResult.encode(hasDataResult, writer);
+      writer.ldelim();
+    }
+
+    const hasOpKeyResult = message.hasOpKeyResult;
+    if (hasOpKeyResult !== null) {
+      writer.uint32(378);
+      writer.fork();
+      HasOpKeyResult.encode(hasOpKeyResult, writer);
+      writer.ldelim();
+    }
+
+    const keccak256Result = message.keccak256Result;
+    if (keccak256Result !== null) {
+      writer.uint32(386);
+      writer.fork();
+      Keccak256Result.encode(keccak256Result, writer);
+      writer.ldelim();
+    }
+
+    const mulNativeAmountResult = message.mulNativeAmountResult;
+    if (mulNativeAmountResult !== null) {
+      writer.uint32(394);
+      writer.fork();
+      MulNativeAmountResult.encode(mulNativeAmountResult, writer);
+      writer.ldelim();
+    }
+
+    const nativeAmountFromStringResult = message.nativeAmountFromStringResult;
+    if (nativeAmountFromStringResult !== null) {
+      writer.uint32(402);
+      writer.fork();
+      NativeAmountFromStringResult.encode(nativeAmountFromStringResult, writer);
+      writer.ldelim();
+    }
+
+    const nativeAmountToStringResult = message.nativeAmountToStringResult;
+    if (nativeAmountToStringResult !== null) {
+      writer.uint32(410);
+      writer.fork();
+      NativeAmountToStringResult.encode(nativeAmountToStringResult, writer);
+      writer.ldelim();
+    }
+
+    const processExitResult = message.processExitResult;
+    if (processExitResult !== null) {
+      writer.uint32(418);
+      writer.fork();
+      ProcessExitResult.encode(processExitResult, writer);
+      writer.ldelim();
+    }
+
+    const scalarDivRemNativeAmountResult =
+      message.scalarDivRemNativeAmountResult;
+    if (scalarDivRemNativeAmountResult !== null) {
+      writer.uint32(426);
+      writer.fork();
+      ScalarDivRemNativeAmountResult.encode(
+        scalarDivRemNativeAmountResult,
+        writer
+      );
+      writer.ldelim();
+    }
+
+    const seedResult = message.seedResult;
+    if (seedResult !== null) {
+      writer.uint32(434);
+      writer.fork();
+      SeedResult.encode(seedResult, writer);
+      writer.ldelim();
+    }
+
+    const setBytecodeResult = message.setBytecodeResult;
+    if (setBytecodeResult !== null) {
+      writer.uint32(442);
+      writer.fork();
+      SetBytecodeResult.encode(setBytecodeResult, writer);
+      writer.ldelim();
+    }
+
+    const setDataResult = message.setDataResult;
+    if (setDataResult !== null) {
+      writer.uint32(450);
+      writer.fork();
+      SetDataResult.encode(setDataResult, writer);
+      writer.ldelim();
+    }
+
+    const subNativeAmountsResult = message.subNativeAmountsResult;
+    if (subNativeAmountsResult !== null) {
+      writer.uint32(458);
+      writer.fork();
+      SubNativeAmountsResult.encode(subNativeAmountsResult, writer);
+      writer.ldelim();
+    }
+
+    const transferCoinsResult = message.transferCoinsResult;
+    if (transferCoinsResult !== null) {
+      writer.uint32(466);
+      writer.fork();
+      TransferCoinsResult.encode(transferCoinsResult, writer);
+      writer.ldelim();
+    }
+
+    const unsafeRandomResult = message.unsafeRandomResult;
+    if (unsafeRandomResult !== null) {
+      writer.uint32(474);
+      writer.fork();
+      UnsafeRandomResult.encode(unsafeRandomResult, writer);
+      writer.ldelim();
+    }
+
+    const verifyBlsMultiSigResult = message.verifyBlsMultiSigResult;
+    if (verifyBlsMultiSigResult !== null) {
+      writer.uint32(482);
+      writer.fork();
+      VerifyBlsMultiSigResult.encode(verifyBlsMultiSigResult, writer);
+      writer.ldelim();
+    }
+
+    const verifyBlsSingleSigResult = message.verifyBlsSingleSigResult;
+    if (verifyBlsSingleSigResult !== null) {
+      writer.uint32(490);
+      writer.fork();
+      VerifyBlsSingleSigResult.encode(verifyBlsSingleSigResult, writer);
+      writer.ldelim();
+    }
+
+    const verifyEvmSigResult = message.verifyEvmSigResult;
+    if (verifyEvmSigResult !== null) {
+      writer.uint32(498);
+      writer.fork();
+      VerifyEvmSigResult.encode(verifyEvmSigResult, writer);
+      writer.ldelim();
+    }
+
+    const verifySigResult = message.verifySigResult;
+    if (verifySigResult !== null) {
+      writer.uint32(506);
+      writer.fork();
+      VerifySigResult.encode(verifySigResult, writer);
       writer.ldelim();
     }
   }
@@ -619,405 +594,405 @@ export class RespResult {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.nativeAddressToStringResult =
-            NativeAddressToStringResult.decode(reader, reader.uint32());
-          break;
-
-        case 2:
-          message.nativePubKeyToStringResult =
-            NativePubKeyToStringResult.decode(reader, reader.uint32());
-          break;
-
-        case 3:
-          message.nativeSigToStringResult = NativeSigToStringResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 4:
-          message.nativeHashToStringResult = NativeHashToStringResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 5:
-          message.nativeAmountToStringResult =
-            NativeAmountToStringResult.decode(reader, reader.uint32());
-          break;
-
-        case 6:
-          message.nativeAddressFromStringResult =
-            NativeAddressFromStringResult.decode(reader, reader.uint32());
-          break;
-
-        case 7:
-          message.nativePubKeyFromStringResult =
-            NativePubKeyFromStringResult.decode(reader, reader.uint32());
-          break;
-
-        case 8:
-          message.nativeSigFromStringResult = NativeSigFromStringResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 9:
-          message.nativeHashFromStringResult =
-            NativeHashFromStringResult.decode(reader, reader.uint32());
-          break;
-
-        case 10:
-          message.nativeAmountFromStringResult =
-            NativeAmountFromStringResult.decode(reader, reader.uint32());
-          break;
-
-        case 11:
-          message.checkNativeAddressResult = CheckNativeAddressResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 12:
-          message.checkNativePubKeyResult = CheckNativePubKeyResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 13:
-          message.checkNativeSigResult = CheckNativeSigResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 14:
-          message.checkNativeHashResult = CheckNativeHashResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 15:
-          message.checkNativeAmountResult = CheckNativeAmountResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 16:
           message.addNativeAmountsResult = AddNativeAmountsResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 17:
-          message.subNativeAmountsResult = SubNativeAmountsResult.decode(
+        case 2:
+          message.addressFromPubKeyResult = AddressFromPubKeyResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 18:
-          message.mulNativeAmountResult = MulNativeAmountResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 19:
-          message.scalarDivRemNativeAmountResult =
-            ScalarDivRemNativeAmountResult.decode(reader, reader.uint32());
-          break;
-
-        case 20:
-          message.divRemNativeAmountResult = DivRemNativeAmountResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 21:
-          message.checkedAddNativeTimeResult =
-            CheckedAddNativeTimeResult.decode(reader, reader.uint32());
-          break;
-
-        case 22:
-          message.checkedSubNativeTimeResult =
-            CheckedSubNativeTimeResult.decode(reader, reader.uint32());
-          break;
-
-        case 23:
-          message.checkedMulNativeTimeResult =
-            CheckedMulNativeTimeResult.decode(reader, reader.uint32());
-          break;
-
-        case 24:
-          message.checkedScalarDivRemNativeTimeResult =
-            CheckedScalarDivRemNativeTimeResult.decode(reader, reader.uint32());
-          break;
-
-        case 25:
-          message.checkedDivRemNativeTimeResult =
-            CheckedDivRemNativeTimeResult.decode(reader, reader.uint32());
-          break;
-
-        case 26:
-          message.compareNativeTimeResult = CompareNativeTimeResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 27:
-          message.compareNativeAddressResult =
-            CompareNativeAddressResult.decode(reader, reader.uint32());
-          break;
-
-        case 28:
-          message.compareNativePubKeyResult = CompareNativePubKeyResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 29:
-          message.compareNativeSigResult = CompareNativeSigResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 30:
-          message.verifyNativeSigResult = VerifyNativeSigResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 31:
-          message.compareNativeAmountResult = CompareNativeAmountResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 32:
-          message.keccak256Result = Keccak256Result.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 33:
-          message.verifyEvmSigResult = VerifyEvmSigResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 34:
-          message.verifyBlsSingleSigResult = VerifyBlsSingleSigResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 35:
-          message.verifyBlsMultiSigResult = VerifyBlsMultiSigResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 36:
-          message.transferCoinsResult = TransferCoinsResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 37:
-          message.generateEventResult = GenerateEventResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 38:
-          message.createScResult = CreateScResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 39:
-          message.functionExistsResult = FunctionExistsResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 40:
-          message.nativeHashResult = NativeHashResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 41:
-          message.getKeysResult = GetKeysResult.decode(reader, reader.uint32());
-          break;
-
-        case 42:
-          message.setDataResult = SetDataResult.decode(reader, reader.uint32());
-          break;
-
-        case 43:
+        case 3:
           message.appendDataResult = AppendDataResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 44:
-          message.getDataResult = GetDataResult.decode(reader, reader.uint32());
+        case 4:
+          message.base58CheckToBytesResult = Base58CheckToBytesResult.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
-        case 45:
-          message.hasDataResult = HasDataResult.decode(reader, reader.uint32());
+        case 5:
+          message.blake3HashResult = Blake3HashResult.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
-        case 46:
+        case 6:
+          message.bytesToBase58CheckResult = BytesToBase58CheckResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 7:
+          message.callerHasWriteAccessResult =
+            CallerHasWriteAccessResult.decode(reader, reader.uint32());
+          break;
+
+        case 8:
+          message.checkAddressResult = CheckAddressResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 9:
+          message.checkBlake3HashResult = CheckBlake3HashResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 10:
+          message.checkNativeAmountResult = CheckNativeAmountResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 11:
+          message.checkPubKeyResult = CheckPubKeyResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 12:
+          message.checkSigResult = CheckSigResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 13:
+          message.checkedAddNativeTimeResult =
+            CheckedAddNativeTimeResult.decode(reader, reader.uint32());
+          break;
+
+        case 14:
+          message.checkedDivRemNativeTimeResult =
+            CheckedDivRemNativeTimeResult.decode(reader, reader.uint32());
+          break;
+
+        case 15:
+          message.checkedMulNativeTimeResult =
+            CheckedMulNativeTimeResult.decode(reader, reader.uint32());
+          break;
+
+        case 16:
+          message.checkedScalarDivRemNativeTimeResult =
+            CheckedScalarDivRemNativeTimeResult.decode(reader, reader.uint32());
+          break;
+
+        case 17:
+          message.checkedSubNativeTimeResult =
+            CheckedSubNativeTimeResult.decode(reader, reader.uint32());
+          break;
+
+        case 18:
+          message.compareAddressResult = CompareAddressResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 19:
+          message.compareNativeAmountResult = CompareNativeAmountResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 20:
+          message.compareNativeTimeResult = CompareNativeTimeResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 21:
+          message.comparePubKeyResult = ComparePubKeyResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 22:
+          message.compareSigResult = CompareSigResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 23:
+          message.createScResult = CreateScResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 24:
+          message.dateNowResult = DateNowResult.decode(reader, reader.uint32());
+          break;
+
+        case 25:
           message.deleteDataResult = DeleteDataResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 47:
-          message.getOwnedAddressesResult = GetOwnedAddressesResult.decode(
+        case 26:
+          message.divRemNativeAmountResult = DivRemNativeAmountResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 48:
-          message.getCallStackResult = GetCallStackResult.decode(
+        case 27:
+          message.functionExistsResult = FunctionExistsResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 49:
-          message.nativeAddressFromNativePubKeyResult =
-            NativeAddressFromNativePubKeyResult.decode(reader, reader.uint32());
-          break;
-
-        case 50:
-          message.unsafeRandomRequestResult = UnsafeRandomResult.decode(
+        case 28:
+          message.generateEventResult = GenerateEventResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 51:
-          message.getNativeTimeResult = GetNativeTimeResult.decode(
+        case 29:
+          message.getAddressCategoryResult = GetAddressCategoryResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 52:
-          message.getCurrentSlotResult = GetCurrentSlotResult.decode(
+        case 30:
+          message.getAddressVersionResult = GetAddressVersionResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 53:
-          message.setBytecodeRequestResult = SetBytecodeRequest.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 54:
-          message.getBytecodeResult = GetBytecodeResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 55:
-          message.callerHasWriteAccessResult =
-            CallerHasWriteAccessResult.decode(reader, reader.uint32());
-          break;
-
-        case 56:
-          message.seedResult = SeedResult.decode(reader, reader.uint32());
-          break;
-
-        case 57:
-          message.dateNowResult = DateNowResult.decode(reader, reader.uint32());
-          break;
-
-        case 58:
-          message.processExitResult = ProcessExitResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 59:
-          message.hashSha256Result = HashSha256Result.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 60:
-          message.getOpDataResult = GetOpDataResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 61:
-          message.hasOpKeyResult = HasOpKeyResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 62:
-          message.getOpKeysResult = GetOpKeysResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 63:
-          message.getRemainingGasResult = GetRemainingGasResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
-        case 64:
+        case 31:
           message.getBalanceResult = GetBalanceResult.decode(
             reader,
             reader.uint32()
           );
           break;
 
-        case 65:
+        case 32:
+          message.getBytecodeResult = GetBytecodeResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 33:
           message.getCallCoinsResult = GetCallCoinsResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 34:
+          message.getCallStackResult = GetCallStackResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 35:
+          message.getCurrentSlotResult = GetCurrentSlotResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 36:
+          message.getDataResult = GetDataResult.decode(reader, reader.uint32());
+          break;
+
+        case 37:
+          message.getKeysResult = GetKeysResult.decode(reader, reader.uint32());
+          break;
+
+        case 38:
+          message.getNativeTimeResult = GetNativeTimeResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 39:
+          message.getOpDataResult = GetOpDataResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 40:
+          message.getOpKeysResult = GetOpKeysResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 41:
+          message.getOwnedAddressesResult = GetOwnedAddressesResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 42:
+          message.getPubKeyVersionResult = GetPubKeyVersionResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 43:
+          message.getRemainingGasResult = GetRemainingGasResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 44:
+          message.getSignatureVersionResult = GetSignatureVersionResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 45:
+          message.hashSha256Result = HashSha256Result.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 46:
+          message.hasDataResult = HasDataResult.decode(reader, reader.uint32());
+          break;
+
+        case 47:
+          message.hasOpKeyResult = HasOpKeyResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 48:
+          message.keccak256Result = Keccak256Result.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 49:
+          message.mulNativeAmountResult = MulNativeAmountResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 50:
+          message.nativeAmountFromStringResult =
+            NativeAmountFromStringResult.decode(reader, reader.uint32());
+          break;
+
+        case 51:
+          message.nativeAmountToStringResult =
+            NativeAmountToStringResult.decode(reader, reader.uint32());
+          break;
+
+        case 52:
+          message.processExitResult = ProcessExitResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 53:
+          message.scalarDivRemNativeAmountResult =
+            ScalarDivRemNativeAmountResult.decode(reader, reader.uint32());
+          break;
+
+        case 54:
+          message.seedResult = SeedResult.decode(reader, reader.uint32());
+          break;
+
+        case 55:
+          message.setBytecodeResult = SetBytecodeResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 56:
+          message.setDataResult = SetDataResult.decode(reader, reader.uint32());
+          break;
+
+        case 57:
+          message.subNativeAmountsResult = SubNativeAmountsResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 58:
+          message.transferCoinsResult = TransferCoinsResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 59:
+          message.unsafeRandomResult = UnsafeRandomResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 60:
+          message.verifyBlsMultiSigResult = VerifyBlsMultiSigResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 61:
+          message.verifyBlsSingleSigResult = VerifyBlsSingleSigResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 62:
+          message.verifyEvmSigResult = VerifyEvmSigResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 63:
+          message.verifySigResult = VerifySigResult.decode(
             reader,
             reader.uint32()
           );
@@ -1032,206 +1007,199 @@ export class RespResult {
     return message;
   }
 
-  nativeAddressToStringResult: NativeAddressToStringResult | null;
-  nativePubKeyToStringResult: NativePubKeyToStringResult | null;
-  nativeSigToStringResult: NativeSigToStringResult | null;
-  nativeHashToStringResult: NativeHashToStringResult | null;
-  nativeAmountToStringResult: NativeAmountToStringResult | null;
-  nativeAddressFromStringResult: NativeAddressFromStringResult | null;
-  nativePubKeyFromStringResult: NativePubKeyFromStringResult | null;
-  nativeSigFromStringResult: NativeSigFromStringResult | null;
-  nativeHashFromStringResult: NativeHashFromStringResult | null;
-  nativeAmountFromStringResult: NativeAmountFromStringResult | null;
-  checkNativeAddressResult: CheckNativeAddressResult | null;
-  checkNativePubKeyResult: CheckNativePubKeyResult | null;
-  checkNativeSigResult: CheckNativeSigResult | null;
-  checkNativeHashResult: CheckNativeHashResult | null;
-  checkNativeAmountResult: CheckNativeAmountResult | null;
   addNativeAmountsResult: AddNativeAmountsResult | null;
-  subNativeAmountsResult: SubNativeAmountsResult | null;
-  mulNativeAmountResult: MulNativeAmountResult | null;
-  scalarDivRemNativeAmountResult: ScalarDivRemNativeAmountResult | null;
-  divRemNativeAmountResult: DivRemNativeAmountResult | null;
+  addressFromPubKeyResult: AddressFromPubKeyResult | null;
+  appendDataResult: AppendDataResult | null;
+  base58CheckToBytesResult: Base58CheckToBytesResult | null;
+  blake3HashResult: Blake3HashResult | null;
+  bytesToBase58CheckResult: BytesToBase58CheckResult | null;
+  callerHasWriteAccessResult: CallerHasWriteAccessResult | null;
+  checkAddressResult: CheckAddressResult | null;
+  checkBlake3HashResult: CheckBlake3HashResult | null;
+  checkNativeAmountResult: CheckNativeAmountResult | null;
+  checkPubKeyResult: CheckPubKeyResult | null;
+  checkSigResult: CheckSigResult | null;
   checkedAddNativeTimeResult: CheckedAddNativeTimeResult | null;
-  checkedSubNativeTimeResult: CheckedSubNativeTimeResult | null;
+  checkedDivRemNativeTimeResult: CheckedDivRemNativeTimeResult | null;
   checkedMulNativeTimeResult: CheckedMulNativeTimeResult | null;
   checkedScalarDivRemNativeTimeResult: CheckedScalarDivRemNativeTimeResult | null;
-  checkedDivRemNativeTimeResult: CheckedDivRemNativeTimeResult | null;
-  compareNativeTimeResult: CompareNativeTimeResult | null;
-  compareNativeAddressResult: CompareNativeAddressResult | null;
-  compareNativePubKeyResult: CompareNativePubKeyResult | null;
-  compareNativeSigResult: CompareNativeSigResult | null;
-  verifyNativeSigResult: VerifyNativeSigResult | null;
+  checkedSubNativeTimeResult: CheckedSubNativeTimeResult | null;
+  compareAddressResult: CompareAddressResult | null;
   compareNativeAmountResult: CompareNativeAmountResult | null;
-  keccak256Result: Keccak256Result | null;
-  verifyEvmSigResult: VerifyEvmSigResult | null;
-  verifyBlsSingleSigResult: VerifyBlsSingleSigResult | null;
-  verifyBlsMultiSigResult: VerifyBlsMultiSigResult | null;
-  transferCoinsResult: TransferCoinsResult | null;
-  generateEventResult: GenerateEventResult | null;
+  compareNativeTimeResult: CompareNativeTimeResult | null;
+  comparePubKeyResult: ComparePubKeyResult | null;
+  compareSigResult: CompareSigResult | null;
   createScResult: CreateScResult | null;
-  functionExistsResult: FunctionExistsResult | null;
-  nativeHashResult: NativeHashResult | null;
-  getKeysResult: GetKeysResult | null;
-  setDataResult: SetDataResult | null;
-  appendDataResult: AppendDataResult | null;
-  getDataResult: GetDataResult | null;
-  hasDataResult: HasDataResult | null;
-  deleteDataResult: DeleteDataResult | null;
-  getOwnedAddressesResult: GetOwnedAddressesResult | null;
-  getCallStackResult: GetCallStackResult | null;
-  nativeAddressFromNativePubKeyResult: NativeAddressFromNativePubKeyResult | null;
-  unsafeRandomRequestResult: UnsafeRandomResult | null;
-  getNativeTimeResult: GetNativeTimeResult | null;
-  getCurrentSlotResult: GetCurrentSlotResult | null;
-  setBytecodeRequestResult: SetBytecodeRequest | null;
-  getBytecodeResult: GetBytecodeResult | null;
-  callerHasWriteAccessResult: CallerHasWriteAccessResult | null;
-  seedResult: SeedResult | null;
   dateNowResult: DateNowResult | null;
-  processExitResult: ProcessExitResult | null;
-  hashSha256Result: HashSha256Result | null;
-  getOpDataResult: GetOpDataResult | null;
-  hasOpKeyResult: HasOpKeyResult | null;
-  getOpKeysResult: GetOpKeysResult | null;
-  getRemainingGasResult: GetRemainingGasResult | null;
+  deleteDataResult: DeleteDataResult | null;
+  divRemNativeAmountResult: DivRemNativeAmountResult | null;
+  functionExistsResult: FunctionExistsResult | null;
+  generateEventResult: GenerateEventResult | null;
+  getAddressCategoryResult: GetAddressCategoryResult | null;
+  getAddressVersionResult: GetAddressVersionResult | null;
   getBalanceResult: GetBalanceResult | null;
+  getBytecodeResult: GetBytecodeResult | null;
   getCallCoinsResult: GetCallCoinsResult | null;
+  getCallStackResult: GetCallStackResult | null;
+  getCurrentSlotResult: GetCurrentSlotResult | null;
+  getDataResult: GetDataResult | null;
+  getKeysResult: GetKeysResult | null;
+  getNativeTimeResult: GetNativeTimeResult | null;
+  getOpDataResult: GetOpDataResult | null;
+  getOpKeysResult: GetOpKeysResult | null;
+  getOwnedAddressesResult: GetOwnedAddressesResult | null;
+  getPubKeyVersionResult: GetPubKeyVersionResult | null;
+  getRemainingGasResult: GetRemainingGasResult | null;
+  getSignatureVersionResult: GetSignatureVersionResult | null;
+  hashSha256Result: HashSha256Result | null;
+  hasDataResult: HasDataResult | null;
+  hasOpKeyResult: HasOpKeyResult | null;
+  keccak256Result: Keccak256Result | null;
+  mulNativeAmountResult: MulNativeAmountResult | null;
+  nativeAmountFromStringResult: NativeAmountFromStringResult | null;
+  nativeAmountToStringResult: NativeAmountToStringResult | null;
+  processExitResult: ProcessExitResult | null;
+  scalarDivRemNativeAmountResult: ScalarDivRemNativeAmountResult | null;
+  seedResult: SeedResult | null;
+  setBytecodeResult: SetBytecodeResult | null;
+  setDataResult: SetDataResult | null;
+  subNativeAmountsResult: SubNativeAmountsResult | null;
+  transferCoinsResult: TransferCoinsResult | null;
+  unsafeRandomResult: UnsafeRandomResult | null;
+  verifyBlsMultiSigResult: VerifyBlsMultiSigResult | null;
+  verifyBlsSingleSigResult: VerifyBlsSingleSigResult | null;
+  verifyEvmSigResult: VerifyEvmSigResult | null;
+  verifySigResult: VerifySigResult | null;
 
   constructor(
-    nativeAddressToStringResult: NativeAddressToStringResult | null = null,
-    nativePubKeyToStringResult: NativePubKeyToStringResult | null = null,
-    nativeSigToStringResult: NativeSigToStringResult | null = null,
-    nativeHashToStringResult: NativeHashToStringResult | null = null,
-    nativeAmountToStringResult: NativeAmountToStringResult | null = null,
-    nativeAddressFromStringResult: NativeAddressFromStringResult | null = null,
-    nativePubKeyFromStringResult: NativePubKeyFromStringResult | null = null,
-    nativeSigFromStringResult: NativeSigFromStringResult | null = null,
-    nativeHashFromStringResult: NativeHashFromStringResult | null = null,
-    nativeAmountFromStringResult: NativeAmountFromStringResult | null = null,
-    checkNativeAddressResult: CheckNativeAddressResult | null = null,
-    checkNativePubKeyResult: CheckNativePubKeyResult | null = null,
-    checkNativeSigResult: CheckNativeSigResult | null = null,
-    checkNativeHashResult: CheckNativeHashResult | null = null,
-    checkNativeAmountResult: CheckNativeAmountResult | null = null,
     addNativeAmountsResult: AddNativeAmountsResult | null = null,
-    subNativeAmountsResult: SubNativeAmountsResult | null = null,
-    mulNativeAmountResult: MulNativeAmountResult | null = null,
-    scalarDivRemNativeAmountResult: ScalarDivRemNativeAmountResult | null = null,
-    divRemNativeAmountResult: DivRemNativeAmountResult | null = null,
+    addressFromPubKeyResult: AddressFromPubKeyResult | null = null,
+    appendDataResult: AppendDataResult | null = null,
+    base58CheckToBytesResult: Base58CheckToBytesResult | null = null,
+    blake3HashResult: Blake3HashResult | null = null,
+    bytesToBase58CheckResult: BytesToBase58CheckResult | null = null,
+    callerHasWriteAccessResult: CallerHasWriteAccessResult | null = null,
+    checkAddressResult: CheckAddressResult | null = null,
+    checkBlake3HashResult: CheckBlake3HashResult | null = null,
+    checkNativeAmountResult: CheckNativeAmountResult | null = null,
+    checkPubKeyResult: CheckPubKeyResult | null = null,
+    checkSigResult: CheckSigResult | null = null,
     checkedAddNativeTimeResult: CheckedAddNativeTimeResult | null = null,
-    checkedSubNativeTimeResult: CheckedSubNativeTimeResult | null = null,
+    checkedDivRemNativeTimeResult: CheckedDivRemNativeTimeResult | null = null,
     checkedMulNativeTimeResult: CheckedMulNativeTimeResult | null = null,
     checkedScalarDivRemNativeTimeResult: CheckedScalarDivRemNativeTimeResult | null = null,
-    checkedDivRemNativeTimeResult: CheckedDivRemNativeTimeResult | null = null,
-    compareNativeTimeResult: CompareNativeTimeResult | null = null,
-    compareNativeAddressResult: CompareNativeAddressResult | null = null,
-    compareNativePubKeyResult: CompareNativePubKeyResult | null = null,
-    compareNativeSigResult: CompareNativeSigResult | null = null,
-    verifyNativeSigResult: VerifyNativeSigResult | null = null,
+    checkedSubNativeTimeResult: CheckedSubNativeTimeResult | null = null,
+    compareAddressResult: CompareAddressResult | null = null,
     compareNativeAmountResult: CompareNativeAmountResult | null = null,
-    keccak256Result: Keccak256Result | null = null,
-    verifyEvmSigResult: VerifyEvmSigResult | null = null,
-    verifyBlsSingleSigResult: VerifyBlsSingleSigResult | null = null,
-    verifyBlsMultiSigResult: VerifyBlsMultiSigResult | null = null,
-    transferCoinsResult: TransferCoinsResult | null = null,
-    generateEventResult: GenerateEventResult | null = null,
+    compareNativeTimeResult: CompareNativeTimeResult | null = null,
+    comparePubKeyResult: ComparePubKeyResult | null = null,
+    compareSigResult: CompareSigResult | null = null,
     createScResult: CreateScResult | null = null,
-    functionExistsResult: FunctionExistsResult | null = null,
-    nativeHashResult: NativeHashResult | null = null,
-    getKeysResult: GetKeysResult | null = null,
-    setDataResult: SetDataResult | null = null,
-    appendDataResult: AppendDataResult | null = null,
-    getDataResult: GetDataResult | null = null,
-    hasDataResult: HasDataResult | null = null,
-    deleteDataResult: DeleteDataResult | null = null,
-    getOwnedAddressesResult: GetOwnedAddressesResult | null = null,
-    getCallStackResult: GetCallStackResult | null = null,
-    nativeAddressFromNativePubKeyResult: NativeAddressFromNativePubKeyResult | null = null,
-    unsafeRandomRequestResult: UnsafeRandomResult | null = null,
-    getNativeTimeResult: GetNativeTimeResult | null = null,
-    getCurrentSlotResult: GetCurrentSlotResult | null = null,
-    setBytecodeRequestResult: SetBytecodeRequest | null = null,
-    getBytecodeResult: GetBytecodeResult | null = null,
-    callerHasWriteAccessResult: CallerHasWriteAccessResult | null = null,
-    seedResult: SeedResult | null = null,
     dateNowResult: DateNowResult | null = null,
-    processExitResult: ProcessExitResult | null = null,
-    hashSha256Result: HashSha256Result | null = null,
-    getOpDataResult: GetOpDataResult | null = null,
-    hasOpKeyResult: HasOpKeyResult | null = null,
-    getOpKeysResult: GetOpKeysResult | null = null,
-    getRemainingGasResult: GetRemainingGasResult | null = null,
+    deleteDataResult: DeleteDataResult | null = null,
+    divRemNativeAmountResult: DivRemNativeAmountResult | null = null,
+    functionExistsResult: FunctionExistsResult | null = null,
+    generateEventResult: GenerateEventResult | null = null,
+    getAddressCategoryResult: GetAddressCategoryResult | null = null,
+    getAddressVersionResult: GetAddressVersionResult | null = null,
     getBalanceResult: GetBalanceResult | null = null,
-    getCallCoinsResult: GetCallCoinsResult | null = null
+    getBytecodeResult: GetBytecodeResult | null = null,
+    getCallCoinsResult: GetCallCoinsResult | null = null,
+    getCallStackResult: GetCallStackResult | null = null,
+    getCurrentSlotResult: GetCurrentSlotResult | null = null,
+    getDataResult: GetDataResult | null = null,
+    getKeysResult: GetKeysResult | null = null,
+    getNativeTimeResult: GetNativeTimeResult | null = null,
+    getOpDataResult: GetOpDataResult | null = null,
+    getOpKeysResult: GetOpKeysResult | null = null,
+    getOwnedAddressesResult: GetOwnedAddressesResult | null = null,
+    getPubKeyVersionResult: GetPubKeyVersionResult | null = null,
+    getRemainingGasResult: GetRemainingGasResult | null = null,
+    getSignatureVersionResult: GetSignatureVersionResult | null = null,
+    hashSha256Result: HashSha256Result | null = null,
+    hasDataResult: HasDataResult | null = null,
+    hasOpKeyResult: HasOpKeyResult | null = null,
+    keccak256Result: Keccak256Result | null = null,
+    mulNativeAmountResult: MulNativeAmountResult | null = null,
+    nativeAmountFromStringResult: NativeAmountFromStringResult | null = null,
+    nativeAmountToStringResult: NativeAmountToStringResult | null = null,
+    processExitResult: ProcessExitResult | null = null,
+    scalarDivRemNativeAmountResult: ScalarDivRemNativeAmountResult | null = null,
+    seedResult: SeedResult | null = null,
+    setBytecodeResult: SetBytecodeResult | null = null,
+    setDataResult: SetDataResult | null = null,
+    subNativeAmountsResult: SubNativeAmountsResult | null = null,
+    transferCoinsResult: TransferCoinsResult | null = null,
+    unsafeRandomResult: UnsafeRandomResult | null = null,
+    verifyBlsMultiSigResult: VerifyBlsMultiSigResult | null = null,
+    verifyBlsSingleSigResult: VerifyBlsSingleSigResult | null = null,
+    verifyEvmSigResult: VerifyEvmSigResult | null = null,
+    verifySigResult: VerifySigResult | null = null
   ) {
-    this.nativeAddressToStringResult = nativeAddressToStringResult;
-    this.nativePubKeyToStringResult = nativePubKeyToStringResult;
-    this.nativeSigToStringResult = nativeSigToStringResult;
-    this.nativeHashToStringResult = nativeHashToStringResult;
-    this.nativeAmountToStringResult = nativeAmountToStringResult;
-    this.nativeAddressFromStringResult = nativeAddressFromStringResult;
-    this.nativePubKeyFromStringResult = nativePubKeyFromStringResult;
-    this.nativeSigFromStringResult = nativeSigFromStringResult;
-    this.nativeHashFromStringResult = nativeHashFromStringResult;
-    this.nativeAmountFromStringResult = nativeAmountFromStringResult;
-    this.checkNativeAddressResult = checkNativeAddressResult;
-    this.checkNativePubKeyResult = checkNativePubKeyResult;
-    this.checkNativeSigResult = checkNativeSigResult;
-    this.checkNativeHashResult = checkNativeHashResult;
-    this.checkNativeAmountResult = checkNativeAmountResult;
     this.addNativeAmountsResult = addNativeAmountsResult;
-    this.subNativeAmountsResult = subNativeAmountsResult;
-    this.mulNativeAmountResult = mulNativeAmountResult;
-    this.scalarDivRemNativeAmountResult = scalarDivRemNativeAmountResult;
-    this.divRemNativeAmountResult = divRemNativeAmountResult;
+    this.addressFromPubKeyResult = addressFromPubKeyResult;
+    this.appendDataResult = appendDataResult;
+    this.base58CheckToBytesResult = base58CheckToBytesResult;
+    this.blake3HashResult = blake3HashResult;
+    this.bytesToBase58CheckResult = bytesToBase58CheckResult;
+    this.callerHasWriteAccessResult = callerHasWriteAccessResult;
+    this.checkAddressResult = checkAddressResult;
+    this.checkBlake3HashResult = checkBlake3HashResult;
+    this.checkNativeAmountResult = checkNativeAmountResult;
+    this.checkPubKeyResult = checkPubKeyResult;
+    this.checkSigResult = checkSigResult;
     this.checkedAddNativeTimeResult = checkedAddNativeTimeResult;
-    this.checkedSubNativeTimeResult = checkedSubNativeTimeResult;
+    this.checkedDivRemNativeTimeResult = checkedDivRemNativeTimeResult;
     this.checkedMulNativeTimeResult = checkedMulNativeTimeResult;
     this.checkedScalarDivRemNativeTimeResult =
       checkedScalarDivRemNativeTimeResult;
-    this.checkedDivRemNativeTimeResult = checkedDivRemNativeTimeResult;
-    this.compareNativeTimeResult = compareNativeTimeResult;
-    this.compareNativeAddressResult = compareNativeAddressResult;
-    this.compareNativePubKeyResult = compareNativePubKeyResult;
-    this.compareNativeSigResult = compareNativeSigResult;
-    this.verifyNativeSigResult = verifyNativeSigResult;
+    this.checkedSubNativeTimeResult = checkedSubNativeTimeResult;
+    this.compareAddressResult = compareAddressResult;
     this.compareNativeAmountResult = compareNativeAmountResult;
-    this.keccak256Result = keccak256Result;
-    this.verifyEvmSigResult = verifyEvmSigResult;
-    this.verifyBlsSingleSigResult = verifyBlsSingleSigResult;
-    this.verifyBlsMultiSigResult = verifyBlsMultiSigResult;
-    this.transferCoinsResult = transferCoinsResult;
-    this.generateEventResult = generateEventResult;
+    this.compareNativeTimeResult = compareNativeTimeResult;
+    this.comparePubKeyResult = comparePubKeyResult;
+    this.compareSigResult = compareSigResult;
     this.createScResult = createScResult;
-    this.functionExistsResult = functionExistsResult;
-    this.nativeHashResult = nativeHashResult;
-    this.getKeysResult = getKeysResult;
-    this.setDataResult = setDataResult;
-    this.appendDataResult = appendDataResult;
-    this.getDataResult = getDataResult;
-    this.hasDataResult = hasDataResult;
-    this.deleteDataResult = deleteDataResult;
-    this.getOwnedAddressesResult = getOwnedAddressesResult;
-    this.getCallStackResult = getCallStackResult;
-    this.nativeAddressFromNativePubKeyResult =
-      nativeAddressFromNativePubKeyResult;
-    this.unsafeRandomRequestResult = unsafeRandomRequestResult;
-    this.getNativeTimeResult = getNativeTimeResult;
-    this.getCurrentSlotResult = getCurrentSlotResult;
-    this.setBytecodeRequestResult = setBytecodeRequestResult;
-    this.getBytecodeResult = getBytecodeResult;
-    this.callerHasWriteAccessResult = callerHasWriteAccessResult;
-    this.seedResult = seedResult;
     this.dateNowResult = dateNowResult;
-    this.processExitResult = processExitResult;
-    this.hashSha256Result = hashSha256Result;
-    this.getOpDataResult = getOpDataResult;
-    this.hasOpKeyResult = hasOpKeyResult;
-    this.getOpKeysResult = getOpKeysResult;
-    this.getRemainingGasResult = getRemainingGasResult;
+    this.deleteDataResult = deleteDataResult;
+    this.divRemNativeAmountResult = divRemNativeAmountResult;
+    this.functionExistsResult = functionExistsResult;
+    this.generateEventResult = generateEventResult;
+    this.getAddressCategoryResult = getAddressCategoryResult;
+    this.getAddressVersionResult = getAddressVersionResult;
     this.getBalanceResult = getBalanceResult;
+    this.getBytecodeResult = getBytecodeResult;
     this.getCallCoinsResult = getCallCoinsResult;
+    this.getCallStackResult = getCallStackResult;
+    this.getCurrentSlotResult = getCurrentSlotResult;
+    this.getDataResult = getDataResult;
+    this.getKeysResult = getKeysResult;
+    this.getNativeTimeResult = getNativeTimeResult;
+    this.getOpDataResult = getOpDataResult;
+    this.getOpKeysResult = getOpKeysResult;
+    this.getOwnedAddressesResult = getOwnedAddressesResult;
+    this.getPubKeyVersionResult = getPubKeyVersionResult;
+    this.getRemainingGasResult = getRemainingGasResult;
+    this.getSignatureVersionResult = getSignatureVersionResult;
+    this.hashSha256Result = hashSha256Result;
+    this.hasDataResult = hasDataResult;
+    this.hasOpKeyResult = hasOpKeyResult;
+    this.keccak256Result = keccak256Result;
+    this.mulNativeAmountResult = mulNativeAmountResult;
+    this.nativeAmountFromStringResult = nativeAmountFromStringResult;
+    this.nativeAmountToStringResult = nativeAmountToStringResult;
+    this.processExitResult = processExitResult;
+    this.scalarDivRemNativeAmountResult = scalarDivRemNativeAmountResult;
+    this.seedResult = seedResult;
+    this.setBytecodeResult = setBytecodeResult;
+    this.setDataResult = setDataResult;
+    this.subNativeAmountsResult = subNativeAmountsResult;
+    this.transferCoinsResult = transferCoinsResult;
+    this.unsafeRandomResult = unsafeRandomResult;
+    this.verifyBlsMultiSigResult = verifyBlsMultiSigResult;
+    this.verifyBlsSingleSigResult = verifyBlsSingleSigResult;
+    this.verifyEvmSigResult = verifyEvmSigResult;
+    this.verifySigResult = verifySigResult;
   }
 }
 

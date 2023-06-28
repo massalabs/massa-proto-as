@@ -4,18 +4,12 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
-import { NativeAmount } from "..\\..\\model\\v1\\NativeAmount";
+import { NativeAmount } from "../../model/v1/NativeAmount";
 
 export class CallRequest {
   static encode(message: CallRequest, writer: Writer): void {
-    const targetScAddress = message.targetScAddress;
-    if (targetScAddress !== null) {
-      writer.uint32(10);
-      writer.fork();
-      NativeAddress.encode(targetScAddress, writer);
-      writer.ldelim();
-    }
+    writer.uint32(10);
+    writer.string(message.targetScAddress);
 
     writer.uint32(18);
     writer.string(message.targetFunctionName);
@@ -40,10 +34,7 @@ export class CallRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.targetScAddress = NativeAddress.decode(
-            reader,
-            reader.uint32()
-          );
+          message.targetScAddress = reader.string();
           break;
 
         case 2:
@@ -67,13 +58,13 @@ export class CallRequest {
     return message;
   }
 
-  targetScAddress: NativeAddress | null;
+  targetScAddress: string;
   targetFunctionName: string;
   functionArg: Uint8Array;
   callCoins: NativeAmount | null;
 
   constructor(
-    targetScAddress: NativeAddress | null = null,
+    targetScAddress: string = "",
     targetFunctionName: string = "",
     functionArg: Uint8Array = new Uint8Array(0),
     callCoins: NativeAmount | null = null

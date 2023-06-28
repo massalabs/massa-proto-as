@@ -4,17 +4,11 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
 
 export class CreateScResult {
   static encode(message: CreateScResult, writer: Writer): void {
-    const scAddress = message.scAddress;
-    if (scAddress !== null) {
-      writer.uint32(10);
-      writer.fork();
-      NativeAddress.encode(scAddress, writer);
-      writer.ldelim();
-    }
+    writer.uint32(10);
+    writer.string(message.scAddress);
   }
 
   static decode(reader: Reader, length: i32): CreateScResult {
@@ -25,7 +19,7 @@ export class CreateScResult {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.scAddress = NativeAddress.decode(reader, reader.uint32());
+          message.scAddress = reader.string();
           break;
 
         default:
@@ -37,9 +31,9 @@ export class CreateScResult {
     return message;
   }
 
-  scAddress: NativeAddress | null;
+  scAddress: string;
 
-  constructor(scAddress: NativeAddress | null = null) {
+  constructor(scAddress: string = "") {
     this.scAddress = scAddress;
   }
 }
