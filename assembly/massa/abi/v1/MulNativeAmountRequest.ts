@@ -5,6 +5,7 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAmount } from "../../model/v1/NativeAmount";
+import { UInt64Value } from "../../../google/protobuf/UInt64Value";
 
 export class MulNativeAmountRequest {
   static encode(message: MulNativeAmountRequest, writer: Writer): void {
@@ -16,8 +17,13 @@ export class MulNativeAmountRequest {
       writer.ldelim();
     }
 
-    writer.uint32(16);
-    writer.int64(message.coefficient);
+    const mandatoryCoefficient = message.mandatoryCoefficient;
+    if (mandatoryCoefficient !== null) {
+      writer.uint32(18);
+      writer.fork();
+      UInt64Value.encode(mandatoryCoefficient, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): MulNativeAmountRequest {
@@ -32,7 +38,10 @@ export class MulNativeAmountRequest {
           break;
 
         case 2:
-          message.coefficient = reader.int64();
+          message.mandatoryCoefficient = UInt64Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         default:
@@ -45,11 +54,14 @@ export class MulNativeAmountRequest {
   }
 
   amount: NativeAmount | null;
-  coefficient: i64;
+  mandatoryCoefficient: UInt64Value | null;
 
-  constructor(amount: NativeAmount | null = null, coefficient: i64 = 0) {
+  constructor(
+    amount: NativeAmount | null = null,
+    mandatoryCoefficient: UInt64Value | null = null
+  ) {
     this.amount = amount;
-    this.coefficient = coefficient;
+    this.mandatoryCoefficient = mandatoryCoefficient;
   }
 }
 

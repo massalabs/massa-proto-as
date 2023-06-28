@@ -5,6 +5,7 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeTime } from "../../model/v1/NativeTime";
+import { UInt64Value } from "../../../google/protobuf/UInt64Value";
 
 export class CheckedScalarDivRemNativeTimeRequest {
   static encode(
@@ -19,8 +20,13 @@ export class CheckedScalarDivRemNativeTimeRequest {
       writer.ldelim();
     }
 
-    writer.uint32(16);
-    writer.int64(message.divisor);
+    const mandatoryDivisor = message.mandatoryDivisor;
+    if (mandatoryDivisor !== null) {
+      writer.uint32(18);
+      writer.fork();
+      UInt64Value.encode(mandatoryDivisor, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(
@@ -38,7 +44,10 @@ export class CheckedScalarDivRemNativeTimeRequest {
           break;
 
         case 2:
-          message.divisor = reader.int64();
+          message.mandatoryDivisor = UInt64Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         default:
@@ -51,11 +60,14 @@ export class CheckedScalarDivRemNativeTimeRequest {
   }
 
   dividend: NativeTime | null;
-  divisor: i64;
+  mandatoryDivisor: UInt64Value | null;
 
-  constructor(dividend: NativeTime | null = null, divisor: i64 = 0) {
+  constructor(
+    dividend: NativeTime | null = null,
+    mandatoryDivisor: UInt64Value | null = null
+  ) {
     this.dividend = dividend;
-    this.divisor = divisor;
+    this.mandatoryDivisor = mandatoryDivisor;
   }
 }
 

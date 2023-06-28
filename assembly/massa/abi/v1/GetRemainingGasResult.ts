@@ -4,11 +4,17 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { UInt64Value } from "../../../google/protobuf/UInt64Value";
 
 export class GetRemainingGasResult {
   static encode(message: GetRemainingGasResult, writer: Writer): void {
-    writer.uint32(8);
-    writer.int64(message.remainingGas);
+    const mandatoryRemainingGas = message.mandatoryRemainingGas;
+    if (mandatoryRemainingGas !== null) {
+      writer.uint32(10);
+      writer.fork();
+      UInt64Value.encode(mandatoryRemainingGas, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): GetRemainingGasResult {
@@ -19,7 +25,10 @@ export class GetRemainingGasResult {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.remainingGas = reader.int64();
+          message.mandatoryRemainingGas = UInt64Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         default:
@@ -31,10 +40,10 @@ export class GetRemainingGasResult {
     return message;
   }
 
-  remainingGas: i64;
+  mandatoryRemainingGas: UInt64Value | null;
 
-  constructor(remainingGas: i64 = 0) {
-    this.remainingGas = remainingGas;
+  constructor(mandatoryRemainingGas: UInt64Value | null = null) {
+    this.mandatoryRemainingGas = mandatoryRemainingGas;
   }
 }
 

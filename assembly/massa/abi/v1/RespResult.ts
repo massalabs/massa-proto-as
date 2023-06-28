@@ -29,7 +29,7 @@ import { CompareSigResult } from "./CompareSigResult";
 import { CreateScResult } from "./CreateScResult";
 import { DateNowResult } from "./DateNowResult";
 import { DeleteDataResult } from "./DeleteDataResult";
-import { DivRemNativeAmountResult } from "./DivRemNativeAmountResult";
+import { DivRemNativeAmountsResult } from "./DivRemNativeAmountsResult";
 import { FunctionExistsResult } from "./FunctionExistsResult";
 import { GenerateEventResult } from "./GenerateEventResult";
 import { GetAddressCategoryResult } from "./GetAddressCategoryResult";
@@ -277,11 +277,11 @@ export class RespResult {
       writer.ldelim();
     }
 
-    const divRemNativeAmountResult = message.divRemNativeAmountResult;
-    if (divRemNativeAmountResult !== null) {
+    const divRemNativeAmountsResult = message.divRemNativeAmountsResult;
+    if (divRemNativeAmountsResult !== null) {
       writer.uint32(210);
       writer.fork();
-      DivRemNativeAmountResult.encode(divRemNativeAmountResult, writer);
+      DivRemNativeAmountsResult.encode(divRemNativeAmountsResult, writer);
       writer.ldelim();
     }
 
@@ -754,7 +754,7 @@ export class RespResult {
           break;
 
         case 26:
-          message.divRemNativeAmountResult = DivRemNativeAmountResult.decode(
+          message.divRemNativeAmountsResult = DivRemNativeAmountsResult.decode(
             reader,
             reader.uint32()
           );
@@ -1032,7 +1032,7 @@ export class RespResult {
   createScResult: CreateScResult | null;
   dateNowResult: DateNowResult | null;
   deleteDataResult: DeleteDataResult | null;
-  divRemNativeAmountResult: DivRemNativeAmountResult | null;
+  divRemNativeAmountsResult: DivRemNativeAmountsResult | null;
   functionExistsResult: FunctionExistsResult | null;
   generateEventResult: GenerateEventResult | null;
   getAddressCategoryResult: GetAddressCategoryResult | null;
@@ -1097,7 +1097,7 @@ export class RespResult {
     createScResult: CreateScResult | null = null,
     dateNowResult: DateNowResult | null = null,
     deleteDataResult: DeleteDataResult | null = null,
-    divRemNativeAmountResult: DivRemNativeAmountResult | null = null,
+    divRemNativeAmountsResult: DivRemNativeAmountsResult | null = null,
     functionExistsResult: FunctionExistsResult | null = null,
     generateEventResult: GenerateEventResult | null = null,
     getAddressCategoryResult: GetAddressCategoryResult | null = null,
@@ -1162,7 +1162,7 @@ export class RespResult {
     this.createScResult = createScResult;
     this.dateNowResult = dateNowResult;
     this.deleteDataResult = deleteDataResult;
-    this.divRemNativeAmountResult = divRemNativeAmountResult;
+    this.divRemNativeAmountsResult = divRemNativeAmountsResult;
     this.functionExistsResult = functionExistsResult;
     this.generateEventResult = generateEventResult;
     this.getAddressCategoryResult = getAddressCategoryResult;
