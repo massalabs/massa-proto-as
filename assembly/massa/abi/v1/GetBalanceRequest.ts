@@ -4,15 +4,15 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
+import { StringValue } from "../../../google/protobuf/StringValue";
 
 export class GetBalanceRequest {
   static encode(message: GetBalanceRequest, writer: Writer): void {
-    const address = message.address;
-    if (address !== null) {
+    const optionalAddress = message.optionalAddress;
+    if (optionalAddress !== null) {
       writer.uint32(10);
       writer.fork();
-      NativeAddress.encode(address, writer);
+      StringValue.encode(optionalAddress, writer);
       writer.ldelim();
     }
   }
@@ -25,7 +25,7 @@ export class GetBalanceRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address = NativeAddress.decode(reader, reader.uint32());
+          message.optionalAddress = StringValue.decode(reader, reader.uint32());
           break;
 
         default:
@@ -37,10 +37,10 @@ export class GetBalanceRequest {
     return message;
   }
 
-  address: NativeAddress | null;
+  optionalAddress: StringValue | null;
 
-  constructor(address: NativeAddress | null = null) {
-    this.address = address;
+  constructor(optionalAddress: StringValue | null = null) {
+    this.optionalAddress = optionalAddress;
   }
 }
 

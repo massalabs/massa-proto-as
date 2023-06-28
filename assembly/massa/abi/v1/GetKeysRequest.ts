@@ -4,20 +4,20 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
+import { StringValue } from "../../../google/protobuf/StringValue";
 
 export class GetKeysRequest {
   static encode(message: GetKeysRequest, writer: Writer): void {
-    const address = message.address;
-    if (address !== null) {
-      writer.uint32(10);
+    writer.uint32(10);
+    writer.bytes(message.prefix);
+
+    const optionalAddress = message.optionalAddress;
+    if (optionalAddress !== null) {
+      writer.uint32(18);
       writer.fork();
-      NativeAddress.encode(address, writer);
+      StringValue.encode(optionalAddress, writer);
       writer.ldelim();
     }
-
-    writer.uint32(18);
-    writer.bytes(message.prefix);
   }
 
   static decode(reader: Reader, length: i32): GetKeysRequest {
@@ -28,11 +28,11 @@ export class GetKeysRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address = NativeAddress.decode(reader, reader.uint32());
+          message.prefix = reader.bytes();
           break;
 
         case 2:
-          message.prefix = reader.bytes();
+          message.optionalAddress = StringValue.decode(reader, reader.uint32());
           break;
 
         default:
@@ -44,15 +44,15 @@ export class GetKeysRequest {
     return message;
   }
 
-  address: NativeAddress | null;
   prefix: Uint8Array;
+  optionalAddress: StringValue | null;
 
   constructor(
-    address: NativeAddress | null = null,
-    prefix: Uint8Array = new Uint8Array(0)
+    prefix: Uint8Array = new Uint8Array(0),
+    optionalAddress: StringValue | null = null
   ) {
-    this.address = address;
     this.prefix = prefix;
+    this.optionalAddress = optionalAddress;
   }
 }
 

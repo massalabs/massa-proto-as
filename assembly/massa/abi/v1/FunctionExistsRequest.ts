@@ -4,17 +4,11 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
 
 export class FunctionExistsRequest {
   static encode(message: FunctionExistsRequest, writer: Writer): void {
-    const targetScAddress = message.targetScAddress;
-    if (targetScAddress !== null) {
-      writer.uint32(10);
-      writer.fork();
-      NativeAddress.encode(targetScAddress, writer);
-      writer.ldelim();
-    }
+    writer.uint32(10);
+    writer.string(message.targetScAddress);
 
     writer.uint32(18);
     writer.string(message.functionName);
@@ -28,10 +22,7 @@ export class FunctionExistsRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.targetScAddress = NativeAddress.decode(
-            reader,
-            reader.uint32()
-          );
+          message.targetScAddress = reader.string();
           break;
 
         case 2:
@@ -47,13 +38,10 @@ export class FunctionExistsRequest {
     return message;
   }
 
-  targetScAddress: NativeAddress | null;
+  targetScAddress: string;
   functionName: string;
 
-  constructor(
-    targetScAddress: NativeAddress | null = null,
-    functionName: string = ""
-  ) {
+  constructor(targetScAddress: string = "", functionName: string = "") {
     this.targetScAddress = targetScAddress;
     this.functionName = functionName;
   }

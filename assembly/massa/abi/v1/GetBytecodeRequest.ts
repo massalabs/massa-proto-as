@@ -4,9 +4,18 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { StringValue } from "../../../google/protobuf/StringValue";
 
 export class GetBytecodeRequest {
-  static encode(message: GetBytecodeRequest, writer: Writer): void {}
+  static encode(message: GetBytecodeRequest, writer: Writer): void {
+    const optionalAddress = message.optionalAddress;
+    if (optionalAddress !== null) {
+      writer.uint32(10);
+      writer.fork();
+      StringValue.encode(optionalAddress, writer);
+      writer.ldelim();
+    }
+  }
 
   static decode(reader: Reader, length: i32): GetBytecodeRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
@@ -15,6 +24,10 @@ export class GetBytecodeRequest {
     while (reader.ptr < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.optionalAddress = StringValue.decode(reader, reader.uint32());
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -24,7 +37,11 @@ export class GetBytecodeRequest {
     return message;
   }
 
-  constructor() {}
+  optionalAddress: StringValue | null;
+
+  constructor(optionalAddress: StringValue | null = null) {
+    this.optionalAddress = optionalAddress;
+  }
 }
 
 export function encodeGetBytecodeRequest(

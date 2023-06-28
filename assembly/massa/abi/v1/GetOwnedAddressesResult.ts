@@ -4,16 +4,15 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
 
 export class GetOwnedAddressesResult {
   static encode(message: GetOwnedAddressesResult, writer: Writer): void {
     const addresses = message.addresses;
-    for (let i: i32 = 0; i < addresses.length; ++i) {
-      writer.uint32(10);
-      writer.fork();
-      NativeAddress.encode(addresses[i], writer);
-      writer.ldelim();
+    if (addresses.length !== 0) {
+      for (let i: i32 = 0; i < addresses.length; ++i) {
+        writer.uint32(10);
+        writer.string(addresses[i]);
+      }
     }
   }
 
@@ -25,7 +24,7 @@ export class GetOwnedAddressesResult {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.addresses.push(NativeAddress.decode(reader, reader.uint32()));
+          message.addresses.push(reader.string());
           break;
 
         default:
@@ -37,9 +36,9 @@ export class GetOwnedAddressesResult {
     return message;
   }
 
-  addresses: Array<NativeAddress>;
+  addresses: Array<string>;
 
-  constructor(addresses: Array<NativeAddress> = []) {
+  constructor(addresses: Array<string> = []) {
     this.addresses = addresses;
   }
 }

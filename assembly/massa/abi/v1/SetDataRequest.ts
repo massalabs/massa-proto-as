@@ -4,23 +4,23 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
+import { StringValue } from "../../../google/protobuf/StringValue";
 
 export class SetDataRequest {
   static encode(message: SetDataRequest, writer: Writer): void {
-    const address = message.address;
-    if (address !== null) {
-      writer.uint32(10);
-      writer.fork();
-      NativeAddress.encode(address, writer);
-      writer.ldelim();
-    }
-
-    writer.uint32(18);
+    writer.uint32(10);
     writer.bytes(message.key);
 
-    writer.uint32(26);
+    writer.uint32(18);
     writer.bytes(message.value);
+
+    const optionalAddress = message.optionalAddress;
+    if (optionalAddress !== null) {
+      writer.uint32(26);
+      writer.fork();
+      StringValue.encode(optionalAddress, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): SetDataRequest {
@@ -31,15 +31,15 @@ export class SetDataRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address = NativeAddress.decode(reader, reader.uint32());
-          break;
-
-        case 2:
           message.key = reader.bytes();
           break;
 
-        case 3:
+        case 2:
           message.value = reader.bytes();
+          break;
+
+        case 3:
+          message.optionalAddress = StringValue.decode(reader, reader.uint32());
           break;
 
         default:
@@ -51,18 +51,18 @@ export class SetDataRequest {
     return message;
   }
 
-  address: NativeAddress | null;
   key: Uint8Array;
   value: Uint8Array;
+  optionalAddress: StringValue | null;
 
   constructor(
-    address: NativeAddress | null = null,
     key: Uint8Array = new Uint8Array(0),
-    value: Uint8Array = new Uint8Array(0)
+    value: Uint8Array = new Uint8Array(0),
+    optionalAddress: StringValue | null = null
   ) {
-    this.address = address;
     this.key = key;
     this.value = value;
+    this.optionalAddress = optionalAddress;
   }
 }
 

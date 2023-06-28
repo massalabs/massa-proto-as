@@ -4,20 +4,20 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
+import { StringValue } from "../../../google/protobuf/StringValue";
 
 export class SetBytecodeRequest {
   static encode(message: SetBytecodeRequest, writer: Writer): void {
-    const address = message.address;
-    if (address !== null) {
-      writer.uint32(10);
+    writer.uint32(10);
+    writer.bytes(message.bytecode);
+
+    const optionalAddress = message.optionalAddress;
+    if (optionalAddress !== null) {
+      writer.uint32(18);
       writer.fork();
-      NativeAddress.encode(address, writer);
+      StringValue.encode(optionalAddress, writer);
       writer.ldelim();
     }
-
-    writer.uint32(18);
-    writer.bytes(message.bytecode);
   }
 
   static decode(reader: Reader, length: i32): SetBytecodeRequest {
@@ -28,11 +28,11 @@ export class SetBytecodeRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address = NativeAddress.decode(reader, reader.uint32());
+          message.bytecode = reader.bytes();
           break;
 
         case 2:
-          message.bytecode = reader.bytes();
+          message.optionalAddress = StringValue.decode(reader, reader.uint32());
           break;
 
         default:
@@ -44,15 +44,15 @@ export class SetBytecodeRequest {
     return message;
   }
 
-  address: NativeAddress | null;
   bytecode: Uint8Array;
+  optionalAddress: StringValue | null;
 
   constructor(
-    address: NativeAddress | null = null,
-    bytecode: Uint8Array = new Uint8Array(0)
+    bytecode: Uint8Array = new Uint8Array(0),
+    optionalAddress: StringValue | null = null
   ) {
-    this.address = address;
     this.bytecode = bytecode;
+    this.optionalAddress = optionalAddress;
   }
 }
 

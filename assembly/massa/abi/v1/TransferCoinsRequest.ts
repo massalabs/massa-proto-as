@@ -4,32 +4,27 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { NativeAddress } from "..\\..\\model\\v1\\NativeAddress";
-import { NativeAmount } from "..\\..\\model\\v1\\NativeAmount";
+import { NativeAmount } from "../../model/v1/NativeAmount";
+import { StringValue } from "../../../google/protobuf/StringValue";
 
 export class TransferCoinsRequest {
   static encode(message: TransferCoinsRequest, writer: Writer): void {
-    const senderAddress = message.senderAddress;
-    if (senderAddress !== null) {
-      writer.uint32(10);
-      writer.fork();
-      NativeAddress.encode(senderAddress, writer);
-      writer.ldelim();
-    }
-
-    const targetAddress = message.targetAddress;
-    if (targetAddress !== null) {
-      writer.uint32(18);
-      writer.fork();
-      NativeAddress.encode(targetAddress, writer);
-      writer.ldelim();
-    }
+    writer.uint32(10);
+    writer.string(message.targetAddress);
 
     const amountToTransfer = message.amountToTransfer;
     if (amountToTransfer !== null) {
-      writer.uint32(26);
+      writer.uint32(18);
       writer.fork();
       NativeAmount.encode(amountToTransfer, writer);
+      writer.ldelim();
+    }
+
+    const optionalSenderAddress = message.optionalSenderAddress;
+    if (optionalSenderAddress !== null) {
+      writer.uint32(26);
+      writer.fork();
+      StringValue.encode(optionalSenderAddress, writer);
       writer.ldelim();
     }
   }
@@ -42,15 +37,18 @@ export class TransferCoinsRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.senderAddress = NativeAddress.decode(reader, reader.uint32());
+          message.targetAddress = reader.string();
           break;
 
         case 2:
-          message.targetAddress = NativeAddress.decode(reader, reader.uint32());
+          message.amountToTransfer = NativeAmount.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         case 3:
-          message.amountToTransfer = NativeAmount.decode(
+          message.optionalSenderAddress = StringValue.decode(
             reader,
             reader.uint32()
           );
@@ -65,18 +63,18 @@ export class TransferCoinsRequest {
     return message;
   }
 
-  senderAddress: NativeAddress | null;
-  targetAddress: NativeAddress | null;
+  targetAddress: string;
   amountToTransfer: NativeAmount | null;
+  optionalSenderAddress: StringValue | null;
 
   constructor(
-    senderAddress: NativeAddress | null = null,
-    targetAddress: NativeAddress | null = null,
-    amountToTransfer: NativeAmount | null = null
+    targetAddress: string = "",
+    amountToTransfer: NativeAmount | null = null,
+    optionalSenderAddress: StringValue | null = null
   ) {
-    this.senderAddress = senderAddress;
     this.targetAddress = targetAddress;
     this.amountToTransfer = amountToTransfer;
+    this.optionalSenderAddress = optionalSenderAddress;
   }
 }
 
