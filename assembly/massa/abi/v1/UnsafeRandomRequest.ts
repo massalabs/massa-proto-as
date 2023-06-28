@@ -4,14 +4,25 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { UInt32Value } from "../../../google/protobuf/UInt32Value";
 
 export class UnsafeRandomRequest {
   static encode(message: UnsafeRandomRequest, writer: Writer): void {
-    writer.uint32(8);
-    writer.int32(message.memoryAddr);
+    const mandatoryMemoryAddr = message.mandatoryMemoryAddr;
+    if (mandatoryMemoryAddr !== null) {
+      writer.uint32(10);
+      writer.fork();
+      UInt32Value.encode(mandatoryMemoryAddr, writer);
+      writer.ldelim();
+    }
 
-    writer.uint32(16);
-    writer.int32(message.numBytes);
+    const mandatoryNumBytes = message.mandatoryNumBytes;
+    if (mandatoryNumBytes !== null) {
+      writer.uint32(18);
+      writer.fork();
+      UInt32Value.encode(mandatoryNumBytes, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): UnsafeRandomRequest {
@@ -22,11 +33,17 @@ export class UnsafeRandomRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.memoryAddr = reader.int32();
+          message.mandatoryMemoryAddr = UInt32Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         case 2:
-          message.numBytes = reader.int32();
+          message.mandatoryNumBytes = UInt32Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         default:
@@ -38,12 +55,15 @@ export class UnsafeRandomRequest {
     return message;
   }
 
-  memoryAddr: i32;
-  numBytes: i32;
+  mandatoryMemoryAddr: UInt32Value | null;
+  mandatoryNumBytes: UInt32Value | null;
 
-  constructor(memoryAddr: i32 = 0, numBytes: i32 = 0) {
-    this.memoryAddr = memoryAddr;
-    this.numBytes = numBytes;
+  constructor(
+    mandatoryMemoryAddr: UInt32Value | null = null,
+    mandatoryNumBytes: UInt32Value | null = null
+  ) {
+    this.mandatoryMemoryAddr = mandatoryMemoryAddr;
+    this.mandatoryNumBytes = mandatoryNumBytes;
   }
 }
 

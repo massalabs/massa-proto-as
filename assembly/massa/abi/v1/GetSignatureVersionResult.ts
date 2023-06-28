@@ -4,11 +4,17 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { UInt64Value } from "../../../google/protobuf/UInt64Value";
 
 export class GetSignatureVersionResult {
   static encode(message: GetSignatureVersionResult, writer: Writer): void {
-    writer.uint32(8);
-    writer.int64(message.version);
+    const mandatoryVersion = message.mandatoryVersion;
+    if (mandatoryVersion !== null) {
+      writer.uint32(10);
+      writer.fork();
+      UInt64Value.encode(mandatoryVersion, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): GetSignatureVersionResult {
@@ -19,7 +25,10 @@ export class GetSignatureVersionResult {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.version = reader.int64();
+          message.mandatoryVersion = UInt64Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         default:
@@ -31,10 +40,10 @@ export class GetSignatureVersionResult {
     return message;
   }
 
-  version: i64;
+  mandatoryVersion: UInt64Value | null;
 
-  constructor(version: i64 = 0) {
-    this.version = version;
+  constructor(mandatoryVersion: UInt64Value | null = null) {
+    this.mandatoryVersion = mandatoryVersion;
   }
 }
 

@@ -5,10 +5,10 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { UInt64Value } from "../../../google/protobuf/UInt64Value";
-import { NativeTime } from "../../model/v1/NativeTime";
+import { NativeAmount } from "../../model/v1/NativeAmount";
 
-export class CheckedDivRemNativeTimeResult {
-  static encode(message: CheckedDivRemNativeTimeResult, writer: Writer): void {
+export class DivRemNativeAmountsResult {
+  static encode(message: DivRemNativeAmountsResult, writer: Writer): void {
     const mandatoryQuotient = message.mandatoryQuotient;
     if (mandatoryQuotient !== null) {
       writer.uint32(10);
@@ -21,14 +21,14 @@ export class CheckedDivRemNativeTimeResult {
     if (remainder !== null) {
       writer.uint32(18);
       writer.fork();
-      NativeTime.encode(remainder, writer);
+      NativeAmount.encode(remainder, writer);
       writer.ldelim();
     }
   }
 
-  static decode(reader: Reader, length: i32): CheckedDivRemNativeTimeResult {
+  static decode(reader: Reader, length: i32): DivRemNativeAmountsResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new CheckedDivRemNativeTimeResult();
+    const message = new DivRemNativeAmountsResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -41,7 +41,7 @@ export class CheckedDivRemNativeTimeResult {
           break;
 
         case 2:
-          message.remainder = NativeTime.decode(reader, reader.uint32());
+          message.remainder = NativeAmount.decode(reader, reader.uint32());
           break;
 
         default:
@@ -54,28 +54,28 @@ export class CheckedDivRemNativeTimeResult {
   }
 
   mandatoryQuotient: UInt64Value | null;
-  remainder: NativeTime | null;
+  remainder: NativeAmount | null;
 
   constructor(
     mandatoryQuotient: UInt64Value | null = null,
-    remainder: NativeTime | null = null
+    remainder: NativeAmount | null = null
   ) {
     this.mandatoryQuotient = mandatoryQuotient;
     this.remainder = remainder;
   }
 }
 
-export function encodeCheckedDivRemNativeTimeResult(
-  message: CheckedDivRemNativeTimeResult
+export function encodeDivRemNativeAmountsResult(
+  message: DivRemNativeAmountsResult
 ): Uint8Array {
-  return Protobuf.encode(message, CheckedDivRemNativeTimeResult.encode);
+  return Protobuf.encode(message, DivRemNativeAmountsResult.encode);
 }
 
-export function decodeCheckedDivRemNativeTimeResult(
+export function decodeDivRemNativeAmountsResult(
   buffer: Uint8Array
-): CheckedDivRemNativeTimeResult {
-  return Protobuf.decode<CheckedDivRemNativeTimeResult>(
+): DivRemNativeAmountsResult {
+  return Protobuf.decode<DivRemNativeAmountsResult>(
     buffer,
-    CheckedDivRemNativeTimeResult.decode
+    DivRemNativeAmountsResult.decode
   );
 }

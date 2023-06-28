@@ -4,14 +4,26 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { UInt64Value } from "../../../google/protobuf/UInt64Value";
+import { UInt32Value } from "../../../google/protobuf/UInt32Value";
 
 export class NativeAmount {
   static encode(message: NativeAmount, writer: Writer): void {
-    writer.uint32(9);
-    writer.fixed64(message.mantissa);
+    const mandatoryMantissa = message.mandatoryMantissa;
+    if (mandatoryMantissa !== null) {
+      writer.uint32(10);
+      writer.fork();
+      UInt64Value.encode(mandatoryMantissa, writer);
+      writer.ldelim();
+    }
 
-    writer.uint32(21);
-    writer.fixed32(message.scale);
+    const mandatoryScale = message.mandatoryScale;
+    if (mandatoryScale !== null) {
+      writer.uint32(18);
+      writer.fork();
+      UInt32Value.encode(mandatoryScale, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): NativeAmount {
@@ -22,11 +34,14 @@ export class NativeAmount {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.mantissa = reader.fixed64();
+          message.mandatoryMantissa = UInt64Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         case 2:
-          message.scale = reader.fixed32();
+          message.mandatoryScale = UInt32Value.decode(reader, reader.uint32());
           break;
 
         default:
@@ -38,12 +53,15 @@ export class NativeAmount {
     return message;
   }
 
-  mantissa: i64;
-  scale: i32;
+  mandatoryMantissa: UInt64Value | null;
+  mandatoryScale: UInt32Value | null;
 
-  constructor(mantissa: i64 = 0, scale: i32 = 0) {
-    this.mantissa = mantissa;
-    this.scale = scale;
+  constructor(
+    mandatoryMantissa: UInt64Value | null = null,
+    mandatoryScale: UInt32Value | null = null
+  ) {
+    this.mandatoryMantissa = mandatoryMantissa;
+    this.mandatoryScale = mandatoryScale;
   }
 }
 

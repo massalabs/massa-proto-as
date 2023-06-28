@@ -4,11 +4,17 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
+import { UInt32Value } from "../../../google/protobuf/UInt32Value";
 
 export class ProcessExitRequest {
   static encode(message: ProcessExitRequest, writer: Writer): void {
-    writer.uint32(8);
-    writer.int32(message.code);
+    const mandatoryCode = message.mandatoryCode;
+    if (mandatoryCode !== null) {
+      writer.uint32(10);
+      writer.fork();
+      UInt32Value.encode(mandatoryCode, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): ProcessExitRequest {
@@ -19,7 +25,7 @@ export class ProcessExitRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.code = reader.int32();
+          message.mandatoryCode = UInt32Value.decode(reader, reader.uint32());
           break;
 
         default:
@@ -31,10 +37,10 @@ export class ProcessExitRequest {
     return message;
   }
 
-  code: i32;
+  mandatoryCode: UInt32Value | null;
 
-  constructor(code: i32 = 0) {
-    this.code = code;
+  constructor(mandatoryCode: UInt32Value | null = null) {
+    this.mandatoryCode = mandatoryCode;
   }
 }
 

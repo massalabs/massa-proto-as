@@ -5,6 +5,7 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAmount } from "../../model/v1/NativeAmount";
+import { UInt64Value } from "../../../google/protobuf/UInt64Value";
 
 export class ScalarDivRemNativeAmountRequest {
   static encode(
@@ -19,8 +20,13 @@ export class ScalarDivRemNativeAmountRequest {
       writer.ldelim();
     }
 
-    writer.uint32(16);
-    writer.int64(message.divisor);
+    const mandatoryDivisor = message.mandatoryDivisor;
+    if (mandatoryDivisor !== null) {
+      writer.uint32(18);
+      writer.fork();
+      UInt64Value.encode(mandatoryDivisor, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): ScalarDivRemNativeAmountRequest {
@@ -35,7 +41,10 @@ export class ScalarDivRemNativeAmountRequest {
           break;
 
         case 2:
-          message.divisor = reader.int64();
+          message.mandatoryDivisor = UInt64Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         default:
@@ -48,11 +57,14 @@ export class ScalarDivRemNativeAmountRequest {
   }
 
   dividend: NativeAmount | null;
-  divisor: i64;
+  mandatoryDivisor: UInt64Value | null;
 
-  constructor(dividend: NativeAmount | null = null, divisor: i64 = 0) {
+  constructor(
+    dividend: NativeAmount | null = null,
+    mandatoryDivisor: UInt64Value | null = null
+  ) {
     this.dividend = dividend;
-    this.divisor = divisor;
+    this.mandatoryDivisor = mandatoryDivisor;
   }
 }
 

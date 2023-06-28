@@ -5,6 +5,7 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeTime } from "../../model/v1/NativeTime";
+import { UInt64Value } from "../../../google/protobuf/UInt64Value";
 
 export class CheckedMulNativeTimeRequest {
   static encode(message: CheckedMulNativeTimeRequest, writer: Writer): void {
@@ -16,8 +17,13 @@ export class CheckedMulNativeTimeRequest {
       writer.ldelim();
     }
 
-    writer.uint32(16);
-    writer.int64(message.coefficient);
+    const mandatoryCoefficient = message.mandatoryCoefficient;
+    if (mandatoryCoefficient !== null) {
+      writer.uint32(18);
+      writer.fork();
+      UInt64Value.encode(mandatoryCoefficient, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): CheckedMulNativeTimeRequest {
@@ -32,7 +38,10 @@ export class CheckedMulNativeTimeRequest {
           break;
 
         case 2:
-          message.coefficient = reader.int64();
+          message.mandatoryCoefficient = UInt64Value.decode(
+            reader,
+            reader.uint32()
+          );
           break;
 
         default:
@@ -45,11 +54,14 @@ export class CheckedMulNativeTimeRequest {
   }
 
   time: NativeTime | null;
-  coefficient: i64;
+  mandatoryCoefficient: UInt64Value | null;
 
-  constructor(time: NativeTime | null = null, coefficient: i64 = 0) {
+  constructor(
+    time: NativeTime | null = null,
+    mandatoryCoefficient: UInt64Value | null = null
+  ) {
     this.time = time;
-    this.coefficient = coefficient;
+    this.mandatoryCoefficient = mandatoryCoefficient;
   }
 }
 
