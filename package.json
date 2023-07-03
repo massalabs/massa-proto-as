@@ -16,7 +16,7 @@
     "asbuild:release": "asc assembly/index.ts --target release",
     "asbuild": "npm run asbuild:proto && npm run asbuild:index",
     "asbuild_windows": "npm run asbuild:proto && npm run asbuild_windows:index",
-	"asbuild_windows:index": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./generate_index-ts.ps1 > assembly/index.ts",
+    "asbuild_windows:index": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./generate_index-ts.ps1 > assembly/index.ts",
     "start": "npx serve ."
   },
   "author": "",
