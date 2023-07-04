@@ -8,13 +8,8 @@ import { ComparisonResult } from "../../model/v1/ComparisonResult";
 
 export class ComparePubKeyResult {
   static encode(message: ComparePubKeyResult, writer: Writer): void {
-    const result = message.result;
-    if (result !== null) {
-      writer.uint32(10);
-      writer.fork();
-      ComparisonResult.encode(result, writer);
-      writer.ldelim();
-    }
+    writer.uint32(8);
+    writer.int32(message.result);
   }
 
   static decode(reader: Reader, length: i32): ComparePubKeyResult {
@@ -25,7 +20,7 @@ export class ComparePubKeyResult {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.result = ComparisonResult.decode(reader, reader.uint32());
+          message.result = reader.int32();
           break;
 
         default:
@@ -37,9 +32,9 @@ export class ComparePubKeyResult {
     return message;
   }
 
-  result: ComparisonResult | null;
+  result: ComparisonResult;
 
-  constructor(result: ComparisonResult | null = null) {
+  constructor(result: ComparisonResult = 0) {
     this.result = result;
   }
 }
