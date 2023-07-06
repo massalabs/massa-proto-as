@@ -78,6 +78,8 @@ export * from './massa/abi/v1/GetOpDataRequest';
 export * from './massa/abi/v1/GetOpDataResult';
 export * from './massa/abi/v1/GetOpKeysRequest';
 export * from './massa/abi/v1/GetOpKeysResult';
+export * from './massa/abi/v1/GetOriginOperationIdRequest';
+export * from './massa/abi/v1/GetOriginOperationIdResult';
 export * from './massa/abi/v1/GetOwnedAddressesRequest';
 export * from './massa/abi/v1/GetOwnedAddressesResult';
 export * from './massa/abi/v1/GetPubKeyVersionRequest';
