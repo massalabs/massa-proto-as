@@ -24,7 +24,6 @@ import { CompareAddressResult } from "./CompareAddressResult";
 import { CompareNativeAmountResult } from "./CompareNativeAmountResult";
 import { CompareNativeTimeResult } from "./CompareNativeTimeResult";
 import { ComparePubKeyResult } from "./ComparePubKeyResult";
-import { CompareSigResult } from "./CompareSigResult";
 import { CreateScResult } from "./CreateScResult";
 import { DateNowResult } from "./DateNowResult";
 import { DeleteDataResult } from "./DeleteDataResult";
@@ -235,14 +234,6 @@ export class RespResult {
       writer.uint32(162);
       writer.fork();
       ComparePubKeyResult.encode(comparePubKeyResult, writer);
-      writer.ldelim();
-    }
-
-    const compareSigResult = message.compareSigResult;
-    if (compareSigResult !== null) {
-      writer.uint32(170);
-      writer.fork();
-      CompareSigResult.encode(compareSigResult, writer);
       writer.ldelim();
     }
 
@@ -730,13 +721,6 @@ export class RespResult {
           );
           break;
 
-        case 21:
-          message.compareSigResult = CompareSigResult.decode(
-            reader,
-            reader.uint32()
-          );
-          break;
-
         case 22:
           message.createScResult = CreateScResult.decode(
             reader,
@@ -1043,7 +1027,6 @@ export class RespResult {
   compareNativeAmountResult: CompareNativeAmountResult | null;
   compareNativeTimeResult: CompareNativeTimeResult | null;
   comparePubKeyResult: ComparePubKeyResult | null;
-  compareSigResult: CompareSigResult | null;
   createScResult: CreateScResult | null;
   dateNowResult: DateNowResult | null;
   deleteDataResult: DeleteDataResult | null;
@@ -1109,7 +1092,6 @@ export class RespResult {
     compareNativeAmountResult: CompareNativeAmountResult | null = null,
     compareNativeTimeResult: CompareNativeTimeResult | null = null,
     comparePubKeyResult: ComparePubKeyResult | null = null,
-    compareSigResult: CompareSigResult | null = null,
     createScResult: CreateScResult | null = null,
     dateNowResult: DateNowResult | null = null,
     deleteDataResult: DeleteDataResult | null = null,
@@ -1175,7 +1157,6 @@ export class RespResult {
     this.compareNativeAmountResult = compareNativeAmountResult;
     this.compareNativeTimeResult = compareNativeTimeResult;
     this.comparePubKeyResult = comparePubKeyResult;
-    this.compareSigResult = compareSigResult;
     this.createScResult = createScResult;
     this.dateNowResult = dateNowResult;
     this.deleteDataResult = deleteDataResult;
