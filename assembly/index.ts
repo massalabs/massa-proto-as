@@ -105,7 +105,6 @@ export * from './massa/abi/v1/NativeAmountFromStringResult';
 export * from './massa/abi/v1/NativeAmountToStringRequest';
 export * from './massa/abi/v1/NativeAmountToStringResult';
 export * from './massa/abi/v1/ProcessExitRequest';
-export * from './massa/abi/v1/ProcessExitResult';
 export * from './massa/abi/v1/RespResult';
 export * from './massa/abi/v1/ScalarDivRemNativeAmountRequest';
 export * from './massa/abi/v1/ScalarDivRemNativeAmountResult';
