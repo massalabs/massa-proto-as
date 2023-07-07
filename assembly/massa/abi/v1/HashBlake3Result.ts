@@ -5,15 +5,15 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class Blake3HashResult {
-  static encode(message: Blake3HashResult, writer: Writer): void {
+export class HashBlake3Result {
+  static encode(message: HashBlake3Result, writer: Writer): void {
     writer.uint32(10);
     writer.bytes(message.hash);
   }
 
-  static decode(reader: Reader, length: i32): Blake3HashResult {
+  static decode(reader: Reader, length: i32): HashBlake3Result {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new Blake3HashResult();
+    const message = new HashBlake3Result();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -38,10 +38,10 @@ export class Blake3HashResult {
   }
 }
 
-export function encodeBlake3HashResult(message: Blake3HashResult): Uint8Array {
-  return Protobuf.encode(message, Blake3HashResult.encode);
+export function encodeHashBlake3Result(message: HashBlake3Result): Uint8Array {
+  return Protobuf.encode(message, HashBlake3Result.encode);
 }
 
-export function decodeBlake3HashResult(buffer: Uint8Array): Blake3HashResult {
-  return Protobuf.decode<Blake3HashResult>(buffer, Blake3HashResult.decode);
+export function decodeHashBlake3Result(buffer: Uint8Array): HashBlake3Result {
+  return Protobuf.decode<HashBlake3Result>(buffer, HashBlake3Result.decode);
 }
