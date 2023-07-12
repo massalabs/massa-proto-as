@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAmount } from "../../model/v1/NativeAmount";
 
-export class SubNativeAmountsResult {
-  static encode(message: SubNativeAmountsResult, writer: Writer): void {
+export class SubNativeAmountResult {
+  static encode(message: SubNativeAmountResult, writer: Writer): void {
     const difference = message.difference;
     if (difference !== null) {
       writer.uint32(10);
@@ -17,9 +17,9 @@ export class SubNativeAmountsResult {
     }
   }
 
-  static decode(reader: Reader, length: i32): SubNativeAmountsResult {
+  static decode(reader: Reader, length: i32): SubNativeAmountResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new SubNativeAmountsResult();
+    const message = new SubNativeAmountResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -44,17 +44,17 @@ export class SubNativeAmountsResult {
   }
 }
 
-export function encodeSubNativeAmountsResult(
-  message: SubNativeAmountsResult
+export function encodeSubNativeAmountResult(
+  message: SubNativeAmountResult
 ): Uint8Array {
-  return Protobuf.encode(message, SubNativeAmountsResult.encode);
+  return Protobuf.encode(message, SubNativeAmountResult.encode);
 }
 
-export function decodeSubNativeAmountsResult(
+export function decodeSubNativeAmountResult(
   buffer: Uint8Array
-): SubNativeAmountsResult {
-  return Protobuf.decode<SubNativeAmountsResult>(
+): SubNativeAmountResult {
+  return Protobuf.decode<SubNativeAmountResult>(
     buffer,
-    SubNativeAmountsResult.decode
+    SubNativeAmountResult.decode
   );
 }

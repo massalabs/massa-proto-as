@@ -6,10 +6,10 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { StringValue } from "../../../google/protobuf/StringValue";
 
-export class HasDataRequest {
-  static encode(message: HasDataRequest, writer: Writer): void {
+export class GetDsKeysRequest {
+  static encode(message: GetDsKeysRequest, writer: Writer): void {
     writer.uint32(10);
-    writer.bytes(message.key);
+    writer.bytes(message.prefix);
 
     const address = message.address;
     if (address !== null) {
@@ -20,15 +20,15 @@ export class HasDataRequest {
     }
   }
 
-  static decode(reader: Reader, length: i32): HasDataRequest {
+  static decode(reader: Reader, length: i32): GetDsKeysRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new HasDataRequest();
+    const message = new GetDsKeysRequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.key = reader.bytes();
+          message.prefix = reader.bytes();
           break;
 
         case 2:
@@ -44,22 +44,22 @@ export class HasDataRequest {
     return message;
   }
 
-  key: Uint8Array;
+  prefix: Uint8Array;
   address: StringValue | null;
 
   constructor(
-    key: Uint8Array = new Uint8Array(0),
+    prefix: Uint8Array = new Uint8Array(0),
     address: StringValue | null = null
   ) {
-    this.key = key;
+    this.prefix = prefix;
     this.address = address;
   }
 }
 
-export function encodeHasDataRequest(message: HasDataRequest): Uint8Array {
-  return Protobuf.encode(message, HasDataRequest.encode);
+export function encodeGetDsKeysRequest(message: GetDsKeysRequest): Uint8Array {
+  return Protobuf.encode(message, GetDsKeysRequest.encode);
 }
 
-export function decodeHasDataRequest(buffer: Uint8Array): HasDataRequest {
-  return Protobuf.decode<HasDataRequest>(buffer, HasDataRequest.decode);
+export function decodeGetDsKeysRequest(buffer: Uint8Array): GetDsKeysRequest {
+  return Protobuf.decode<GetDsKeysRequest>(buffer, GetDsKeysRequest.decode);
 }

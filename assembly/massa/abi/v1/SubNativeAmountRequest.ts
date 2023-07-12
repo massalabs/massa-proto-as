@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAmount } from "../../model/v1/NativeAmount";
 
-export class SubNativeAmountsRequest {
-  static encode(message: SubNativeAmountsRequest, writer: Writer): void {
+export class SubNativeAmountRequest {
+  static encode(message: SubNativeAmountRequest, writer: Writer): void {
     const left = message.left;
     if (left !== null) {
       writer.uint32(10);
@@ -25,9 +25,9 @@ export class SubNativeAmountsRequest {
     }
   }
 
-  static decode(reader: Reader, length: i32): SubNativeAmountsRequest {
+  static decode(reader: Reader, length: i32): SubNativeAmountRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new SubNativeAmountsRequest();
+    const message = new SubNativeAmountRequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -61,17 +61,17 @@ export class SubNativeAmountsRequest {
   }
 }
 
-export function encodeSubNativeAmountsRequest(
-  message: SubNativeAmountsRequest
+export function encodeSubNativeAmountRequest(
+  message: SubNativeAmountRequest
 ): Uint8Array {
-  return Protobuf.encode(message, SubNativeAmountsRequest.encode);
+  return Protobuf.encode(message, SubNativeAmountRequest.encode);
 }
 
-export function decodeSubNativeAmountsRequest(
+export function decodeSubNativeAmountRequest(
   buffer: Uint8Array
-): SubNativeAmountsRequest {
-  return Protobuf.decode<SubNativeAmountsRequest>(
+): SubNativeAmountRequest {
+  return Protobuf.decode<SubNativeAmountRequest>(
     buffer,
-    SubNativeAmountsRequest.decode
+    SubNativeAmountRequest.decode
   );
 }

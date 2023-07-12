@@ -5,15 +5,15 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class HasDataResult {
-  static encode(message: HasDataResult, writer: Writer): void {
+export class DsEntryExistsResult {
+  static encode(message: DsEntryExistsResult, writer: Writer): void {
     writer.uint32(8);
     writer.bool(message.hasData);
   }
 
-  static decode(reader: Reader, length: i32): HasDataResult {
+  static decode(reader: Reader, length: i32): DsEntryExistsResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new HasDataResult();
+    const message = new DsEntryExistsResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -38,10 +38,17 @@ export class HasDataResult {
   }
 }
 
-export function encodeHasDataResult(message: HasDataResult): Uint8Array {
-  return Protobuf.encode(message, HasDataResult.encode);
+export function encodeDsEntryExistsResult(
+  message: DsEntryExistsResult
+): Uint8Array {
+  return Protobuf.encode(message, DsEntryExistsResult.encode);
 }
 
-export function decodeHasDataResult(buffer: Uint8Array): HasDataResult {
-  return Protobuf.decode<HasDataResult>(buffer, HasDataResult.decode);
+export function decodeDsEntryExistsResult(
+  buffer: Uint8Array
+): DsEntryExistsResult {
+  return Protobuf.decode<DsEntryExistsResult>(
+    buffer,
+    DsEntryExistsResult.decode
+  );
 }
