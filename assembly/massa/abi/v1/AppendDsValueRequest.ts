@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { StringValue } from "../../../google/protobuf/StringValue";
 
-export class SetDataRequest {
-  static encode(message: SetDataRequest, writer: Writer): void {
+export class AppendDsValueRequest {
+  static encode(message: AppendDsValueRequest, writer: Writer): void {
     writer.uint32(10);
     writer.bytes(message.key);
 
@@ -23,9 +23,9 @@ export class SetDataRequest {
     }
   }
 
-  static decode(reader: Reader, length: i32): SetDataRequest {
+  static decode(reader: Reader, length: i32): AppendDsValueRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new SetDataRequest();
+    const message = new AppendDsValueRequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -66,10 +66,17 @@ export class SetDataRequest {
   }
 }
 
-export function encodeSetDataRequest(message: SetDataRequest): Uint8Array {
-  return Protobuf.encode(message, SetDataRequest.encode);
+export function encodeAppendDsValueRequest(
+  message: AppendDsValueRequest
+): Uint8Array {
+  return Protobuf.encode(message, AppendDsValueRequest.encode);
 }
 
-export function decodeSetDataRequest(buffer: Uint8Array): SetDataRequest {
-  return Protobuf.decode<SetDataRequest>(buffer, SetDataRequest.decode);
+export function decodeAppendDsValueRequest(
+  buffer: Uint8Array
+): AppendDsValueRequest {
+  return Protobuf.decode<AppendDsValueRequest>(
+    buffer,
+    AppendDsValueRequest.decode
+  );
 }

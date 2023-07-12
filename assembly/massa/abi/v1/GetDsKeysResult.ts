@@ -5,8 +5,8 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class GetKeysResult {
-  static encode(message: GetKeysResult, writer: Writer): void {
+export class GetDsKeysResult {
+  static encode(message: GetDsKeysResult, writer: Writer): void {
     const keys = message.keys;
     if (keys.length !== 0) {
       for (let i: i32 = 0; i < keys.length; ++i) {
@@ -16,9 +16,9 @@ export class GetKeysResult {
     }
   }
 
-  static decode(reader: Reader, length: i32): GetKeysResult {
+  static decode(reader: Reader, length: i32): GetDsKeysResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new GetKeysResult();
+    const message = new GetDsKeysResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -43,10 +43,10 @@ export class GetKeysResult {
   }
 }
 
-export function encodeGetKeysResult(message: GetKeysResult): Uint8Array {
-  return Protobuf.encode(message, GetKeysResult.encode);
+export function encodeGetDsKeysResult(message: GetDsKeysResult): Uint8Array {
+  return Protobuf.encode(message, GetDsKeysResult.encode);
 }
 
-export function decodeGetKeysResult(buffer: Uint8Array): GetKeysResult {
-  return Protobuf.decode<GetKeysResult>(buffer, GetKeysResult.decode);
+export function decodeGetDsKeysResult(buffer: Uint8Array): GetDsKeysResult {
+  return Protobuf.decode<GetDsKeysResult>(buffer, GetDsKeysResult.decode);
 }

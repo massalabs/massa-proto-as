@@ -6,10 +6,10 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { StringValue } from "../../../google/protobuf/StringValue";
 
-export class GetKeysRequest {
-  static encode(message: GetKeysRequest, writer: Writer): void {
+export class DsEntryExistsRequest {
+  static encode(message: DsEntryExistsRequest, writer: Writer): void {
     writer.uint32(10);
-    writer.bytes(message.prefix);
+    writer.bytes(message.key);
 
     const address = message.address;
     if (address !== null) {
@@ -20,15 +20,15 @@ export class GetKeysRequest {
     }
   }
 
-  static decode(reader: Reader, length: i32): GetKeysRequest {
+  static decode(reader: Reader, length: i32): DsEntryExistsRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new GetKeysRequest();
+    const message = new DsEntryExistsRequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.prefix = reader.bytes();
+          message.key = reader.bytes();
           break;
 
         case 2:
@@ -44,22 +44,29 @@ export class GetKeysRequest {
     return message;
   }
 
-  prefix: Uint8Array;
+  key: Uint8Array;
   address: StringValue | null;
 
   constructor(
-    prefix: Uint8Array = new Uint8Array(0),
+    key: Uint8Array = new Uint8Array(0),
     address: StringValue | null = null
   ) {
-    this.prefix = prefix;
+    this.key = key;
     this.address = address;
   }
 }
 
-export function encodeGetKeysRequest(message: GetKeysRequest): Uint8Array {
-  return Protobuf.encode(message, GetKeysRequest.encode);
+export function encodeDsEntryExistsRequest(
+  message: DsEntryExistsRequest
+): Uint8Array {
+  return Protobuf.encode(message, DsEntryExistsRequest.encode);
 }
 
-export function decodeGetKeysRequest(buffer: Uint8Array): GetKeysRequest {
-  return Protobuf.decode<GetKeysRequest>(buffer, GetKeysRequest.decode);
+export function decodeDsEntryExistsRequest(
+  buffer: Uint8Array
+): DsEntryExistsRequest {
+  return Protobuf.decode<DsEntryExistsRequest>(
+    buffer,
+    DsEntryExistsRequest.decode
+  );
 }

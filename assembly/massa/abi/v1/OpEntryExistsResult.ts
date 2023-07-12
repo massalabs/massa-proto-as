@@ -5,15 +5,15 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class HasOpKeyResult {
-  static encode(message: HasOpKeyResult, writer: Writer): void {
+export class OpEntryExistsResult {
+  static encode(message: OpEntryExistsResult, writer: Writer): void {
     writer.uint32(8);
     writer.bool(message.hasKey);
   }
 
-  static decode(reader: Reader, length: i32): HasOpKeyResult {
+  static decode(reader: Reader, length: i32): OpEntryExistsResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new HasOpKeyResult();
+    const message = new OpEntryExistsResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -38,10 +38,17 @@ export class HasOpKeyResult {
   }
 }
 
-export function encodeHasOpKeyResult(message: HasOpKeyResult): Uint8Array {
-  return Protobuf.encode(message, HasOpKeyResult.encode);
+export function encodeOpEntryExistsResult(
+  message: OpEntryExistsResult
+): Uint8Array {
+  return Protobuf.encode(message, OpEntryExistsResult.encode);
 }
 
-export function decodeHasOpKeyResult(buffer: Uint8Array): HasOpKeyResult {
-  return Protobuf.decode<HasOpKeyResult>(buffer, HasOpKeyResult.decode);
+export function decodeOpEntryExistsResult(
+  buffer: Uint8Array
+): OpEntryExistsResult {
+  return Protobuf.decode<OpEntryExistsResult>(
+    buffer,
+    OpEntryExistsResult.decode
+  );
 }

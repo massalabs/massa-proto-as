@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAmount } from "../../model/v1/NativeAmount";
 
-export class AddNativeAmountsResult {
-  static encode(message: AddNativeAmountsResult, writer: Writer): void {
+export class AddNativeAmountResult {
+  static encode(message: AddNativeAmountResult, writer: Writer): void {
     const sum = message.sum;
     if (sum !== null) {
       writer.uint32(10);
@@ -17,9 +17,9 @@ export class AddNativeAmountsResult {
     }
   }
 
-  static decode(reader: Reader, length: i32): AddNativeAmountsResult {
+  static decode(reader: Reader, length: i32): AddNativeAmountResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new AddNativeAmountsResult();
+    const message = new AddNativeAmountResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -44,17 +44,17 @@ export class AddNativeAmountsResult {
   }
 }
 
-export function encodeAddNativeAmountsResult(
-  message: AddNativeAmountsResult
+export function encodeAddNativeAmountResult(
+  message: AddNativeAmountResult
 ): Uint8Array {
-  return Protobuf.encode(message, AddNativeAmountsResult.encode);
+  return Protobuf.encode(message, AddNativeAmountResult.encode);
 }
 
-export function decodeAddNativeAmountsResult(
+export function decodeAddNativeAmountResult(
   buffer: Uint8Array
-): AddNativeAmountsResult {
-  return Protobuf.decode<AddNativeAmountsResult>(
+): AddNativeAmountResult {
+  return Protobuf.decode<AddNativeAmountResult>(
     buffer,
-    AddNativeAmountsResult.decode
+    AddNativeAmountResult.decode
   );
 }

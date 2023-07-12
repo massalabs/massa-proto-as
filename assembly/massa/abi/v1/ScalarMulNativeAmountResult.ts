@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAmount } from "../../model/v1/NativeAmount";
 
-export class MulNativeAmountResult {
-  static encode(message: MulNativeAmountResult, writer: Writer): void {
+export class ScalarMulNativeAmountResult {
+  static encode(message: ScalarMulNativeAmountResult, writer: Writer): void {
     const product = message.product;
     if (product !== null) {
       writer.uint32(10);
@@ -17,9 +17,9 @@ export class MulNativeAmountResult {
     }
   }
 
-  static decode(reader: Reader, length: i32): MulNativeAmountResult {
+  static decode(reader: Reader, length: i32): ScalarMulNativeAmountResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new MulNativeAmountResult();
+    const message = new ScalarMulNativeAmountResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -44,17 +44,17 @@ export class MulNativeAmountResult {
   }
 }
 
-export function encodeMulNativeAmountResult(
-  message: MulNativeAmountResult
+export function encodeScalarMulNativeAmountResult(
+  message: ScalarMulNativeAmountResult
 ): Uint8Array {
-  return Protobuf.encode(message, MulNativeAmountResult.encode);
+  return Protobuf.encode(message, ScalarMulNativeAmountResult.encode);
 }
 
-export function decodeMulNativeAmountResult(
+export function decodeScalarMulNativeAmountResult(
   buffer: Uint8Array
-): MulNativeAmountResult {
-  return Protobuf.decode<MulNativeAmountResult>(
+): ScalarMulNativeAmountResult {
+  return Protobuf.decode<ScalarMulNativeAmountResult>(
     buffer,
-    MulNativeAmountResult.decode
+    ScalarMulNativeAmountResult.decode
   );
 }

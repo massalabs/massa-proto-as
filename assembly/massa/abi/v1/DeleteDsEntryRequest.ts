@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { StringValue } from "../../../google/protobuf/StringValue";
 
-export class DeleteDataRequest {
-  static encode(message: DeleteDataRequest, writer: Writer): void {
+export class DeleteDsEntryRequest {
+  static encode(message: DeleteDsEntryRequest, writer: Writer): void {
     writer.uint32(10);
     writer.bytes(message.key);
 
@@ -20,9 +20,9 @@ export class DeleteDataRequest {
     }
   }
 
-  static decode(reader: Reader, length: i32): DeleteDataRequest {
+  static decode(reader: Reader, length: i32): DeleteDsEntryRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new DeleteDataRequest();
+    const message = new DeleteDsEntryRequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -56,12 +56,17 @@ export class DeleteDataRequest {
   }
 }
 
-export function encodeDeleteDataRequest(
-  message: DeleteDataRequest
+export function encodeDeleteDsEntryRequest(
+  message: DeleteDsEntryRequest
 ): Uint8Array {
-  return Protobuf.encode(message, DeleteDataRequest.encode);
+  return Protobuf.encode(message, DeleteDsEntryRequest.encode);
 }
 
-export function decodeDeleteDataRequest(buffer: Uint8Array): DeleteDataRequest {
-  return Protobuf.decode<DeleteDataRequest>(buffer, DeleteDataRequest.decode);
+export function decodeDeleteDsEntryRequest(
+  buffer: Uint8Array
+): DeleteDsEntryRequest {
+  return Protobuf.decode<DeleteDsEntryRequest>(
+    buffer,
+    DeleteDsEntryRequest.decode
+  );
 }

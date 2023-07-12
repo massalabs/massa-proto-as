@@ -5,15 +5,15 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class GetDataResult {
-  static encode(message: GetDataResult, writer: Writer): void {
+export class GetDsValueResult {
+  static encode(message: GetDsValueResult, writer: Writer): void {
     writer.uint32(10);
     writer.bytes(message.value);
   }
 
-  static decode(reader: Reader, length: i32): GetDataResult {
+  static decode(reader: Reader, length: i32): GetDsValueResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new GetDataResult();
+    const message = new GetDsValueResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -38,10 +38,10 @@ export class GetDataResult {
   }
 }
 
-export function encodeGetDataResult(message: GetDataResult): Uint8Array {
-  return Protobuf.encode(message, GetDataResult.encode);
+export function encodeGetDsValueResult(message: GetDsValueResult): Uint8Array {
+  return Protobuf.encode(message, GetDsValueResult.encode);
 }
 
-export function decodeGetDataResult(buffer: Uint8Array): GetDataResult {
-  return Protobuf.decode<GetDataResult>(buffer, GetDataResult.decode);
+export function decodeGetDsValueResult(buffer: Uint8Array): GetDsValueResult {
+  return Protobuf.decode<GetDsValueResult>(buffer, GetDsValueResult.decode);
 }

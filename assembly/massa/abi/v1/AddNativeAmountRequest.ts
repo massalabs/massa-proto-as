@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAmount } from "../../model/v1/NativeAmount";
 
-export class AddNativeAmountsRequest {
-  static encode(message: AddNativeAmountsRequest, writer: Writer): void {
+export class AddNativeAmountRequest {
+  static encode(message: AddNativeAmountRequest, writer: Writer): void {
     const amount1 = message.amount1;
     if (amount1 !== null) {
       writer.uint32(10);
@@ -25,9 +25,9 @@ export class AddNativeAmountsRequest {
     }
   }
 
-  static decode(reader: Reader, length: i32): AddNativeAmountsRequest {
+  static decode(reader: Reader, length: i32): AddNativeAmountRequest {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new AddNativeAmountsRequest();
+    const message = new AddNativeAmountRequest();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -61,17 +61,17 @@ export class AddNativeAmountsRequest {
   }
 }
 
-export function encodeAddNativeAmountsRequest(
-  message: AddNativeAmountsRequest
+export function encodeAddNativeAmountRequest(
+  message: AddNativeAmountRequest
 ): Uint8Array {
-  return Protobuf.encode(message, AddNativeAmountsRequest.encode);
+  return Protobuf.encode(message, AddNativeAmountRequest.encode);
 }
 
-export function decodeAddNativeAmountsRequest(
+export function decodeAddNativeAmountRequest(
   buffer: Uint8Array
-): AddNativeAmountsRequest {
-  return Protobuf.decode<AddNativeAmountsRequest>(
+): AddNativeAmountRequest {
+  return Protobuf.decode<AddNativeAmountRequest>(
     buffer,
-    AddNativeAmountsRequest.decode
+    AddNativeAmountRequest.decode
   );
 }

@@ -6,8 +6,8 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeAmount } from "../../model/v1/NativeAmount";
 
-export class DivRemNativeAmountsResult {
-  static encode(message: DivRemNativeAmountsResult, writer: Writer): void {
+export class DivRemNativeAmountResult {
+  static encode(message: DivRemNativeAmountResult, writer: Writer): void {
     writer.uint32(8);
     writer.uint64(message.quotient);
 
@@ -20,9 +20,9 @@ export class DivRemNativeAmountsResult {
     }
   }
 
-  static decode(reader: Reader, length: i32): DivRemNativeAmountsResult {
+  static decode(reader: Reader, length: i32): DivRemNativeAmountResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new DivRemNativeAmountsResult();
+    const message = new DivRemNativeAmountResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -53,17 +53,17 @@ export class DivRemNativeAmountsResult {
   }
 }
 
-export function encodeDivRemNativeAmountsResult(
-  message: DivRemNativeAmountsResult
+export function encodeDivRemNativeAmountResult(
+  message: DivRemNativeAmountResult
 ): Uint8Array {
-  return Protobuf.encode(message, DivRemNativeAmountsResult.encode);
+  return Protobuf.encode(message, DivRemNativeAmountResult.encode);
 }
 
-export function decodeDivRemNativeAmountsResult(
+export function decodeDivRemNativeAmountResult(
   buffer: Uint8Array
-): DivRemNativeAmountsResult {
-  return Protobuf.decode<DivRemNativeAmountsResult>(
+): DivRemNativeAmountResult {
+  return Protobuf.decode<DivRemNativeAmountResult>(
     buffer,
-    DivRemNativeAmountsResult.decode
+    DivRemNativeAmountResult.decode
   );
 }

@@ -6,8 +6,11 @@
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 import { NativeTime } from "../../model/v1/NativeTime";
 
-export class CheckedMulNativeTimeResult {
-  static encode(message: CheckedMulNativeTimeResult, writer: Writer): void {
+export class CheckedScalarMulNativeTimeResult {
+  static encode(
+    message: CheckedScalarMulNativeTimeResult,
+    writer: Writer
+  ): void {
     const product = message.product;
     if (product !== null) {
       writer.uint32(10);
@@ -17,9 +20,9 @@ export class CheckedMulNativeTimeResult {
     }
   }
 
-  static decode(reader: Reader, length: i32): CheckedMulNativeTimeResult {
+  static decode(reader: Reader, length: i32): CheckedScalarMulNativeTimeResult {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new CheckedMulNativeTimeResult();
+    const message = new CheckedScalarMulNativeTimeResult();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -44,17 +47,17 @@ export class CheckedMulNativeTimeResult {
   }
 }
 
-export function encodeCheckedMulNativeTimeResult(
-  message: CheckedMulNativeTimeResult
+export function encodeCheckedScalarMulNativeTimeResult(
+  message: CheckedScalarMulNativeTimeResult
 ): Uint8Array {
-  return Protobuf.encode(message, CheckedMulNativeTimeResult.encode);
+  return Protobuf.encode(message, CheckedScalarMulNativeTimeResult.encode);
 }
 
-export function decodeCheckedMulNativeTimeResult(
+export function decodeCheckedScalarMulNativeTimeResult(
   buffer: Uint8Array
-): CheckedMulNativeTimeResult {
-  return Protobuf.decode<CheckedMulNativeTimeResult>(
+): CheckedScalarMulNativeTimeResult {
+  return Protobuf.decode<CheckedScalarMulNativeTimeResult>(
     buffer,
-    CheckedMulNativeTimeResult.decode
+    CheckedScalarMulNativeTimeResult.decode
   );
 }
