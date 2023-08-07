@@ -35,6 +35,9 @@ jobs:
       - run: npm i
       - run: npm run asbuild:proto
         if: ${{ github.ref == 'refs/heads/main' }} 
+      - uses: DaanV2/Typescript-Action-Create-Indexes@latest
+        with: 
+          folder: ${{github.workspace}}/assembly
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_user_name: massabot
