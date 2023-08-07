@@ -28,6 +28,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - uses: arduino/setup-protoc@v2
+        with:
+          version: "23.2"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: npm i
       - run: npm run asbuild:proto
         if: ${{ github.ref == 'refs/heads/main' }} 
