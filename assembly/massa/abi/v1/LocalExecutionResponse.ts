@@ -5,15 +5,15 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class CallResponse {
-  static encode(message: CallResponse, writer: Writer): void {
+export class LocalExecutionResponse {
+  static encode(message: LocalExecutionResponse, writer: Writer): void {
     writer.uint32(10);
     writer.bytes(message.data);
   }
 
-  static decode(reader: Reader, length: i32): CallResponse {
+  static decode(reader: Reader, length: i32): LocalExecutionResponse {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new CallResponse();
+    const message = new LocalExecutionResponse();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -38,10 +38,17 @@ export class CallResponse {
   }
 }
 
-export function encodeCallResponse(message: CallResponse): Uint8Array {
-  return Protobuf.encode(message, CallResponse.encode);
+export function encodeLocalExecutionResponse(
+  message: LocalExecutionResponse
+): Uint8Array {
+  return Protobuf.encode(message, LocalExecutionResponse.encode);
 }
 
-export function decodeCallResponse(buffer: Uint8Array): CallResponse {
-  return Protobuf.decode<CallResponse>(buffer, CallResponse.decode);
+export function decodeLocalExecutionResponse(
+  buffer: Uint8Array
+): LocalExecutionResponse {
+  return Protobuf.decode<LocalExecutionResponse>(
+    buffer,
+    LocalExecutionResponse.decode
+  );
 }

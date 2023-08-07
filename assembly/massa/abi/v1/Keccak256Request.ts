@@ -5,15 +5,15 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class CallResponse {
-  static encode(message: CallResponse, writer: Writer): void {
+export class Keccak256Request {
+  static encode(message: Keccak256Request, writer: Writer): void {
     writer.uint32(10);
     writer.bytes(message.data);
   }
 
-  static decode(reader: Reader, length: i32): CallResponse {
+  static decode(reader: Reader, length: i32): Keccak256Request {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new CallResponse();
+    const message = new Keccak256Request();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -38,10 +38,10 @@ export class CallResponse {
   }
 }
 
-export function encodeCallResponse(message: CallResponse): Uint8Array {
-  return Protobuf.encode(message, CallResponse.encode);
+export function encodeKeccak256Request(message: Keccak256Request): Uint8Array {
+  return Protobuf.encode(message, Keccak256Request.encode);
 }
 
-export function decodeCallResponse(buffer: Uint8Array): CallResponse {
-  return Protobuf.decode<CallResponse>(buffer, CallResponse.decode);
+export function decodeKeccak256Request(buffer: Uint8Array): Keccak256Request {
+  return Protobuf.decode<Keccak256Request>(buffer, Keccak256Request.decode);
 }

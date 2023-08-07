@@ -4,20 +4,14 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { Address } from "./Address";
 
 export class FunctionExistsRequest {
   static encode(message: FunctionExistsRequest, writer: Writer): void {
-    const address = message.address;
-    if (address !== null) {
-      writer.uint32(10);
-      writer.fork();
-      Address.encode(address, writer);
-      writer.ldelim();
-    }
+    writer.uint32(10);
+    writer.string(message.targetScAddress);
 
     writer.uint32(18);
-    writer.string(message.function);
+    writer.string(message.functionName);
   }
 
   static decode(reader: Reader, length: i32): FunctionExistsRequest {
@@ -28,11 +22,11 @@ export class FunctionExistsRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address = Address.decode(reader, reader.uint32());
+          message.targetScAddress = reader.string();
           break;
 
         case 2:
-          message.function = reader.string();
+          message.functionName = reader.string();
           break;
 
         default:
@@ -44,12 +38,12 @@ export class FunctionExistsRequest {
     return message;
   }
 
-  address: Address | null;
-  function: string;
+  targetScAddress: string;
+  functionName: string;
 
-  constructor(address: Address | null = null, function_: string = "") {
-    this.address = address;
-    this.function = function_;
+  constructor(targetScAddress: string = "", functionName: string = "") {
+    this.targetScAddress = targetScAddress;
+    this.functionName = functionName;
   }
 }
 

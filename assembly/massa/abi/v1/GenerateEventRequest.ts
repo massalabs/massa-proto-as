@@ -8,7 +8,7 @@ import { Writer, Reader, Protobuf } from "as-proto/assembly";
 export class GenerateEventRequest {
   static encode(message: GenerateEventRequest, writer: Writer): void {
     writer.uint32(10);
-    writer.string(message.event);
+    writer.bytes(message.event);
   }
 
   static decode(reader: Reader, length: i32): GenerateEventRequest {
@@ -19,7 +19,7 @@ export class GenerateEventRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.event = reader.string();
+          message.event = reader.bytes();
           break;
 
         default:
@@ -31,9 +31,9 @@ export class GenerateEventRequest {
     return message;
   }
 
-  event: string;
+  event: Uint8Array;
 
-  constructor(event: string = "") {
+  constructor(event: Uint8Array = new Uint8Array(0)) {
     this.event = event;
   }
 }

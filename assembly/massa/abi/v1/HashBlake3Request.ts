@@ -5,15 +5,15 @@
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
-export class CallResponse {
-  static encode(message: CallResponse, writer: Writer): void {
+export class HashBlake3Request {
+  static encode(message: HashBlake3Request, writer: Writer): void {
     writer.uint32(10);
     writer.bytes(message.data);
   }
 
-  static decode(reader: Reader, length: i32): CallResponse {
+  static decode(reader: Reader, length: i32): HashBlake3Request {
     const end: usize = length < 0 ? reader.end : reader.ptr + length;
-    const message = new CallResponse();
+    const message = new HashBlake3Request();
 
     while (reader.ptr < end) {
       const tag = reader.uint32();
@@ -38,10 +38,12 @@ export class CallResponse {
   }
 }
 
-export function encodeCallResponse(message: CallResponse): Uint8Array {
-  return Protobuf.encode(message, CallResponse.encode);
+export function encodeHashBlake3Request(
+  message: HashBlake3Request
+): Uint8Array {
+  return Protobuf.encode(message, HashBlake3Request.encode);
 }
 
-export function decodeCallResponse(buffer: Uint8Array): CallResponse {
-  return Protobuf.decode<CallResponse>(buffer, CallResponse.decode);
+export function decodeHashBlake3Request(buffer: Uint8Array): HashBlake3Request {
+  return Protobuf.decode<HashBlake3Request>(buffer, HashBlake3Request.decode);
 }

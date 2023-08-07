@@ -4,24 +4,27 @@
 //   protoc        v4.23.2
 
 import { Writer, Reader, Protobuf } from "as-proto/assembly";
-import { Address } from "./Address";
-import { Amount } from "./Amount";
+import { NativeAmount } from "../../model/v1/NativeAmount";
+import { StringValue } from "../../../google/protobuf/StringValue";
 
 export class TransferCoinsRequest {
   static encode(message: TransferCoinsRequest, writer: Writer): void {
-    const toAddress = message.toAddress;
-    if (toAddress !== null) {
-      writer.uint32(10);
+    writer.uint32(10);
+    writer.string(message.targetAddress);
+
+    const amountToTransfer = message.amountToTransfer;
+    if (amountToTransfer !== null) {
+      writer.uint32(18);
       writer.fork();
-      Address.encode(toAddress, writer);
+      NativeAmount.encode(amountToTransfer, writer);
       writer.ldelim();
     }
 
-    const rawAmount = message.rawAmount;
-    if (rawAmount !== null) {
-      writer.uint32(18);
+    const senderAddress = message.senderAddress;
+    if (senderAddress !== null) {
+      writer.uint32(26);
       writer.fork();
-      Amount.encode(rawAmount, writer);
+      StringValue.encode(senderAddress, writer);
       writer.ldelim();
     }
   }
@@ -34,11 +37,18 @@ export class TransferCoinsRequest {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.toAddress = Address.decode(reader, reader.uint32());
+          message.targetAddress = reader.string();
           break;
 
         case 2:
-          message.rawAmount = Amount.decode(reader, reader.uint32());
+          message.amountToTransfer = NativeAmount.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 3:
+          message.senderAddress = StringValue.decode(reader, reader.uint32());
           break;
 
         default:
@@ -50,15 +60,18 @@ export class TransferCoinsRequest {
     return message;
   }
 
-  toAddress: Address | null;
-  rawAmount: Amount | null;
+  targetAddress: string;
+  amountToTransfer: NativeAmount | null;
+  senderAddress: StringValue | null;
 
   constructor(
-    toAddress: Address | null = null,
-    rawAmount: Amount | null = null
+    targetAddress: string = "",
+    amountToTransfer: NativeAmount | null = null,
+    senderAddress: StringValue | null = null
   ) {
-    this.toAddress = toAddress;
-    this.rawAmount = rawAmount;
+    this.targetAddress = targetAddress;
+    this.amountToTransfer = amountToTransfer;
+    this.senderAddress = senderAddress;
   }
 }
 
