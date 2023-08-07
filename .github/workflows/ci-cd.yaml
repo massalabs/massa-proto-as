@@ -1,0 +1,38 @@
+name: CI/CD
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+  repository_dispatch:
+    types: [remote-build]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+          ref: ${{ github.head_ref }}
+      - name: Update Submodule
+        run: |
+          git submodule update --init --force --recursive --remote
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run asbuild:proto
+        if: ${{ github.ref == 'refs/heads/main' }} 
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_user_name: massabot
+          commit_user_email: info@massa.net
+          commit_author: massabot <info@massa.net>
