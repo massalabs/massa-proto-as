@@ -7,11 +7,11 @@ import { Writer, Reader, Protobuf } from "as-proto/assembly";
 
 export class NativeAmount {
   static encode(message: NativeAmount, writer: Writer): void {
-    writer.uint32(8);
-    writer.uint64(message.mantissa);
+    writer.uint32(9);
+    writer.fixed64(message.mantissa);
 
-    writer.uint32(16);
-    writer.uint32(message.scale);
+    writer.uint32(21);
+    writer.fixed32(message.scale);
   }
 
   static decode(reader: Reader, length: i32): NativeAmount {
@@ -22,11 +22,11 @@ export class NativeAmount {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.mantissa = reader.uint64();
+          message.mantissa = reader.fixed64();
           break;
 
         case 2:
-          message.scale = reader.uint32();
+          message.scale = reader.fixed32();
           break;
 
         default:
@@ -38,10 +38,10 @@ export class NativeAmount {
     return message;
   }
 
-  mantissa: u64;
-  scale: u32;
+  mantissa: i64;
+  scale: i32;
 
-  constructor(mantissa: u64 = 0, scale: u32 = 0) {
+  constructor(mantissa: i64 = 0, scale: i32 = 0) {
     this.mantissa = mantissa;
     this.scale = scale;
   }
