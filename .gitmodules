@@ -2,4 +2,4 @@
 	path = massa-proto
 	url = https://github.com/massalabs/massa-proto.git
 	# change this to the branch you want to track
-	branch = main
+	branch = varint_to_fixed
