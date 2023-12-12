@@ -66,6 +66,7 @@ import { VerifySigResult } from "./VerifySigResult";
 import { EvmGetAddressFromPubkeyResult } from "./EvmGetAddressFromPubkeyResult";
 import { EvmGetPubkeyFromSignatureResult } from "./EvmGetPubkeyFromSignatureResult";
 import { IsAddressEoaResult } from "./IsAddressEoaResult";
+import { ChainIdResult } from "./ChainIdResult";
 
 export class RespResult {
   static encode(message: RespResult, writer: Writer): void {
@@ -586,6 +587,14 @@ export class RespResult {
       IsAddressEoaResult.encode(isAddressEoaResult, writer);
       writer.ldelim();
     }
+
+    const chainIdResult = message.chainIdResult;
+    if (chainIdResult !== null) {
+      writer.uint32(506);
+      writer.fork();
+      ChainIdResult.encode(chainIdResult, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): RespResult {
@@ -1003,6 +1012,10 @@ export class RespResult {
           );
           break;
 
+        case 63:
+          message.chainIdResult = ChainIdResult.decode(reader, reader.uint32());
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -1074,6 +1087,7 @@ export class RespResult {
   evmGetAddressFromPubkeyResult: EvmGetAddressFromPubkeyResult | null;
   evmGetPubkeyFromSignatureResult: EvmGetPubkeyFromSignatureResult | null;
   isAddressEoaResult: IsAddressEoaResult | null;
+  chainIdResult: ChainIdResult | null;
 
   constructor(
     addNativeAmountResult: AddNativeAmountResult | null = null,
@@ -1137,7 +1151,8 @@ export class RespResult {
     verifySigResult: VerifySigResult | null = null,
     evmGetAddressFromPubkeyResult: EvmGetAddressFromPubkeyResult | null = null,
     evmGetPubkeyFromSignatureResult: EvmGetPubkeyFromSignatureResult | null = null,
-    isAddressEoaResult: IsAddressEoaResult | null = null
+    isAddressEoaResult: IsAddressEoaResult | null = null,
+    chainIdResult: ChainIdResult | null = null
   ) {
     this.addNativeAmountResult = addNativeAmountResult;
     this.addressFromPubKeyResult = addressFromPubKeyResult;
@@ -1202,6 +1217,7 @@ export class RespResult {
     this.evmGetAddressFromPubkeyResult = evmGetAddressFromPubkeyResult;
     this.evmGetPubkeyFromSignatureResult = evmGetPubkeyFromSignatureResult;
     this.isAddressEoaResult = isAddressEoaResult;
+    this.chainIdResult = chainIdResult;
   }
 }
 

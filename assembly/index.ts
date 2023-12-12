@@ -28,6 +28,8 @@ export * from "./massa/abi/v1/CallRequest";
 export * from "./massa/abi/v1/CallResponse";
 export * from "./massa/abi/v1/CallerHasWriteAccessRequest";
 export * from "./massa/abi/v1/CallerHasWriteAccessResult";
+export * from "./massa/abi/v1/ChainIdRequest";
+export * from "./massa/abi/v1/ChainIdResult";
 export * from "./massa/abi/v1/CheckAddressRequest";
 export * from "./massa/abi/v1/CheckAddressResult";
 export * from "./massa/abi/v1/CheckNativeAmountRequest";
