@@ -12,9 +12,10 @@
   "scripts": {
     "test": "node tests",
     "asbuild:proto": "protoc --proto_path=massa-proto/proto/ --proto_path=massa-proto/proto/commons --proto_path=massa-proto/proto/third_party --as_opt=gen-helper-methods --as_out=./assembly ./massa-proto/proto/abis/massa/abi/v1/abi.proto",
-    "asbuild:debug": "asc assembly/index.ts --target debug",
+    "asbuild:index": "./generate_index-ts.sh > assembly/index.ts",    
+"asbuild:debug": "asc assembly/index.ts --target debug",
     "asbuild:release": "asc assembly/index.ts --target release",
-    "asbuild": "npm run asbuild:proto",
+    "asbuild": "npm run asbuild:proto && npm run asbuild:index",
     "start": "npx serve .",
     "generate-barrels": "barrelsby --delete --directory assembly"
   },
