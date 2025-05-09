@@ -67,6 +67,10 @@ import { EvmGetAddressFromPubkeyResult } from "./EvmGetAddressFromPubkeyResult";
 import { EvmGetPubkeyFromSignatureResult } from "./EvmGetPubkeyFromSignatureResult";
 import { IsAddressEoaResult } from "./IsAddressEoaResult";
 import { ChainIdResult } from "./ChainIdResult";
+import { DeferredCallQuoteResult } from "./DeferredCallQuoteResult";
+import { DeferredCallExistsResult } from "./DeferredCallExistsResult";
+import { DeferredCallRegisterResult } from "./DeferredCallRegisterResult";
+import { DeferredCallCancelResult } from "./DeferredCallCancelResult";
 
 export class RespResult {
   static encode(message: RespResult, writer: Writer): void {
@@ -595,6 +599,38 @@ export class RespResult {
       ChainIdResult.encode(chainIdResult, writer);
       writer.ldelim();
     }
+
+    const deferredCallQuoteResult = message.deferredCallQuoteResult;
+    if (deferredCallQuoteResult !== null) {
+      writer.uint32(514);
+      writer.fork();
+      DeferredCallQuoteResult.encode(deferredCallQuoteResult, writer);
+      writer.ldelim();
+    }
+
+    const deferredCallExistsResult = message.deferredCallExistsResult;
+    if (deferredCallExistsResult !== null) {
+      writer.uint32(522);
+      writer.fork();
+      DeferredCallExistsResult.encode(deferredCallExistsResult, writer);
+      writer.ldelim();
+    }
+
+    const deferredCallRegisterResult = message.deferredCallRegisterResult;
+    if (deferredCallRegisterResult !== null) {
+      writer.uint32(530);
+      writer.fork();
+      DeferredCallRegisterResult.encode(deferredCallRegisterResult, writer);
+      writer.ldelim();
+    }
+
+    const deferredCallCancelResult = message.deferredCallCancelResult;
+    if (deferredCallCancelResult !== null) {
+      writer.uint32(538);
+      writer.fork();
+      DeferredCallCancelResult.encode(deferredCallCancelResult, writer);
+      writer.ldelim();
+    }
   }
 
   static decode(reader: Reader, length: i32): RespResult {
@@ -1016,6 +1052,32 @@ export class RespResult {
           message.chainIdResult = ChainIdResult.decode(reader, reader.uint32());
           break;
 
+        case 64:
+          message.deferredCallQuoteResult = DeferredCallQuoteResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 65:
+          message.deferredCallExistsResult = DeferredCallExistsResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
+        case 66:
+          message.deferredCallRegisterResult =
+            DeferredCallRegisterResult.decode(reader, reader.uint32());
+          break;
+
+        case 67:
+          message.deferredCallCancelResult = DeferredCallCancelResult.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -1088,6 +1150,10 @@ export class RespResult {
   evmGetPubkeyFromSignatureResult: EvmGetPubkeyFromSignatureResult | null;
   isAddressEoaResult: IsAddressEoaResult | null;
   chainIdResult: ChainIdResult | null;
+  deferredCallQuoteResult: DeferredCallQuoteResult | null;
+  deferredCallExistsResult: DeferredCallExistsResult | null;
+  deferredCallRegisterResult: DeferredCallRegisterResult | null;
+  deferredCallCancelResult: DeferredCallCancelResult | null;
 
   constructor(
     addNativeAmountResult: AddNativeAmountResult | null = null,
@@ -1152,7 +1218,11 @@ export class RespResult {
     evmGetAddressFromPubkeyResult: EvmGetAddressFromPubkeyResult | null = null,
     evmGetPubkeyFromSignatureResult: EvmGetPubkeyFromSignatureResult | null = null,
     isAddressEoaResult: IsAddressEoaResult | null = null,
-    chainIdResult: ChainIdResult | null = null
+    chainIdResult: ChainIdResult | null = null,
+    deferredCallQuoteResult: DeferredCallQuoteResult | null = null,
+    deferredCallExistsResult: DeferredCallExistsResult | null = null,
+    deferredCallRegisterResult: DeferredCallRegisterResult | null = null,
+    deferredCallCancelResult: DeferredCallCancelResult | null = null
   ) {
     this.addNativeAmountResult = addNativeAmountResult;
     this.addressFromPubKeyResult = addressFromPubKeyResult;
@@ -1218,6 +1288,10 @@ export class RespResult {
     this.evmGetPubkeyFromSignatureResult = evmGetPubkeyFromSignatureResult;
     this.isAddressEoaResult = isAddressEoaResult;
     this.chainIdResult = chainIdResult;
+    this.deferredCallQuoteResult = deferredCallQuoteResult;
+    this.deferredCallExistsResult = deferredCallExistsResult;
+    this.deferredCallRegisterResult = deferredCallRegisterResult;
+    this.deferredCallCancelResult = deferredCallCancelResult;
   }
 }
 
